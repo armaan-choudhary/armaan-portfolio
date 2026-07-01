@@ -787,58 +787,6 @@
   overflow: hidden;
 }
 
-.spiralBinding {
-  position: absolute;
-  top: 75px; /* Positioned right where the notebook sheet starts */
-  left: 10%;
-  right: 10%;
-  height: 30px;
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-  z-index: 100;
-}
-
-.spiralRing {
-  width: 12px;
-  height: 42px;
-  background: linear-gradient(to right, #777, #ccc 30%, #fff 50%, #999 85%, #555);
-  border-radius: 6px;
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.4);
-  position: relative;
-}
-.spiralRing::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: #1a1b1c;
-  border-radius: 50%;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
-}
-
-.notebookSheet {
-  background-color: #fdfcee; /* Yellow pad cream paper matching about section */
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 4px;
-  padding: 70px 40px 45px 40px;
-  box-shadow: 
-    0px 8px 30px rgba(0,0,0,0.22),
-    inset 0 0 40px rgba(0,0,0,0.02);
-  width: 95%;
-  max-width: 1200px;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
 .pegboardStencilLeft, .pegboardStencilRight {
   position: absolute;
   pointer-events: none;
@@ -846,161 +794,226 @@
   z-index: 10;
 }
 
-/* Stationery Grid */
-.stationeryGridContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  width: 100%;
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-
-
-
-@media (max-width: 950px) {
-  .stationeryGridContainer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-}
-
-@media (max-width: 540px) {
-  .stationeryGridContainer {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
-
-.stationeryColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  min-width: 0; /* Prevents flex items from overflowing container */
-}
-
-.columnHeader {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--charcoal);
-  text-align: center;
-  letter-spacing: 1.5px;
-  border-bottom: 2px dashed rgba(0,0,0,0.1);
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-}
-
-.columnCardsList {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-/* Cards */
-.stationeryCard {
-  position: relative;
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 2px;
-  padding: 24px 16px 14px 16px;
+.pegboardTitleLabel {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  background-color: rgba(235, 225, 205, 0.95); /* Masking tape base */
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.02) 100%);
+  padding: 10px 45px;
   box-shadow: 
-    0px 2px 4px rgba(0,0,0,0.04),
-    0px 6px 15px rgba(0,0,0,0.05);
+    0px 3px 6px rgba(0,0,0,0.15),
+    inset 0 0 2px rgba(0,0,0,0.05);
+  color: #1a1a1a;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-marker);
+  font-size: 3rem;
+  letter-spacing: 3px;
+  /* Torn tape edges on left and right */
+  clip-path: polygon(
+    2% 0%, 98% 0%, 
+    100% 5%, 98% 10%, 100% 15%, 97% 20%, 100% 30%, 98% 40%, 100% 50%, 97% 60%, 100% 70%, 98% 80%, 100% 90%, 98% 95%, 100% 100%, 
+    2% 100%, 
+    0% 95%, 2% 90%, 0% 80%, 2% 70%, 0% 60%, 3% 50%, 0% 40%, 2% 30%, 0% 20%, 2% 15%, 0% 10%, 2% 5%, 0% 0%
+  );
+}
+
+/* Remove the top piece of tape since the title IS the tape now */
+.pegboardTitleLabel::before {
+  display: none;
+}
+
+.scrapsBoardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 20;
+}
+
+.scrapPaperCard {
+  position: relative;
+  width: 290px;
+  min-height: 350px;
+  padding: 40px 25px 30px 25px;
+  box-shadow: 
+    0px 20px 25px rgba(0,0,0,0.35),
+    inset 0 0 15px rgba(0,0,0,0.03);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  cursor: default;
+  cursor: grab;
+}
+
+.scrapPaperCard:active {
+  cursor: grabbing;
+}
+
+/* Fasteners */
+.staple {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 18px;
+  height: 4px;
+  background-color: #999;
+  border-radius: 1px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.8);
+  transform: rotate(20deg);
+  z-index: 10;
 }
 
 .stationeryCardTape {
   position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-1deg);
-  width: 70px;
-  height: 20px;
-  background-color: rgba(225, 215, 190, 0.42); /* Matte masking tape */
-  box-shadow: inset 0 0 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
-  border-left: 1px dashed rgba(0,0,0,0.08);
-  border-right: 1px dashed rgba(0,0,0,0.08);
+  width: 80px;
+  height: 24px;
+  background-color: rgba(230, 220, 200, 0.85); /* Masking tape */
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+  /* ragged edges */
+  clip-path: polygon(2% 0, 98% 5%, 100% 95%, 95% 100%, 5% 98%, 0% 95%);
   z-index: 10;
 }
 
-.stationeryCardContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  min-height: 55px;
-}
-
-.stationeryCardCrosshair {
-  font-family: monospace;
-  font-size: 0.65rem;
-  opacity: 0.45;
-  align-self: flex-start;
-  line-height: 1;
-}
-
-.stationeryCardName {
-  font-family: var(--font-body);
-  font-size: 1.15rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.2px;
-  margin: 6px 0;
-  line-height: 1.25;
-  color: var(--charcoal);
-}
-
-.stationeryCardIndex {
-  font-family: monospace;
-  font-size: 0.6rem;
-  opacity: 0.45;
-  align-self: flex-end;
-  line-height: 1;
-}
-
-/* Paper category designs */
-.cardLanguages {
-  background-color: #fdfcee; /* Yellow pad cream */
-  background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-  background-size: 100% 20px;
-}
-
-.cardFrameworks {
-  background-color: #f1f5f8; /* Graph paper light blue */
+/* Scrap Types */
+.scrapLanguages {
+  background-color: #f0f4f8; /* Graph paper */
   background-image: 
-    linear-gradient(rgba(0, 100, 200, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 100, 200, 0.02) 1px, transparent 1px);
-  background-size: 10px 10px;
+    repeating-linear-gradient(#e0e0e0 0 1px, transparent 1px 100%), 
+    repeating-linear-gradient(90deg, #e0e0e0 0 1px, transparent 1px 100%);
+  background-size: 20px 20px;
+  /* Torn edges using clip-path magic to simulate tearing at the bottom */
+  clip-path: polygon(0% 0%, 100% 0%, 98% 97%, 95% 100%, 88% 98%, 85% 99%, 78% 97%, 72% 100%, 65% 98%, 60% 99%, 52% 97%, 45% 100%, 38% 98%, 30% 99%, 25% 97%, 18% 100%, 10% 98%, 5% 99%, 2% 96%, 0% 100%);
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.cardSpecialties {
-  background-color: #27282b; /* Tech carbon black */
-  border-color: rgba(255,255,255,0.04);
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+.scrapFrameworks {
+  background-color: #fdfcee; /* Yellow legal pad */
+  background-image: repeating-linear-gradient(transparent, transparent 27px, #add8e6 27px, #add8e6 28px);
+  border-radius: 255px 5px 225px 3px / 2px 255px 3px 25px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: inset 20px 0 30px rgba(0,0,0,0.02), 0px 25px 30px -10px rgba(0,0,0,0.3);
 }
-.cardSpecialties .stationeryCardName {
-  color: #ffffff;
+
+/* Coffee Stain */
+.scrapFrameworks::before {
+  content: '';
+  position: absolute;
+  right: 15px;
+  bottom: 25px;
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(139, 69, 19, 0.12);
+  border-radius: 50%;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+  pointer-events: none;
 }
-.cardSpecialties .stationeryCardCrosshair,
-.cardSpecialties .stationeryCardIndex {
-  color: #bbb;
+
+.scrapFrameworksMargin {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #ff7b7b; /* red margin line */
   opacity: 0.6;
 }
-.cardSpecialties .stationeryCardTape {
-  background-color: rgba(255,255,255,0.08); /* Frosted white/clear tape */
-  border-color: rgba(255,255,255,0.1);
+
+.scrapSpecialties {
+  background-color: #fff;
+  background-image: radial-gradient(#e0e0e0 1.5px, transparent 1.5px);
+  background-size: 15px 15px;
+  /* Torn edge top and bottom */
+  clip-path: polygon(2% 2%, 10% 0%, 20% 1%, 35% 0%, 50% 2%, 65% 0%, 80% 1%, 90% 0%, 98% 2%, 100% 100%, 95% 98%, 85% 100%, 75% 99%, 60% 100%, 45% 98%, 30% 100%, 15% 99%, 5% 100%, 0% 98%);
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.cardTools {
-  background-color: #f4eae1; /* Kraft cardboard paper */
-  border-color: #e5dacb;
+.scrapTools {
+  background-color: #d4b58e; /* Brown craft paper */
+  border-radius: 255px 5px 225px 3px / 2px 255px 3px 25px;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.08), 0px 25px 30px -10px rgba(0,0,0,0.3);
 }
-.cardTools .stationeryCardTape {
-  background-color: rgba(200, 180, 150, 0.35); /* darker kraft tape */
+
+/* Typography inside scraps */
+.scrapTitle {
+  font-family: var(--font-marker);
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 25px;
+  transform: rotate(-3.5deg);
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.scrapHandwrittenList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  transform: rotate(-1.5deg);
+}
+
+.scrapHandwrittenItem {
+  font-family: var(--font-handwritten);
+  font-size: 1.6rem;
+  color: var(--blue-ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.1;
+}
+
+.scrapCheckbox {
+  color: #1a1a1a;
+  opacity: 0.6;
+  font-size: 1.3rem;
+  font-family: var(--font-marker);
+}
+
+.scrapSkillName {
+  flex: 1;
+}
+
+/* Specific text color tweaks */
+.scrapLanguages .scrapHandwrittenItem {
+  color: var(--blue-ink); /* Blue pen for graph paper */
+}
+
+.scrapFrameworks .scrapTitle, .scrapFrameworks .scrapCheckbox {
+  color: #c62828; /* Red marker on yellow pad */
+}
+.scrapFrameworks .scrapTitle {
+  transform: rotate(1deg);
+}
+.scrapFrameworks .scrapHandwrittenItem {
+  color: #1b5e20; /* Dark forest green pen */
+}
+
+.scrapSpecialties .scrapTitle, .scrapSpecialties .scrapCheckbox {
+  color: #4a148c; /* Purple marker */
+}
+.scrapSpecialties .scrapHandwrittenItem {
+  color: #880e4f; /* Magenta/Burgundy pen */
+}
+
+.scrapTools .scrapHandwrittenItem {
+  color: #212121; /* Black pen on craft paper */
 }
 
 .pegboardLedge {

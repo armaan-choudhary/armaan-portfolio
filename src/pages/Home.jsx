@@ -264,79 +264,88 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </section>      <section className={styles.skillsSection} id="toolbox">
+      </section>
+
+      <section className={styles.skillsSection} id="toolbox">
         <div ref={pegboardRef} className={styles.pegboard}>
           
-          {/* Silver spiral binding rings at the top of the notebook */}
-          <div className={styles.spiralBinding}>
-            {Array.from({ length: 18 }).map((_, idx) => (
-              <div key={idx} className={styles.spiralRing} />
-            ))}
+          {/* Coffee stain floating on the wooden tabletop */}
+          <div className={styles.coffeeStain} style={{ bottom: 20, right: 30, opacity: 0.15, transform: 'scale(0.85)', pointerEvents: 'none', position: 'absolute' }} />
+          
+          {/* Metadata parameters on the desk */}
+          <div className={styles.pegboardStencilLeft} style={{ top: 20, left: 30 }}>
+            <span style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+              SYS: SCRAP_MOODBOARD // CL.04
+            </span>
+          </div>
+          <div className={styles.pegboardStencilRight} style={{ top: 20, right: 30 }}>
+            <span style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+              REF: ARM_WORKSPACE_v1.0
+            </span>
           </div>
 
-          <div className={styles.notebookSheet}>
-            {/* Metadata parameters inside the page */}
-            <div className={styles.pegboardStencilLeft} style={{ top: 12, left: 20 }}>
-              <span style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.35)', fontFamily: 'monospace', letterSpacing: '1px' }}>
-                SYS: STATIONERY_SCRAPBOOK // PG.12
-              </span>
-            </div>
-            <div className={styles.pegboardStencilRight} style={{ top: 12, right: 20 }}>
-              <span style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.35)', fontFamily: 'monospace', letterSpacing: '1px' }}>
-                REF: SKILLS_INDEX_v1.0
-              </span>
-            </div>
+          <div className={styles.pegboardTitleLabel}>
+            <span>TECH STACK</span>
+          </div>
 
-            <div className={styles.pegboardTitle} style={{ top: 10, left: '50%', transform: 'translateX(-50%)', position: 'absolute', zIndex: 10 }}>
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2.4rem', letterSpacing: '2px', color: 'var(--charcoal)' }}>
-                TECH STACK
-              </span>
-            </div>
+          <div className={styles.scrapsBoardContainer}>
+            {["Languages", "Frameworks", "Specialties", "Tools"].map((category, catIdx) => {
+              // Rotation angles, offsets, and overlaps for messy collage effect
+              const tilts = [-12, 5, -8, 14];
+              const offsetsX = [30, -25, -60, -40]; 
+              const offsetsY = [-15, 60, -30, 45];
+              const zIndexes = [20, 21, 22, 23];   // Ensure they stack correctly
+              
+              const tilt = tilts[catIdx];
+              const xOffset = offsetsX[catIdx];
+              const yOffset = offsetsY[catIdx];
+              const zBase = zIndexes[catIdx];
+              
+              // Attachment type: 0 = Paperclip, 1 = Staple, 2 = Push-pin, 3 = Masking Tape
+              const attachmentType = catIdx;
+              
+              // Hand-drawn bullets
+              const bullets = ["~", "-", "•", "x"];
+              const bullet = bullets[catIdx];
+              
+              return (
+                <motion.div
+                  key={category}
+                  className={`${styles.scrapPaperCard} ${styles[`scrap${category}`]}`}
+                  style={{ 
+                    rotate: tilt, 
+                    x: xOffset, 
+                    y: yOffset,
+                    zIndex: zBase
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotate: tilt * 0.2, 
+                    y: yOffset - 15,
+                    zIndex: 30,
+                  }}
+                  transition={{ type: "spring", stiffness: 260, damping: 16 }}
+                >
+                  {/* Render the appropriate fastener */}
+                  {attachmentType === 0 && <div className={styles.paperClip} style={{ top: -18, left: 30, transform: 'rotate(-5deg)' }} />}
+                  {attachmentType === 1 && <div className={styles.staple} />}
+                  {attachmentType === 2 && <div className={styles.pushPin} style={{ top: -14, left: '50%', transform: 'translateX(-50%)' }} />}
+                  {attachmentType === 3 && <div className={styles.stationeryCardTape} style={{ top: -12, right: 25, transform: 'rotate(25deg)' }} />}
 
-            {/* Coffee stain inside the notebook page */}
-            <div className={styles.coffeeStain} style={{ bottom: -20, right: -25, opacity: 0.18, transform: 'scale(0.75)', pointerEvents: 'none' }} />
-
-            <div className={styles.stationeryGridContainer}>
-              {["Languages", "Frameworks", "Specialties", "Tools"].map((category) => (
-                <div key={category} className={styles.stationeryColumn}>
-                  <h3 className={styles.columnHeader}>{category.toUpperCase()}</h3>
-                  <div className={styles.columnCardsList}>
-                    {groupedSkills[category].map((skill, idx) => {
-                      // Slight natural visual tilt offset
-                      const tilt = (idx % 2 === 0) ? 1.2 : -1.5;
-                      // Cycle attachment decorations: 0 = Tape, 1 = Paperclip, 2 = Push-pin
-                      const attachmentType = idx % 3;
-                      
-                      return (
-                        <motion.div
-                          key={skill.name}
-                          className={`${styles.stationeryCard} ${styles[`card${category}`]}`}
-                          style={{ rotate: tilt }}
-                          whileHover={{ 
-                            scale: 1.04, 
-                            rotate: tilt * 0.5, 
-                            y: -5,
-                            zIndex: 15,
-                            boxShadow: "0 15px 30px rgba(0,0,0,0.18)"
-                          }}
-                          transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                        >
-                          {attachmentType === 0 && <div className={styles.stationeryCardTape} />}
-                          {attachmentType === 1 && <div className={styles.paperClip} style={{ top: -18, right: 15, transform: 'rotate(10deg)' }} />}
-                          {attachmentType === 2 && <div className={styles.pushPin} style={{ top: -14, left: '50%', transform: 'translateX(-50%)' }} />}
-                          
-                          <div className={styles.stationeryCardContent}>
-                            <span className={styles.stationeryCardCrosshair}>+</span>
-                            <span className={styles.stationeryCardName}>{skill.name}</span>
-                            <span className={styles.stationeryCardIndex}>REF.0{idx + 1}</span>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
+                  {category === "Frameworks" && <div className={styles.scrapFrameworksMargin} />}
+                  <h3 className={styles.scrapTitle}>{category}</h3>
+                  
+                  <ul className={styles.scrapHandwrittenList}>
+                    {groupedSkills[category].map((skill) => (
+                      <li key={skill.name} className={styles.scrapHandwrittenItem}>
+                        <span className={styles.scrapCheckbox}>{bullet}</span>
+                        <span className={styles.scrapSkillName}>{skill.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
           </div>
 
           <div className={styles.pegboardLedge} />
