@@ -7,7 +7,7 @@ import Divider from '../components/ui/Divider.jsx'
 import projectsData from '../data/projects.json'
 import styles from './Work.module.css'
 
-const categories = ['All', 'Web Development', 'Creative Coding', 'UI/UX Design']
+const categories = ['All', 'Full-Stack Development', 'Front-End Development', 'AI & Full-Stack Development']
 
 export default function Work() {
   const [activeCategory, setActiveCategory] = useState('All')
@@ -18,19 +18,17 @@ export default function Work() {
 
   return (
     <div className={styles.workPage}>
-      {/* Page Title */}
       <section className={styles.titleSection}>
         <div className="container">
           <div className={styles.titleHeader}>
-            <SectionTitle rotate={-1} annotation="Bits of paper taped to a wall">
+            <SectionTitle rotate={-1} annotation="Projects built for scale and performance">
               Selected Work
             </SectionTitle>
             <p className={styles.introText}>
-              A curated collection of web applications, interactive experiments, and brutalist digital designs. These are the projects where engineering met aesthetic.
+              A curated collection of production-ready applications, system architectures, and AI integrations. These projects demonstrate a commitment to robust engineering and scalable design.
             </p>
           </div>
 
-          {/* Filtering stickers */}
           <div className={styles.filterBar}>
             <span className={`${styles.filterLabel} handwritten`}>Filter by Category:</span>
             <div className={styles.filters}>
@@ -53,13 +51,11 @@ export default function Work() {
 
       <Divider variant="block" />
 
-      {/* Grid of Polaroid projects */}
       <section className={styles.gridSection}>
         <div className="container">
           <motion.div layout className={styles.projectGrid}>
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => {
-                // Alternating rotations for the raw scrapbooked feel
                 const rotations = [-3, 2, -1, 3, -2, 4]
                 const tapeRotations = [4, -5, 3, -3, 5, -4]
                 const rot = rotations[index % rotations.length]
@@ -91,7 +87,7 @@ export default function Work() {
           {filteredProjects.length === 0 && (
             <div className={styles.emptyState}>
               <Sticker rotate={0} color="yellow">No projects found</Sticker>
-              <p className={styles.emptyText}>Looks like there's nothing in this cabinet yet. Check back soon!</p>
+              <p className={styles.emptyText}>Looks like there's nothing in this category yet. Check back soon!</p>
             </div>
           )}
         </div>

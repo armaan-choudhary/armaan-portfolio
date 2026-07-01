@@ -22,6 +22,7 @@
   --font-body: 'Space Grotesk', sans-serif;
   --font-handwritten: 'Caveat', cursive;
   --font-marker: 'Permanent Marker', cursive;
+  --font-arcade: 'VT323', monospace;
 
   /* Borders & Shadows */
   --border-thick: 3px solid var(--black);
@@ -44,6 +45,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+::selection {
+  background-color: var(--yellow);
+  color: var(--black);
+}
+
+::-moz-selection {
+  background-color: var(--yellow);
+  color: var(--black);
 }
 
 html {

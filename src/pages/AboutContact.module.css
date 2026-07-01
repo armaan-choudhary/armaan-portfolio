@@ -9,7 +9,7 @@
 
 .bioGrid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 60px;
   align-items: flex-start;
 }
@@ -31,6 +31,20 @@
 
 .bioText:last-of-type {
   margin-bottom: 32px;
+}
+
+.highlightBlue {
+  background: linear-gradient(104deg, transparent 0%, rgba(30, 136, 229, 0.15) 2%, rgba(30, 136, 229, 0.15) 98%, transparent 100%);
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.highlightRed {
+  background: linear-gradient(104deg, transparent 0%, rgba(229, 57, 53, 0.12) 2%, rgba(229, 57, 53, 0.12) 98%, transparent 100%);
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 2px;
 }
 
 .bioActions {

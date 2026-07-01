@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 .home {
   display: flex;
   flex-direction: column;
@@ -617,7 +619,7 @@
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.75fr 1.25fr;
   gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
@@ -688,13 +690,15 @@
   font-family: 'Courier New', Courier, monospace;
   color: var(--red-marker);
   border: 2px solid var(--red-marker);
+  background-color: var(--white);
   display: inline-block;
   padding: 5px 10px;
   transform: rotate(-15deg);
   position: absolute;
-  top: -20px;
-  right: 0;
-  opacity: 0.8;
+  top: -25px;
+  right: -15px;
+  opacity: 0.9;
+  z-index: 20;
 }
 .notebookPage {
   background: var(--paper-notebook);
@@ -754,155 +758,296 @@
 
 /* SECTION 4: THE ARSENAL (SKILLS) */
 .skillsSection {
-  padding: 120px 20px;
+  padding: 120px 0;
 }
 
-.blackboard {
-  max-width: 1000px;
-  width: 95%;
-  margin: 0 auto;
-  background: #2b3a30; /* Classic dark chalkboard green */
-  padding: 60px;
-  border: 15px solid #4a332a; /* Wooden frame */
-  border-radius: 4px;
+.pegboard {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background-color: #cd9f68; /* Rich corkboard color matching projects section */
+  background-image: 
+    radial-gradient(#ab7d46 15%, transparent 16%),
+    radial-gradient(#ab7d46 15%, transparent 16%);
+  background-size: 8px 8px, 8px 8px;
+  background-position: 0 0, 4px 4px;
+  padding: 95px 40px 95px 40px;
+  border-top: 20px solid #4a332a; /* Wooden frame top */
+  border-bottom: 20px solid #4a332a; /* Wooden frame bottom */
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
   box-shadow: 
-    inset 0 0 40px rgba(0,0,0,0.8), /* Vignette shadow */
-    0 20px 40px rgba(0,0,0,0.5); /* Drop shadow on wall */
+    inset 0 0 80px rgba(0,0,0,0.5),
+    0 20px 45px rgba(0,0,0,0.15);
   display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  position: relative;
-}
-
-/* Chalk ledge at bottom of frame */
-.blackboard::after {
-  content: '';
-  position: absolute;
-  bottom: -25px;
-  left: -20px;
-  right: -20px;
-  height: 20px;
-  background: #3d2921;
-  border-radius: 2px;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-.chalkText {
-  font-family: var(--font-handwritten);
-  font-size: 2.2rem;
-  color: #f4f4f4;
-  cursor: default;
-  /* Chalk effect */
-  text-shadow: 
-    0px 0px 2px rgba(255,255,255,0.8),
-    1px 1px 4px rgba(255,255,255,0.5),
-    -1px -1px 3px rgba(255,255,255,0.3);
-  opacity: 0.9;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-.chalkText:hover {
-  opacity: 1;
-  /* Make the chalk text glow slightly on hover */
-  text-shadow: 
-    0px 0px 4px rgba(255,255,255,1),
-    2px 2px 8px rgba(255,255,255,0.7),
-    -2px -2px 6px rgba(255,255,255,0.5);
-}
-
-.skillScrap {
-  padding: 12px 24px;
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  color: var(--black);
-  position: relative;
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  cursor: default;
-  z-index: 1;
-  
-  background-color: var(--paper-bg);
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  border-radius: 2px 255px 3px 25px / 255px 5px 225px 3px;
-  border: 1px solid rgba(0,0,0,0.1);
-
-  --highlighter-color: var(--yellow);
-  --highlighter-blend: multiply;
-  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
-.skillScrap:hover {
-  transform: scale(1.05) translateY(-2px) !important;
-  box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
-  z-index: 10;
+.spiralBinding {
+  position: absolute;
+  top: 75px; /* Positioned right where the notebook sheet starts */
+  left: 10%;
+  right: 10%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 100;
 }
 
-/* Physical Highlighter Swipe Effect */
-.skillScrap::before {
+.spiralRing {
+  width: 12px;
+  height: 42px;
+  background: linear-gradient(to right, #777, #ccc 30%, #fff 50%, #999 85%, #555);
+  border-radius: 6px;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.4);
+  position: relative;
+}
+.spiralRing::after {
   content: '';
   position: absolute;
-  top: 40%;
-  left: 15px;
-  right: 100%;
-  height: 40%;
-  background: var(--highlighter-color);
-  z-index: -1; /* Behind the text */
-  transition: right 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  mix-blend-mode: var(--highlighter-blend); /* Gives it a realistic ink look on the paper */
-  pointer-events: none;
-  transform: rotate(-1deg);
-}
-
-.skillScrap:hover::before {
-  right: 15px; /* Sweeps across the text */
-}
-
-.skillPin {
-  position: absolute;
-  top: 6px;
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background: #222;
+  background: #1a1b1c;
   border-radius: 50%;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.4);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
 }
 
-.scrapYellow { 
-  background-color: var(--yellow) !important; 
-  color: var(--black) !important; 
-  --highlighter-color: #ff00ff; /* Pink marker */
+.notebookSheet {
+  background-color: #fdfcee; /* Yellow pad cream paper matching about section */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  padding: 70px 40px 45px 40px;
+  box-shadow: 
+    0px 8px 30px rgba(0,0,0,0.22),
+    inset 0 0 40px rgba(0,0,0,0.02);
+  width: 95%;
+  max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
-.scrapRed { 
-  background-color: var(--red-marker) !important; 
-  color: var(--white) !important; 
-  --highlighter-color: #00e5ff; /* Cyan marker */
-  --highlighter-blend: normal; /* Multiply is too dark on red */
+
+.pegboardStencilLeft, .pegboardStencilRight {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
 }
-.scrapBlue { 
-  background-color: #a2d2ff !important; 
-  color: var(--black) !important; 
-  --highlighter-color: #ff6600; /* Orange marker */
+
+/* Stationery Grid */
+.stationeryGridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
-.scrapBlack { 
-  background-color: var(--black) !important; 
-  color: var(--white) !important; 
-  border-color: var(--white) !important; 
-  --highlighter-color: #39ff14; /* Neon green marker */
-  --highlighter-blend: normal; /* Multiply doesn't work on black */
+
+
+
+@media (max-width: 950px) {
+  .stationeryGridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
 }
-.scrapGreen { 
-  background-color: #b7e4c7 !important; 
-  color: var(--black) !important; 
-  --highlighter-color: #ff00ff; /* Pink marker */
+
+@media (max-width: 540px) {
+  .stationeryGridContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
-.scrapWhite { 
-  background-color: var(--white) !important; 
-  color: var(--black) !important; 
+
+.stationeryColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 0; /* Prevents flex items from overflowing container */
+}
+
+.columnHeader {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  text-align: center;
+  letter-spacing: 1.5px;
+  border-bottom: 2px dashed rgba(0,0,0,0.1);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.columnCardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Cards */
+.stationeryCard {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 2px;
+  padding: 24px 16px 14px 16px;
+  box-shadow: 
+    0px 2px 4px rgba(0,0,0,0.04),
+    0px 6px 15px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.stationeryCardTape {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 70px;
+  height: 20px;
+  background-color: rgba(225, 215, 190, 0.42); /* Matte masking tape */
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
+  border-left: 1px dashed rgba(0,0,0,0.08);
+  border-right: 1px dashed rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.stationeryCardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 55px;
+}
+
+.stationeryCardCrosshair {
+  font-family: monospace;
+  font-size: 0.65rem;
+  opacity: 0.45;
+  align-self: flex-start;
+  line-height: 1;
+}
+
+.stationeryCardName {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  margin: 6px 0;
+  line-height: 1.25;
+  color: var(--charcoal);
+}
+
+.stationeryCardIndex {
+  font-family: monospace;
+  font-size: 0.6rem;
+  opacity: 0.45;
+  align-self: flex-end;
+  line-height: 1;
+}
+
+/* Paper category designs */
+.cardLanguages {
+  background-color: #fdfcee; /* Yellow pad cream */
+  background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 100% 20px;
+}
+
+.cardFrameworks {
+  background-color: #f1f5f8; /* Graph paper light blue */
+  background-image: 
+    linear-gradient(rgba(0, 100, 200, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 100, 200, 0.02) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.cardSpecialties {
+  background-color: #27282b; /* Tech carbon black */
+  border-color: rgba(255,255,255,0.04);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+}
+.cardSpecialties .stationeryCardName {
+  color: #ffffff;
+}
+.cardSpecialties .stationeryCardCrosshair,
+.cardSpecialties .stationeryCardIndex {
+  color: #bbb;
+  opacity: 0.6;
+}
+.cardSpecialties .stationeryCardTape {
+  background-color: rgba(255,255,255,0.08); /* Frosted white/clear tape */
+  border-color: rgba(255,255,255,0.1);
+}
+
+.cardTools {
+  background-color: #f4eae1; /* Kraft cardboard paper */
+  border-color: #e5dacb;
+}
+.cardTools .stationeryCardTape {
+  background-color: rgba(200, 180, 150, 0.35); /* darker kraft tape */
+}
+
+.pegboardLedge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background-color: #5c4327; /* Wood walnut ledge */
+  border-top: 4px solid #7d573e; /* light highlight wood */
+  box-shadow: 
+    inset 0 4px 10px rgba(0,0,0,0.4),
+    0 -4px 10px rgba(0,0,0,0.12);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bobbingWrapper {
+  animation: notebookBob 1.6s infinite ease-in-out alternate;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes notebookBob {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.minecraftSign {
+  margin: 0 auto 30px auto;
+  width: max-content;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8' style='shape-rendering: crispEdges;'><rect width='16' height='8' fill='%235c4327'/><rect x='1' y='1' width='14' height='6' fill='%23c69c6d'/></svg>");
+  background-size: 100% 100%;
+  padding: 10px 30px;
+  font-family: 'VT323', monospace;
+  font-size: 2.8rem;
+  color: #2c1b0a;
+  text-align: center;
+  box-shadow: 0px 8px 0px rgba(0,0,0,0.4);
+  image-rendering: pixelated;
+  transform: rotate(-1deg);
 }
 
 @media (max-width: 768px) {

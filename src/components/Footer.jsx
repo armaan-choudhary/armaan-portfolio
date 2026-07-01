@@ -18,9 +18,9 @@ export default function Footer() {
           
           <div className={styles.libraryStamp}>
             <div className={styles.stampBorder}>
-              <span style={{fontSize: '0.8rem', letterSpacing: '1px'}}>LIBRARY OF ARMAAN</span>
-              <span style={{fontSize: '1.2rem', fontWeight: 'bold', margin: '5px 0'}}>DUE DATE</span>
-              <span style={{color: 'var(--red-marker)', fontFamily: 'var(--font-handwritten)', fontSize: '1.4rem'}}>Always.</span>
+              <span style={{fontSize: '0.8rem', letterSpacing: '1px'}}>ENGINEERING LOG</span>
+              <span style={{fontSize: '1.2rem', fontWeight: 'bold', margin: '5px 0'}}>STATUS</span>
+              <span style={{color: 'var(--red-marker)', fontFamily: 'var(--font-handwritten)', fontSize: '1.4rem'}}>Deployed.</span>
             </div>
           </div>
 

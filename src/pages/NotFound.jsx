@@ -19,11 +19,11 @@ export default function NotFound() {
             <Sticker rotate={-5} color="yellow">404 ERROR</Sticker>
           </motion.div>
 
-          <h1 className={styles.title}>WAYWARD EXPLORER</h1>
+          <h1 className={styles.title}>PAGE NOT FOUND</h1>
           <p className={styles.text}>
-            You've reached an index card that doesn't exist. It's either been lost in the cabinet, eaten by the coffee machine, or never written in the first place.
+            The requested route does not exist. It may have been removed, renamed, or is temporarily unavailable.
           </p>
-          <span className={`${styles.scribble} handwritten`}>* Translation: File not found!</span>
+          <span className={`${styles.scribble} handwritten`}>* Status 404: Resource not found.</span>
 
           <div className={styles.actions}>
             <Button to="/" variant="primary">GO BACK HOME</Button>

@@ -1,14 +1,31 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import projectsData from '../data/projects.json';
 import skillsData from '../data/skills.json';
 import styles from './Home.module.css';
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight, Wrench, Hammer, Drill, Ruler } from 'lucide-react';
+
+
+
+
+
+
+
+
+
 
 export default function Home() {
   const deskRef = useRef(null);
   const notebookRef = useRef(null);
-  
+  const pegboardRef = useRef(null);
+
+  const groupedSkills = {
+    Languages: skillsData.filter((s) => s.category === "Languages"),
+    Frameworks: skillsData.filter((s) => s.category === "Frameworks"),
+    Specialties: skillsData.filter((s) => s.category === "Specialties"),
+    Tools: skillsData.filter((s) => s.category === "Tools"),
+  };
+
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -19,7 +36,6 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      {/* SECTION 1: HERO / COVER PAGE */}
       <section 
         className={styles.heroSection} 
         ref={deskRef}
@@ -52,7 +68,7 @@ export default function Home() {
                   visible: { opacity: 1, y: 0, rotate: 0, transition: { type: "spring", stiffness: 200, damping: 12 } }
                 }}
               >
-                DIGITAL
+                CRAFTING
               </motion.span>
               <motion.span 
                 className={styles.highlightText}
@@ -61,7 +77,7 @@ export default function Home() {
                   visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 300, damping: 15 } }
                 }}
               >
-                SCRAPBOOK
+                DIGITAL
               </motion.span>
               <motion.span 
                 variants={{
@@ -69,7 +85,7 @@ export default function Home() {
                   visible: { opacity: 1, y: 0, rotate: 0, transition: { type: "spring", stiffness: 200, damping: 12 } }
                 }}
               >
-                PORTFOLIO
+                EXPERIENCES
               </motion.span>
             </h1>
             <motion.p 
@@ -79,7 +95,7 @@ export default function Home() {
                 visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
               }}
             >
-              Hi, I'm <strong style={{color: 'var(--yellow)'}}>Armaan Choudhary</strong>. I combine raw brutalist design with robust engineering to build web products that refuse to be ignored. Welcome to my creative journal.
+              Freelance creative developer building fast, engaging, and production-ready web experiences.
             </motion.p>
 
             <motion.div 
@@ -90,16 +106,15 @@ export default function Home() {
               }}
             >
               <a href="mailto:hello@example.com" className={styles.btnPrimary}>
-                <span>VIP PASS</span> — Say Hello
+                <span>HIRE ME</span> — Let's Talk
               </a>
               <a href="#work" className={styles.btnSecondary}>
-                View Work
+                View Services
               </a>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Hand-drawn Scroll Arrow breaking out of the grid */}
         <motion.div 
           className={styles.scrollArrow}
           initial={{ opacity: 0, y: -20 }}
@@ -112,10 +127,9 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* SECTION 2: PROJECTS / PINNED BOARD */}
       <section className={styles.projectsSection} id="work">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Selected Works</h2>
+          <h2 className={styles.sectionTitle}>Freelance Projects</h2>
           <div className="tape" style={{ top: -15, left: '50%', transform: 'translateX(-50%) rotate(-1deg)' }}></div>
         </div>
 
@@ -162,7 +176,7 @@ export default function Home() {
                   
                   <div className={styles.polaroidAnnotation}>
                     <span className="marker" style={{color: 'var(--blue-ink)'}}>
-                      {isFeatured ? "Masterpiece." : (project.challenges?.[0]?.title || "A wild ride.")}
+                      {isFeatured ? "Client Approved." : (project.challenges?.[0]?.title || "Delivered on time.")}
                     </span>
                   </div>
                 </div>
@@ -172,7 +186,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: ABOUT / JOURNAL */}
       <section className={styles.aboutSection} id="about">
         <div className="container">
           <div className={styles.aboutGrid}>
@@ -183,16 +196,18 @@ export default function Home() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
             >
-              <div className={styles.dateStamp}>JUL 2026</div>
               <div className={styles.coffeeStain}></div>
               <motion.div 
                 className={styles.aboutPhoto}
-                whileHover={{ rotate: 0 }}
+                initial={{ rotate: -3 }}
+                whileHover={{ rotate: 2, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="tape" style={{ top: -15, left: -10, transform: 'rotate(-45deg)' }}></div>
                 <div className="tape" style={{ top: -15, right: -10, transform: 'rotate(45deg)' }}></div>
                 <div style={{ width: '100%', height: '400px', backgroundColor: '#e0e0e0', border: '2px solid #000' }}></div>
-                <span className="polaroid-caption" style={{bottom: 20}}>Headshot.jpg (I think)</span>
+                <span className="polaroid-caption" style={{bottom: 20}}>Headshot.jpg</span>
+                <div className={styles.dateStamp}>JUN 2026</div>
               </motion.div>
             </motion.div>
 
@@ -205,93 +220,129 @@ export default function Home() {
             >
               <div className={styles.notebookPage} ref={notebookRef}>
                 <div className={styles.notebookHeader}>
-                  <h2 className="marker" style={{ fontSize: '3.5rem', transform: 'rotate(-2deg)' }}>THE MAN BEHIND</h2>
-                  <span className={styles.dateStampSmall}>Last updated: JUL 2026</span>
+                  <h2 className="marker" style={{ fontSize: '3.5rem', transform: 'rotate(-2deg)' }}>ABOUT ME</h2>
+                  <span className={styles.dateStampSmall}>Last updated: JUN 2026</span>
                 </div>
 
                 <div className={styles.notebookContent}>
-                  <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '2rem', lineHeight: '1.4', marginBottom: '20px'}}>
-                    I used to write <span style={{textDecoration: 'line-through', opacity: 0.5}}>boring corporate code</span> 
-                    <br/>
-                    <span className="marker" style={{color: 'var(--red-marker)', fontSize: '1.8rem', marginLeft: '10px'}}>weird, interactive web experiments</span>. 
+                  <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '20px'}}>
+                    I'm <strong>Armaan</strong>, a <span className="highlight">creative developer</span> crafting <span className="marker" style={{color: 'var(--blue-ink)'}}>visually engaging, technically refined digital experiences</span>. I turn ideas into fast, interactive websites where thoughtful design meets clean, scalable code.
                   </p>
                   
+                  <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '20px'}}>
+                    My approach focuses on <span className="marker" style={{color: 'var(--red-marker)'}}>intuitive UX</span>, <span className="marker" style={{color: 'var(--blue-ink)'}}>smooth interactions</span>, and <span className="highlight">performance</span>. Every project is an opportunity to build something meaningful that looks great and works seamlessly.
+                  </p>
+
                   <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '30px'}}>
-                    The web has become too clean. I believe in design that feels <span className="highlight">physical, messy, and alive.</span> 
-                    I spend my days writing reliable React modules and my nights finding beautiful ways to make things look deliberately broken.
+                    Outside of development, I explore <span style={{color: 'var(--blue-ink)'}}>new design trends</span>, experiment with <span className="highlight">interactions</span>, and learn <span className="marker" style={{color: 'var(--red-marker)'}}>tools</span> to build better digital experiences.
                   </p>
 
                   <div className={styles.factGrid}>
                     <div className={styles.factItem}>
                       <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.4rem'}}>CURRENT STATUS</div>
-                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>BUILDING A DESIGN SYSTEM</div>
+                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>ACCEPTING FREELANCE WORK</div>
                     </div>
                     <div className={styles.factItem}>
-                      <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.4rem'}}>FUEL</div>
-                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>BLACK COFFEE (CUP #3)</div>
+                      <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.4rem'}}>CORE STRENGTH</div>
+                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>CREATIVE ENGINEERING</div>
                     </div>
                   </div>
 
                   <motion.div 
                     className="sticky-note" 
-                    style={{ position: 'absolute', right: '-60px', bottom: '-30px', width: '220px', transform: 'rotate(7deg)' }}
-                    whileHover={{ scale: 1.05, rotate: 2, zIndex: 10 }}
+                    style={{ position: 'absolute', right: '-100px', bottom: '-80px', width: '220px', rotate: 7, backgroundColor: 'rgba(255, 235, 59, 0.8)' }}
+                    whileHover={{ scale: 1.05, rotate: 2, zIndex: 10, backgroundColor: 'rgba(255, 235, 59, 1)' }}
                     drag
-                    dragConstraints={{ left: -24, right: 24, top: -24, bottom: 24 }}
+                    dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
                   >
                     <div className="tape" style={{ top: -10, left: '50%', transform: 'translateX(-50%)', width: '80px' }}></div>
                     <strong className="marker" style={{fontSize: '1.2rem'}}>NOTE TO SELF:</strong><br/>
-                    Fix that one bug in the header. (Actually, call it a feature).
+                    "Works on my machine" is a valid deployment strategy. Just ship the machine.
                   </motion.div>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </section>
+      </section>      <section className={styles.skillsSection} id="toolbox">
+        <div ref={pegboardRef} className={styles.pegboard}>
+          
+          {/* Silver spiral binding rings at the top of the notebook */}
+          <div className={styles.spiralBinding}>
+            {Array.from({ length: 18 }).map((_, idx) => (
+              <div key={idx} className={styles.spiralRing} />
+            ))}
+          </div>
 
-      {/* SECTION 4: THE TECH STACK */}
-      <section className={styles.skillsSection} id="skills">
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>The Arsenal</h2>
-          <div className="tape" style={{ top: -15, left: '50%', transform: 'translateX(-50%) rotate(2deg)' }}></div>
+          <div className={styles.notebookSheet}>
+            {/* Metadata parameters inside the page */}
+            <div className={styles.pegboardStencilLeft} style={{ top: 12, left: 20 }}>
+              <span style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.35)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+                SYS: STATIONERY_SCRAPBOOK // PG.12
+              </span>
+            </div>
+            <div className={styles.pegboardStencilRight} style={{ top: 12, right: 20 }}>
+              <span style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.35)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+                REF: SKILLS_INDEX_v1.0
+              </span>
+            </div>
+
+            <div className={styles.pegboardTitle} style={{ top: 10, left: '50%', transform: 'translateX(-50%)', position: 'absolute', zIndex: 10 }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2.4rem', letterSpacing: '2px', color: 'var(--charcoal)' }}>
+                TECH STACK
+              </span>
+            </div>
+
+            {/* Coffee stain inside the notebook page */}
+            <div className={styles.coffeeStain} style={{ bottom: -20, right: -25, opacity: 0.18, transform: 'scale(0.75)', pointerEvents: 'none' }} />
+
+            <div className={styles.stationeryGridContainer}>
+              {["Languages", "Frameworks", "Specialties", "Tools"].map((category) => (
+                <div key={category} className={styles.stationeryColumn}>
+                  <h3 className={styles.columnHeader}>{category.toUpperCase()}</h3>
+                  <div className={styles.columnCardsList}>
+                    {groupedSkills[category].map((skill, idx) => {
+                      // Slight natural visual tilt offset
+                      const tilt = (idx % 2 === 0) ? 1.2 : -1.5;
+                      // Cycle attachment decorations: 0 = Tape, 1 = Paperclip, 2 = Push-pin
+                      const attachmentType = idx % 3;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          className={`${styles.stationeryCard} ${styles[`card${category}`]}`}
+                          style={{ rotate: tilt }}
+                          whileHover={{ 
+                            scale: 1.04, 
+                            rotate: tilt * 0.5, 
+                            y: -5,
+                            zIndex: 15,
+                            boxShadow: "0 15px 30px rgba(0,0,0,0.18)"
+                          }}
+                          transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                        >
+                          {attachmentType === 0 && <div className={styles.stationeryCardTape} />}
+                          {attachmentType === 1 && <div className={styles.paperClip} style={{ top: -18, right: 15, transform: 'rotate(10deg)' }} />}
+                          {attachmentType === 2 && <div className={styles.pushPin} style={{ top: -14, left: '50%', transform: 'translateX(-50%)' }} />}
+                          
+                          <div className={styles.stationeryCardContent}>
+                            <span className={styles.stationeryCardCrosshair}>+</span>
+                            <span className={styles.stationeryCardName}>{skill.name}</span>
+                            <span className={styles.stationeryCardIndex}>REF.0{idx + 1}</span>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.pegboardLedge} />
         </div>
-
-        <motion.div 
-          className={styles.blackboard}
-          initial={{ opacity: 0, scale: 0.9, rotate: -2, y: 100 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ type: "spring", stiffness: 180, damping: 14 }}
-        >
-          {skillsData.map((skill, idx) => {
-            const rot = (Math.random() * 8 - 4).toFixed(1);
-            const paperColors = [
-              styles.scrapYellow,
-              styles.scrapBlue,
-              styles.scrapBlack,
-              styles.scrapGreen,
-              styles.scrapRed,
-              styles.scrapWhite
-            ];
-            const colorClass = paperColors[idx % paperColors.length];
-
-            return (
-              <motion.div 
-                key={skill.name} 
-                className={`${styles.skillScrap} ${colorClass}`}
-                style={{ rotate: `${rot}deg` }}
-                whileHover={{ scale: 1.1, zIndex: 10, transition: { duration: 0.2 } }}
-              >
-                <div className={styles.skillPin}></div>
-                {skill.name}
-              </motion.div>
-            );
-          })}
-        </motion.div>
       </section>
 
-      {/* SECTION 5: CONTACT / FLYER */}
       <section className={styles.contactSection} id="contact">
         <motion.div 
           className={styles.flyerPaper}
@@ -302,34 +353,34 @@ export default function Home() {
           <div className={styles.pushPin} style={{ top: 15, left: '50%', transform: 'translateX(-50%)' }}></div>
           
           <div className={styles.flyerContent}>
-            <h2 className={styles.contactTitle}>Wanted!</h2>
+            <h2 className={styles.contactTitle}>Hire Me</h2>
             <p className={styles.contactText}>
-              Got a project that needs a bit of chaos? Or just want to say hi? 
+              Need a digital experience, an interactive web application, or a creative technical solution? Let's discuss your next project.
             </p>
             
             <form className={styles.flyerForm} onSubmit={(e) => e.preventDefault()}>
               <input type="text" placeholder="Name..." className={styles.flyerInput} />
               <input type="email" placeholder="Email..." className={styles.flyerInput} />
               <textarea placeholder="Message..." rows="3" className={styles.flyerTextarea}></textarea>
-              <button type="submit" className={styles.flyerSubmit}>Send It!</button>
+              <button type="submit" className={styles.flyerSubmit}>Send Message</button>
             </form>
           </div>
 
           <div className={styles.tearOffTabs}>
             <a href="mailto:hello@example.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>hello@armaan.com</span>
+              <span className={styles.tearOffText}>Email</span>
             </a>
             <a href="https://github.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>github/armaan</span>
+              <span className={styles.tearOffText}>GitHub</span>
             </a>
             <a href="https://twitter.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>@armaan_dev</span>
+              <span className={styles.tearOffText}>Twitter</span>
             </a>
             <a href="https://linkedin.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>linkedin/armaan</span>
+              <span className={styles.tearOffText}>LinkedIn</span>
             </a>
             <a href="mailto:hello@example.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>hello@armaan.com</span>
+              <span className={styles.tearOffText}>Email</span>
             </a>
           </div>
         </motion.div>

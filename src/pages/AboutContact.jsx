@@ -11,9 +11,8 @@ import styles from './AboutContact.module.css'
 export default function AboutContact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '', _honeypot: '' })
   const [errors, setErrors] = useState({})
-  const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | 'submitting'
+  const [submitStatus, setSubmitStatus] = useState(null)
 
-  // Group skills by category
   const groupedSkills = skillsData.reduce((acc, skill) => {
     if (!acc[skill.category]) {
       acc[skill.category] = []
@@ -44,25 +43,20 @@ export default function AboutContact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // 1. Check honeypot
     if (formData._honeypot) {
-      // Treat as spam success silently
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '', _honeypot: '' })
       return
     }
 
-    // 2. Validate
     const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
       return
     }
 
-    // 3. Submit
     setSubmitStatus('submitting')
     try {
-      // Simulate submission to Formspree/Netlify
       await new Promise((resolve) => setTimeout(resolve, 1500))
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '', _honeypot: '' })
@@ -73,26 +67,25 @@ export default function AboutContact() {
 
   return (
     <div className={styles.aboutPage}>
-      {/* 1. Bio Section */}
       <section className={styles.bioSection}>
         <div className="container">
           <div className={styles.bioGrid}>
             <div className={styles.bioContent}>
-              <SectionTitle rotate={-2} annotation="My origin story, brief and unpolished">
-                The Story So Far...
+              <SectionTitle rotate={-2} annotation="Professional background and focus">
+                About Me
               </SectionTitle>
               <div className={styles.bioPaper}>
                 <p className={styles.bioText}>
-                  I'm <strong>Armaan Choudhary</strong>, a creative developer living inside terminal prompts and vector layouts. I make things for the web that feel heavy, raw, and full of texture.
+                  I'm <strong>Armaan</strong>, a <span className="highlight">creative developer</span> crafting <span className={styles.highlightBlue}>visually engaging, technically refined digital experiences</span>. I turn ideas into fast, interactive websites where thoughtful design meets clean, scalable code.
                 </p>
                 <p className={styles.bioText}>
-                  My journey started in graphic zines and punk show posters. I loved the tangible quality of physical layouts — photocopier artifacts, misalignment, paper grain, and thick felt pens. When I learned to program, I was bored by the sterile, perfectly-aligned 'modern' web. I wanted to drag that raw, physical aesthetic into the browser.
+                  My approach focuses on <span className={styles.highlightRed}>intuitive UX</span>, <span className={styles.highlightBlue}>smooth interactions</span>, and <span className="highlight">performance</span>. Every project is an opportunity to build something meaningful that looks great and works seamlessly.
                 </p>
                 <p className={styles.bioText}>
-                  Today, I build robust, functional software wrapped in distinct, high-impact visuals. I believe that a portfolio shouldn't just list your credentials — it should make you feel something.
+                  Outside of development, I explore <span className={styles.highlightBlue}>new design trends</span>, experiment with <span className="highlight">interactions</span>, and learn <span className={styles.highlightRed}>tools</span> to build better digital experiences.
                 </p>
                 <div className={styles.bioActions}>
-                  <Button href="/resume.pdf" variant="yellow">Download Resume (PDF)</Button>
+                  <Button href="/resume.pdf" variant="yellow">View Resume (PDF)</Button>
                 </div>
               </div>
             </div>
@@ -106,14 +99,14 @@ export default function AboutContact() {
               >
                 <div className={`${styles.paperNote} ${styles.noteYellow}`}>
                   <Tape rotate={5} className={styles.noteTape} />
-                  <span className={`${styles.noteHeading} handwritten`}>Self-declared:</span>
-                  <p className={styles.noteText}>"I write code that refuses to sit still, in layouts that hate symmetry."</p>
+                  <span className={`${styles.noteHeading} handwritten`}>Philosophy:</span>
+                  <p className={styles.noteText}>"If it isn't broken, break it, figure out why it worked, then rebuild it cooler."</p>
                 </div>
 
                 <div className={`${styles.paperNote} ${styles.noteWhite}`}>
                   <Tape rotate={-4} className={styles.noteTape} />
-                  <span className={`${styles.noteHeading} handwritten`}>Coffee Counter:</span>
-                  <p className={styles.noteText}>9,400+ cups. 0 regrets.</p>
+                  <span className={`${styles.noteHeading} handwritten`}>Current Obsessions:</span>
+                  <p className={styles.noteText}>Physics animations, generative art, and deleting legacy CSS.</p>
                 </div>
               </motion.div>
             </div>
@@ -123,12 +116,11 @@ export default function AboutContact() {
 
       <Divider variant="block" />
 
-      {/* 2. My Toolbox Section */}
       <section className={styles.toolboxSection}>
         <div className="container">
           <div className={styles.toolboxHeader}>
-            <SectionTitle rotate={1} annotation="The tools I break on a daily basis">
-              My Toolbox
+            <SectionTitle rotate={1} annotation="The technologies I use in production">
+              Technical Toolbox
             </SectionTitle>
           </div>
 
@@ -145,7 +137,6 @@ export default function AboutContact() {
                   <Divider variant="dashed" className={styles.cardDivider} />
                   <div className={styles.badgeCloud}>
                     {skills.map((skill, index) => {
-                      // Small rotation adjustments for stickers
                       const rot = (index % 5) - 2
                       return (
                         <span
@@ -167,24 +158,23 @@ export default function AboutContact() {
 
       <Divider variant="dashed" />
 
-      {/* 3. Say Hello Form Section */}
       <section className={styles.contactSection}>
         <div className="container">
           <div className={styles.contactGrid}>
             <div className={styles.contactInfo}>
-              <SectionTitle rotate={-1} annotation="Got a vision? Let's paint it.">
-                Say Hello
+              <SectionTitle rotate={-1} annotation="Let's build something.">
+                Contact
               </SectionTitle>
               <p className={styles.contactDesc}>
-                Whether you want to build a brutalist e-commerce site, need a creative developer to help design shaders, or just want to tell me my layout makes your eyes water — my inbox is wide open.
+                Whether you need an interactive web experience, a robust web application, or creative technical development, I am available for new freelance opportunities.
               </p>
               <div className={styles.contactDetails}>
                 <div className={styles.detailItem}>
-                  <span className={`${styles.detailLabel} handwritten`}>Direct Mail:</span>
+                  <span className={`${styles.detailLabel} handwritten`}>Email:</span>
                   <a href="mailto:hello@armaan.dev" className={styles.detailValue}>hello@armaan.dev</a>
                 </div>
                 <div className={styles.detailItem}>
-                  <span className={`${styles.detailLabel} handwritten`}>Carrier Pigeon / Location:</span>
+                  <span className={`${styles.detailLabel} handwritten`}>Location:</span>
                   <span className={styles.detailValue}>Vancouver, BC (Pacific Time)</span>
                 </div>
               </div>
@@ -193,7 +183,7 @@ export default function AboutContact() {
             <div className={styles.formContainer}>
               <div className={styles.formCard}>
                 <Tape rotate={-3} className={styles.formTape} />
-                <h3 className={styles.formHeader}>TRANSMIT A MESSAGE</h3>
+                <h3 className={styles.formHeader}>SEND A MESSAGE</h3>
 
                 {submitStatus === 'success' ? (
                   <motion.div
@@ -210,7 +200,6 @@ export default function AboutContact() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className={styles.form}>
-                    {/* Honeypot field for anti-spam */}
                     <input
                       type="text"
                       name="_honeypot"
@@ -252,7 +241,7 @@ export default function AboutContact() {
                     </div>
 
                     <div className={styles.field}>
-                      <label htmlFor="message" className={styles.label}>THE DETAILS</label>
+                      <label htmlFor="message" className={styles.label}>MESSAGE</label>
                       <textarea
                         id="message"
                         name="message"
@@ -260,7 +249,7 @@ export default function AboutContact() {
                         value={formData.message}
                         onChange={handleChange}
                         className={`${styles.textarea} ${errors.message ? styles.inputError : ''}`}
-                        placeholder="Tell me about your project, your timeline, or your favorite synthesizer..."
+                        placeholder="Tell me about your project or technical requirements..."
                         disabled={submitStatus === 'submitting'}
                       />
                       {errors.message && <span className={`${styles.errorText} handwritten`}>{errors.message}</span>}
@@ -268,13 +257,13 @@ export default function AboutContact() {
 
                     <div className={styles.submitRow}>
                       <Button type="submit" variant="yellow" disabled={submitStatus === 'submitting'}>
-                        {submitStatus === 'submitting' ? 'TRANSMITTING...' : 'SEND MESSAGE →'}
+                        {submitStatus === 'submitting' ? 'SENDING...' : 'SEND MESSAGE →'}
                       </Button>
                     </div>
 
                     {submitStatus === 'error' && (
                       <p className={`${styles.submitErrorText} handwritten`}>
-                        * Transmission failed. Please try again or email me directly.
+                        * Delivery failed. Please try again or email me directly.
                       </p>
                     )}
                   </form>

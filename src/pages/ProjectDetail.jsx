@@ -23,10 +23,9 @@ export default function ProjectDetail() {
 
   return (
     <div className={styles.detailPage}>
-      {/* 1. Project Hero (Folder Cover) */}
       <section className={styles.heroSection}>
         <a href="/#work" className={styles.backBtn}>
-          ← BACK TO FOLDERS
+          ← BACK TO PROJECTS
         </a>
         <div className={styles.folderCover}>
           <div className="tape" style={{ top: -15, right: '20%', transform: 'rotate(5deg)', width: 100 }}></div>
@@ -44,7 +43,6 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* 2. Overview / Sticky Notes */}
       <section className={styles.overviewSection}>
         <div className={styles.grid}>
           <motion.div 
@@ -74,11 +72,10 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* 3. Process Paper */}
       <section className={styles.processSection}>
         <div className={styles.linedPaper}>
           <div className="tape" style={{ top: -15, left: '50%', transform: 'translateX(-50%) rotate(2deg)' }}></div>
-          <h2 className="marker" style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Process & Chaos</h2>
+          <h2 className="marker" style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Architecture & Implementation</h2>
           <ol>
             {project.process.map((step, index) => (
               <li key={index}><span className="highlight">{step}</span></li>
@@ -87,9 +84,8 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* 4. Challenges (Scraps) */}
       <section className={styles.challengesSection}>
-        <h2 className={styles.sectionTitle} style={{textAlign: 'center', marginBottom: 50}}>THE WALL OF FIRE</h2>
+        <h2 className={styles.sectionTitle} style={{textAlign: 'center', marginBottom: 50}}>TECHNICAL CHALLENGES</h2>
         <div className={styles.grid}>
           {project.challenges.map((challenge, index) => (
             <motion.div 
@@ -106,10 +102,9 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* 5. Next Project */}
       <section className={styles.nextNavSection}>
         <div className={styles.nextNavCard}>
-          <span className="handwritten">Onto the next folder...</span>
+          <span className="handwritten">Next Project...</span>
           <h2><a href={`/work/${nextProject.slug}`}>{nextProject.title} →</a></h2>
         </div>
       </section>
