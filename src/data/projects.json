@@ -1,0 +1,148 @@
+[
+  {
+    "title": "Zola Sky System",
+    "slug": "zola-sky-system",
+    "category": "Web Development",
+    "year": "2025",
+    "featured": true,
+    "summary": "A real-time weather visualization platform that turns atmospheric data into living, breathing skies.",
+    "techStack": ["React", "Node.js", "MongoDB", "WebGL"],
+    "vision": "Zola Sky System was born from a simple frustration: weather apps are boring. I wanted to build something that made checking the forecast feel like looking out a window onto another planet. The goal was to fuse real meteorological data with generative art — every cloud, every raindrop, every sunset rendered live from API data.",
+    "process": [
+      "Started with rough pencil sketches mapping out the data flow from weather APIs to the rendering engine.",
+      "Built a WebGL shader pipeline to procedurally generate cloud formations based on humidity and pressure readings.",
+      "Iterated on the color grading system to match real-world atmospheric scattering at different times of day.",
+      "Optimized the render loop to hit 60fps even on mid-range mobile devices."
+    ],
+    "challenges": [
+      {
+        "title": "Shader Performance on Mobile",
+        "solution": "The generative cloud shaders were too heavy for mobile GPUs. I implemented an adaptive quality system that detects device capability and falls back to a simplified particle-based cloud renderer, keeping the visual identity intact while maintaining 60fps."
+      },
+      {
+        "title": "Real-time Data Sync",
+        "solution": "Weather APIs have rate limits, but users expect live updates. I built a caching layer with MongoDB that polls upstream APIs on a smart schedule — more frequently for active users — and serves stale-while-revalidate data to keep the UI feeling instant."
+      }
+    ],
+    "inspiration": "Inspired by old astronomical charts and the way ancient civilizations mapped the sky. The UI borrows from star maps — constellations of data points connected by thin lines, with a deep navy backdrop that lets the colors pop."
+  },
+  {
+    "title": "Neon Typewriter",
+    "slug": "neon-typewriter",
+    "category": "Creative Coding",
+    "year": "2024",
+    "featured": true,
+    "summary": "An interactive poetry generator that types out verses in real-time, reacting to your typing rhythm and speed.",
+    "techStack": ["React", "TypeScript", "Canvas API", "Web Audio"],
+    "vision": "Neon Typewriter explores the intersection between human input and machine creativity. As you type, the system analyzes your rhythm, speed, and pauses to generate complementary poetry that appears alongside your words — a collaboration between you and an algorithm that's read too much Bukowski.",
+    "process": [
+      "Sketched the interface as an old typewriter merged with a synthwave aesthetic.",
+      "Trained a lightweight Markov chain model on public domain poetry corpora.",
+      "Built a rhythm analyzer that maps keystroke timing to emotional 'mood' vectors.",
+      "Designed the neon glow rendering with layered Canvas shadows and CSS filters."
+    ],
+    "challenges": [
+      {
+        "title": "Low-latency Text Generation",
+        "solution": "Markov chain generation can produce jarring transitions. I implemented a sliding context window that feeds the last 20 words into the model, and added a 'confidence threshold' — if the generated verse falls below a coherence score, it regenerates silently before displaying."
+      }
+    ],
+    "inspiration": "The glitchy beauty of neon signs at 2am, combined with the tactile satisfaction of a mechanical keyboard. The color palette is straight out of an 80s arcade — magenta, cyan, and electric purple on pure black."
+  },
+  {
+    "title": "Concrete Garden",
+    "slug": "concrete-garden",
+    "category": "UI/UX Design",
+    "year": "2024",
+    "featured": false,
+    "summary": "A brutalist e-commerce experience for an indie plant shop — where raw aesthetics meet soft greenery.",
+    "techStack": ["Figma", "React", "CSS Modules", "Stripe"],
+    "vision": "Concrete Garden flips the expectation that plant shops must be soft and pastoral. By wrapping delicate greenery in a raw, brutalist interface — exposed grid lines, heavy type, concrete textures — the plants themselves become the only soft thing on the page, making them feel precious by contrast.",
+    "process": [
+      "Conducted user interviews with the shop owner's existing customers to understand pain points.",
+      "Created high-fidelity Figma prototypes with three distinct brutalist directions.",
+      "Built a component library of 'concrete' cards, exposed-label form fields, and jagged CTA buttons.",
+      "Integrated Stripe checkout with a custom brutalist-themed payment flow."
+    ],
+    "challenges": [
+      {
+        "title": "Accessibility vs. Aesthetic",
+        "solution": "Brutalist design often sacrifices readability. I ran every color combination through WCAG contrast checkers and adjusted the palette — keeping the raw feel but ensuring all text hit AA standards. Form labels were made visible (not placeholder-only) while styled to look hand-stamped."
+      }
+    ],
+    "inspiration": "Brutalist architecture — particularly the Barbican Estate in London. The way raw concrete frames gardens and water features. The digital translation: heavy borders frame soft product photography."
+  },
+  {
+    "title": "Echo Loop",
+    "slug": "echo-loop",
+    "category": "Web Development",
+    "year": "2023",
+    "featured": true,
+    "summary": "A collaborative looping music sequencer where multiple users build beats together in real-time.",
+    "techStack": ["React", "WebSockets", "Web Audio API", "Node.js"],
+    "vision": "Echo Loop is a live, multi-player beat-making environment. Think of it as a shared table where everyone can drop in drum hits, melodies, and effects. The magic is in the constraint — a fixed 16-step loop that resets every bar, forcing collaboration to happen in real-time, in the moment.",
+    "process": [
+      "Prototyped the step sequencer grid with clickable cells and audio playback.",
+      "Designed the WebSocket protocol for syncing loop state across clients with sub-100ms latency.",
+      "Built conflict resolution for when two users hit the same step simultaneously.",
+      "Added a 'spectator mode' for users who just want to listen to the jam."
+    ],
+    "challenges": [
+      {
+        "title": "Clock Synchronization",
+        "solution": "Each browser has its own audio clock, and network latency varies. I implemented a master-clock election system where the oldest connected peer becomes the tempo authority, broadcasting beat positions. Clients locally interpolate to smooth out jitter."
+      },
+      {
+        "title": "Audio Glitches on State Sync",
+        "solution": "Re-rendering the sequencer grid on every WebSocket message caused audio dropouts. I decoupled the visual React state from the audio engine — the Web Audio scheduler reads from a ref-based snapshot that updates without triggering re-renders."
+      }
+    ],
+    "inspiration": "Teenage Engineering's OP-Z hardware — the playful, grid-based approach to music. The interface borrows the 'everything visible at once' philosophy, with no menus or hidden modes."
+  },
+  {
+    "title": "Paper Trail",
+    "slug": "paper-trail",
+    "category": "UI/UX Design",
+    "year": "2023",
+    "featured": false,
+    "summary": "A reading app for long-form articles that simulates the physicality of paper and ink.",
+    "techStack": ["React", "Figma", "CSS Filters", "IndexedDB"],
+    "vision": "Paper Trail asks: what if reading on a screen felt like reading a well-printed magazine? It simulates paper texture, ink absorption, and even page weight — the scrollbar feels heavier, the text has subtle texture, and turning a page has inertia. It's a love letter to print in a digital medium.",
+    "process": [
+      "Researched paper manufacturing and ink behavior to inform the texture simulation.",
+      "Designed a custom type stack optimized for screen reading at long-form lengths.",
+      "Built the page-turn physics with spring-based animations.",
+      "Implemented offline reading with IndexedDB caching of full article content."
+    ],
+    "challenges": [
+      {
+        "title": "Texture Performance",
+        "solution": "SVG filter textures on every text element killed performance. I pre-rendered the paper texture as a tiled background and applied it via CSS blend modes, dropping the filter cost entirely while keeping the visual effect."
+      }
+    ],
+    "inspiration": "Japanese stationery — particularly Midori notebooks and the way ink bleeds slightly into cotton paper. The color palette is warm off-white, deep charcoal, and a single accent of stamp-red."
+  },
+  {
+    "title": "Gridlock",
+    "slug": "gridlock",
+    "category": "Creative Coding",
+    "year": "2022",
+    "featured": false,
+    "summary": "A generative art toy where grid-based rules produce infinite, unpredictable geometric patterns.",
+    "techStack": ["JavaScript", "Canvas API", "p5.js"],
+    "vision": "Gridlock is a playground. You set a few rules — cell size, rotation range, color palette — and the system fills a canvas with geometric shapes following those constraints. The result is always surprising: order and chaos from the same simple inputs. It's part art tool, part meditation.",
+    "process": [
+      "Studied generative artists like Vera Molnár and Sol LeWitt for rule-based composition.",
+      "Built the rule engine with composable parameters (shape, color, rotation, density).",
+      "Added an export feature to save high-resolution PNGs for printing.",
+      "Created preset palettes inspired by different art movements."
+    ],
+    "challenges": [
+      {
+        "title": "Infinite Canvas Memory",
+        "solution": "Generating thousands of shapes on an unbounded canvas caused memory spikes. I implemented viewport-based culling — only shapes within the visible region (plus a buffer) are rendered, and the canvas redraws on pan/zoom."
+      }
+    ],
+    "inspiration": "Bauhaus geometric composition and the constraint-based art of the De Stijl movement. The default palette is Mondrian's red, blue, yellow, black, and white — a nod to the tradition."
+  }
+]
