@@ -273,13 +273,13 @@ export default function Home() {
           <div className={styles.coffeeStain} style={{ bottom: 20, right: 30, opacity: 0.15, transform: 'scale(0.85)', pointerEvents: 'none', position: 'absolute' }} />
           
           {/* Metadata parameters on the desk */}
-          <div className={styles.pegboardStencilLeft} style={{ top: 20, left: 30 }}>
-            <span style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+          <div className={styles.pegboardStencilLeft} style={{ top: 55, left: 30 }}>
+            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
               SYS: SCRAP_MOODBOARD // CL.04
             </span>
           </div>
-          <div className={styles.pegboardStencilRight} style={{ top: 20, right: 30 }}>
-            <span style={{ fontSize: '0.85rem', color: 'rgba(0,0,0,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
+          <div className={styles.pegboardStencilRight} style={{ top: 55, right: 30 }}>
+            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
               REF: ARM_WORKSPACE_v1.0
             </span>
           </div>
@@ -348,6 +348,7 @@ export default function Home() {
             })}
           </div>
 
+          <div className={styles.pegboardLedgeTop} />
           <div className={styles.pegboardLedge} />
         </div>
       </section>
