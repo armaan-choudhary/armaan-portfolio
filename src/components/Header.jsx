@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Header.module.css'
 
 const navItems = [
-  { to: '/#work', label: 'Work' },
+  { to: '/#work', label: 'Projects' },
   { to: '/#about', label: 'About' },
   { to: '/#toolbox', label: 'Toolbox' },
   { to: '/#contact', label: 'Contact' },

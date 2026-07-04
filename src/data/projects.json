@@ -1,5 +1,65 @@
 [
   {
+    "title": "FortuneWander",
+    "slug": "fortunewander",
+    "category": "Full-Stack Development",
+    "year": "2026",
+    "featured": true,
+    "summary": "A bespoke WordPress travel portal featuring an editorial theme with fluid Swup.js page transitions and a custom AI Travel Consultant plugin powered by Google Gemini 2.5 Flash.",
+    "techStack": [
+      "WordPress",
+      "PHP (OOP)",
+      "Google Gemini 2.5",
+      "REST API",
+      "Vite",
+      "Swup.js",
+      "Lenis Scroll",
+      "Vanilla JS",
+      "MySQL"
+    ],
+    "heroImage": "/images/projects/fortunewander/hero.png",
+    "screenshots": [
+      "/images/projects/fortunewander/home-page-hover.png",
+      "/images/projects/fortunewander/destinations-page.png",
+      "/images/projects/fortunewander/post-page.png",
+      "/images/projects/fortunewander/about-us-and-chatbot-ui.png",
+      "/images/projects/fortunewander/wp-admin.png",
+      "/images/projects/fortunewander/loader-screen.png"
+    ],
+    "liveUrl": "https://fortunewander.com",
+    "subtitle": "Editorial Travel Portal & AI Itinerary Assistant",
+    "overview": "A high-end editorial travel portal built for WordPress, pairing a cinematic SPA-like frontend theme with a custom AI Travel Consultant plugin. Powered by Google Gemini 2.5 Flash with search grounding, the system generates structured day-by-day itineraries, custom HTML travel reports, and PDF downloads, while maintaining strict domain guardrails and smooth inertial scrolling.",
+    "challenge": "Develop a cinematic SPA travel theme while engineering a secure, real-time AI Chatbot plugin that renders structured HTML itineraries in WordPress without compromising security.",
+    "solution": "Integrated Swup.js & Lenis for fluid theme transitions and built an object-oriented WordPress AI plugin with custom HTML sanitization, secure REST API endpoints, and a lightweight floating widget.",
+    "client": "FortuneWander",
+    "role": "Full-Stack Developer & Plugin Architect",
+    "timeline": "6 Weeks",
+    "status": "Delivered",
+    "highlights": ["Google Gemini 2.5 AI", "Custom WP Plugin", "SPA Routing", "SEO & Print Ready"],
+    "results": ["Production Launch", "Automated AI Itineraries Enabled"],
+    "process": [
+      "Engineered an object-oriented WordPress AI plugin, establishing secure custom REST API endpoints authenticated via nonce verification.",
+      "Integrated Google Gemini 2.5 Flash with search grounding to generate real-time destination advice, packing recommendations, and structured day-by-day HTML itineraries.",
+      "Built a lightweight, zero-framework floating chat widget featuring markdown rendering, dynamic prompt chips, live status indicators, and client-side PDF export.",
+      "Integrated a modern Vite build pipeline into WordPress for modular JS/CSS bundling, combined with Swup.js and Lenis for smooth SPA routing and inertial scrolling."
+    ],
+    "challenges": [
+      {
+        "title": "HTML Sanitization vs. Rich AI Itinerary Table Layouts",
+        "solution": "Standard WordPress sanitization strips custom CSS classes and structured table layouts returned by the AI, breaking complex itinerary layouts. Developed a custom whitelist-based HTML sanitizer to explicitly permit structural UI tags and styling attributes, enabling rich visual reports while enforcing strict XSS security."
+      },
+      {
+        "title": "API Rate-Limiting & Multi-Turn Conversation Memory",
+        "solution": "Preventing API quota exhaustion while preserving conversation context was achieved by implementing transient-based rate-limiting per IP, paired with client-side session storage for multi-turn dialogue context."
+      },
+      {
+        "title": "Decoupled WordPress Build & Asset Pipeline",
+        "solution": "Bridging modern frontend build tools with WordPress required writing a custom PHP asset loader to dynamically parse build manifests and enqueue cache-busted modules, eliminating core render-blocking styles."
+      }
+    ],
+    "inspiration": "Inspired by editorial travel magazines and intelligent concierge systems, combining high-resolution photography with instant AI-driven itinerary generation."
+  },
+  {
     "title": "Zola Sky System",
     "slug": "zola-sky-system",
     "category": "Full-Stack Development",

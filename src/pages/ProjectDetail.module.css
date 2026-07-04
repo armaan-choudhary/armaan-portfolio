@@ -1,264 +1,585 @@
+/* ═══════════════════════════════════════════
+   CASE STUDY PAGE — Scrapbook Dossier
+   ═══════════════════════════════════════════ */
+
 .detailPage {
-  padding-top: 100px; 
   min-height: 100vh;
   background-color: var(--paper-bg);
-  background-image: var(--texture-graph);
   color: var(--black);
 }
 
+/* ─── HERO ─── */
 .heroSection {
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: var(--grey-dark);
+  padding: 140px 20px 80px;
+  position: relative;
+}
+
+.heroInner {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .backBtn {
-  align-self: flex-start;
-  margin-left: 5%;
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--white);
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
-  background: var(--black);
-  padding: 10px 20px;
-  border: 2px solid var(--white);
-  box-shadow: 4px 4px 0 var(--yellow);
-  transition: transform 0.2s;
   margin-bottom: 40px;
+  letter-spacing: 1px;
+  transition: color 0.2s;
 }
 .backBtn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--yellow);
-}
-
-.folderCover {
-  background: #d9c49a; /* Manilla folder color */
-  width: 100%;
-  max-width: 800px;
-  padding: 80px 60px;
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,0.3),
-    inset 0 0 50px rgba(0,0,0,0.05);
-  position: relative;
-  transform: rotate(-1deg);
-  border-radius: 0 5px 5px 5px;
-  border-left: 10px solid #c8b182; /* Folded spine */
-}
-
-/* Manila folder tab */
-.folderCover::before {
-  content: '';
-  position: absolute;
-  top: -40px;
-  right: 10%;
-  width: 250px;
-  height: 40px;
-  background: #d9c49a;
-  border-radius: 10px 10px 0 0;
-  box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+  color: var(--white);
 }
 
 .projectTitle {
   font-family: var(--font-hero);
-  font-size: clamp(3rem, 6vw, 6rem);
-  line-height: 1;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.95;
   text-transform: uppercase;
+  color: var(--white);
   margin-bottom: 20px;
-  word-wrap: break-word;
+  letter-spacing: 2px;
 }
 
-.metaLabel {
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metaTag {
   font-family: var(--font-body);
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-bottom: 2px solid var(--black);
-  padding-bottom: 10px;
-  margin-bottom: 40px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.polaroidHero {
+.metaDivider {
+  color: rgba(255,255,255,0.3);
+}
+
+/* ─── HERO IMAGE ─── */
+.heroImageSection {
+  padding: 0 20px;
+  max-width: 1100px;
+  margin: -40px auto 0;
+  position: relative;
+  z-index: 5;
+}
+
+.heroPhoto {
   background: var(--white);
   padding: 10px 10px 40px 10px;
-  box-shadow: var(--shadow-hard);
-  transform: rotate(3deg);
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+  box-shadow: 4px 8px 30px rgba(0,0,0,0.15);
   position: relative;
 }
 
-.heroImg {
+.heroImgWrap {
   width: 100%;
-  height: 300px;
-  background: var(--black);
-  color: var(--white);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--grey-dark);
+  border: 1px solid #e8e8e8;
+}
+
+.heroImgTag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroImgFallback {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10rem;
   font-family: var(--font-heading);
+  font-size: 6rem;
+  color: #444;
 }
 
-.overviewSection, .challengesSection {
+/* ─── CONTENT (Overview + Tech) ─── */
+.contentSection {
   padding: 80px 20px;
+  background-color: var(--paper-notebook);
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(162, 210, 255, 0.3) 31px, rgba(162, 210, 255, 0.3) 32px);
 }
 
-.grid {
+.contentGrid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 40px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
+  align-items: start;
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
   }
 }
 
 .visionCard {
   background: var(--white);
-  padding: 40px;
-  box-shadow: var(--shadow-paper);
+  padding: 35px;
+  box-shadow: 3px 5px 15px rgba(0,0,0,0.08);
   position: relative;
-}
-.visionCard h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-decoration: underline;
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.techStack {
-  background: var(--yellow);
-  padding: 40px;
-  box-shadow: var(--shadow-hard);
-  border: var(--border-thick);
+.visionCard p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
 }
-.techStack h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+
+.techCard {
+  background: var(--white);
+  padding: 35px;
+  box-shadow: 3px 5px 15px rgba(0,0,0,0.08);
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.05);
 }
-.techStack ul {
+
+.paperClipDeco {
+  position: absolute;
+  top: -18px;
+  right: 25px;
+  width: 16px;
+  height: 50px;
+  border: 2px solid #94a3b8;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+.paperClipDeco::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 35px;
+  border: 2px solid #94a3b8;
+  border-radius: 10px;
+  border-bottom: none;
+}
+
+.techCard ul {
   list-style: none;
-  font-family: var(--font-marker);
-  font-size: 1.5rem;
-}
-.techStack li::before {
-  content: 'x ';
-  color: var(--red-marker);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
+.techCard li {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  background: #f4f4f4;
+  padding: 5px 12px;
+  border: 1px solid #e8e8e8;
+  color: #444;
+}
+
+/* ─── PROCESS ─── */
 .processSection {
   padding: 80px 20px;
-  background: rgba(255,255,255,0.05);
+  background-color: var(--paper-bg);
 }
 
-.linedPaper {
+.processCard {
   background: var(--paper-notebook);
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
-  padding: 40px 40px 60px 70px;
+  padding: 45px 45px 55px 75px;
   position: relative;
-  box-shadow: var(--shadow-paper);
-  transform: rotate(-1deg);
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #a2d2ff 31px, #a2d2ff 32px);
-  border-left: 2px solid rgba(229, 57, 53, 0.4); /* Red margin */
+  box-shadow: 3px 6px 18px rgba(0,0,0,0.08);
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(162, 210, 255, 0.35) 31px, rgba(162, 210, 255, 0.35) 32px);
+  border-left: 2px solid rgba(229, 57, 53, 0.3);
 }
 
 /* Binder holes */
-.linedPaper::before {
+.processCard::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 15px;
-  bottom: 0;
-  width: 20px;
-  background-image: radial-gradient(circle, var(--grey-dark) 6px, transparent 7px);
-  background-size: 100% 60px;
+  top: 20px;
+  left: 18px;
+  bottom: 20px;
+  width: 16px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.15) 5px, transparent 6px);
+  background-size: 100% 55px;
   background-repeat: repeat-y;
-  opacity: 0.5;
 }
 
-.linedPaper ol {
-  font-family: var(--font-handwritten);
-  font-size: 1.8rem;
-  line-height: 2;
-  color: var(--blue-ink);
+.processCard ol {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
   padding-left: 20px;
+  counter-reset: step;
+  list-style: none;
 }
 
-.sectionTitle {
+.processCard li {
+  counter-increment: step;
+  margin-bottom: 18px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.processCard li::before {
+  content: counter(step) ".";
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  color: var(--blue-ink);
+  position: absolute;
+  left: -25px;
+  top: -2px;
+}
+
+/* ─── CHALLENGES ─── */
+.challengesSection {
+  padding: 80px 20px;
+  background-color: var(--paper-bg);
+}
+
+.sectionLabel {
   font-family: var(--font-heading);
-  font-size: 3rem;
-  color: var(--white);
-  background: var(--red-marker);
-  display: inline-block;
-  padding: 10px 20px;
-  transform: rotate(-2deg);
+  font-size: 2.5rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.challengeScrap {
-  background: var(--paper-bg);
+.challengesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .challengesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.challengeCard {
+  background: var(--white);
   padding: 30px;
-  border: 1px solid #ccc;
-  box-shadow: var(--shadow-paper);
-  border-radius: 2px 255px 3px 25px / 255px 5px 225px 3px;
+  box-shadow: 3px 5px 15px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.nextNavSection {
+.challengeCard h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--black);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.challengeDivider {
+  width: 60px;
+  height: 3px;
+  background: var(--yellow-highlighter);
+  margin-bottom: 15px;
+}
+
+.challengeCard p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #555;
+}
+
+/* ─── GALLERY ─── */
+.gallerySection {
+  padding: 80px 20px;
+  background-color: var(--paper-notebook);
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(162, 210, 255, 0.2) 31px, rgba(162, 210, 255, 0.2) 32px);
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galleryPolaroid {
+  background: var(--white);
+  padding: 10px 10px 35px 10px;
+  box-shadow: 3px 5px 15px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.galleryPolaroid img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  background: var(--grey-dark);
+  border: 1px solid #eee;
+}
+
+/* ─── NEXT PROJECT ─── */
+.nextSection {
   padding: 100px 20px;
-  background: var(--black);
+  background: var(--grey-dark);
   text-align: center;
 }
 
-.nextNavCard {
-  background: #fdfbf7;
+.nextCard {
   display: inline-block;
-  padding: 40px 80px;
-  transform: rotate(2deg);
-  border: 2px dashed #ccc;
-  box-shadow: var(--shadow-hard-lg);
+  background: var(--white);
+  padding: 35px 60px;
+  box-shadow: 3px 6px 18px rgba(0,0,0,0.12);
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: var(--black);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.nextNavCard:hover {
-  transform: rotate(0deg) scale(1.05);
-  box-shadow: 10px 15px 30px rgba(0,0,0,0.5);
+.nextCard:hover {
+  box-shadow: 4px 12px 30px rgba(0,0,0,0.2);
 }
 
-.nextNavCard::before, .nextNavCard::after {
-  content: '';
+.nextCard h2 {
+  font-family: var(--font-hero);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.polaroidImageWrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.polaroidOverlayHint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.galleryPolaroid:hover .polaroidOverlayHint {
+  opacity: 1;
+}
+
+/* ─── LIGHTBOX CAROUSEL ─── */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 15, 15, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  user-select: none;
+}
+
+.lightboxHeader {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255,255,255,0.2);
+  z-index: 10;
+}
+
+.lightboxClose {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lightboxClose:hover {
+  background: var(--red-marker);
+  border-color: var(--red-marker);
+  color: #fff;
+}
+
+.lightboxStage {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  margin: 15px 0;
+}
+
+.lightboxPhotoCard {
+  background: var(--white);
+  padding: 14px 14px 20px 14px;
+  box-shadow: 0px 25px 50px rgba(0,0,0,0.6);
+  position: relative;
+  cursor: grab;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
+.lightboxPhotoCard:active {
+  cursor: grabbing;
+}
+
+.lightboxPhotoCard img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  display: block;
+  border: 1px solid #e0e0e0;
+  background: #111;
+}
+
+/* Photo Corner Mounts */
+.cornerMount {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333;
+  z-index: 5;
+  pointer-events: none;
+}
+.cornerTL { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.cornerTR { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.cornerBL { bottom: 65px; left: 12px; border-right: none; border-top: none; }
+.cornerBR { bottom: 65px; right: 12px; border-left: none; border-top: none; }
+
+.lightboxCaptionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px dashed #ddd;
+}
+
+.lightboxNav {
   position: absolute;
   top: 50%;
-  width: 30px;
-  height: 30px;
-  background: var(--black);
-  border-radius: 50%;
   transform: translateY(-50%);
-  border: 2px dashed #ccc;
-}
-.nextNavCard::before { 
-  left: -17px; 
-  border-left: none;
-  border-top: none;
-  border-bottom: none;
-}
-.nextNavCard::after { 
-  right: -17px; 
-  border-right: none;
-  border-top: none;
-  border-bottom: none;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 20;
+  width: 48px;
+  height: 75px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  font-family: var(--font-body);
+  line-height: 1;
 }
 
-.nextNavCard h2 a {
-  font-family: var(--font-hero);
-  font-size: 4rem;
-  color: var(--black);
-  text-decoration: none;
+.lightboxNav:hover {
+  background: rgba(255,255,255,0.25);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.05);
 }
-.nextNavCard h2 a:hover {
-  color: var(--red-marker);
+
+.lightboxPrev { left: 15px; }
+.lightboxNext { right: 15px; }
+
+/* Bottom Filmstrip Carousel Tray */
+.filmstripTray {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  z-index: 10;
 }
+
+.filmstripRow {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 5px 15px 5px;
+}
+
+.filmstripThumb {
+  width: 90px;
+  height: 60px;
+  flex-shrink: 0;
+  background: var(--white);
+  padding: 3px;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 0.6;
+}
+
+.filmstripThumb:hover {
+  opacity: 0.9;
+}
+
+.filmstripThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.filmstripActive {
+  opacity: 1 !important;
+  box-shadow: 0 0 0 2px var(--yellow), 0 6px 15px rgba(0,0,0,0.5) !important;
+  transform: translateY(-4px) !important;
+}
+
+@media (max-width: 768px) {
+  .lightboxPrev { left: 5px; }
+  .lightboxNext { right: 5px; }
+  .lightboxNav { width: 38px; height: 55px; font-size: 1.8rem; }
+  .filmstripThumb { width: 65px; height: 45px; }
+}
+

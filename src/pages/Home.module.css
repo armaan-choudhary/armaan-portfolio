@@ -31,8 +31,8 @@
   /* Diagonal stripes */
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 15px,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.02) 15px,
     transparent 15px,
     transparent 30px
   );
@@ -40,8 +40,8 @@
   background-clip: text;
   
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
-  text-stroke: 2px rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.05);
+  text-stroke: 2px rgba(255, 255, 255, 0.05);
   z-index: 0;
   pointer-events: none;
   white-space: nowrap;
@@ -199,8 +199,9 @@
 
 .heroSub {
   font-size: 1.3rem;
+  line-height: 1.6;
   color: var(--white);
-  max-width: 650px;
+  max-width: 800px;
   margin: 0 auto 80px auto;
   font-family: var(--font-body);
   background: rgba(0,0,0,0.5);
@@ -308,6 +309,33 @@
   box-shadow: 0px 0px 0px transparent;
 }
 
+@media (max-width: 560px) {
+  .ctaGroup {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .btnPrimary, .btnSecondary {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  .btnPrimary {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+  }
+  
+  .btnSecondary {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+}
+
 /* Removed hero visual classes */
 
 .polaroid1 {
@@ -352,19 +380,20 @@
   z-index: 4;
 }
 
-/* SECTION 2: PROJECTS / PINNED BOARD */
+/* SECTION 2: PROJECTS SECTION */
 .projectsSection {
-  padding: 140px 20px;
-  background-color: #cd9f68; /* Rich cork color */
+  padding: 60px 20px 50px;
+  background-color: #cd9f68;
   background-image: 
     radial-gradient(#ab7d46 15%, transparent 16%),
     radial-gradient(#ab7d46 15%, transparent 16%);
   background-size: 8px 8px, 8px 8px;
   background-position: 0 0, 4px 4px;
   position: relative;
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.7); /* Deep vignette for the corkboard */
-  border-top: 25px solid #4a332a; /* Wooden frame top */
-  border-bottom: 25px solid #4a332a; /* Wooden frame bottom */
+  z-index: 2;
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.65);
+  border-top: 25px solid #4a332a;
+  border-bottom: 25px solid #4a332a;
 }
 
 
@@ -380,7 +409,7 @@
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 100;
 }
@@ -399,9 +428,10 @@
 .boardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  max-width: 1200px;
+  gap: 25px 30px;
+  max-width: 1450px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 @media (max-width: 900px) {
@@ -420,40 +450,185 @@
 .curatedPolaroid {
   background: var(--white);
   padding: 15px 15px 40px 15px;
-  box-shadow: 2px 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 3px 6px 18px rgba(0,0,0,0.15), 1px 1px 0px rgba(0,0,0,0.05);
   border: 1px solid rgba(0,0,0,0.05);
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
   will-change: transform;
   display: flex;
   flex-direction: column;
   z-index: 10;
+  overflow: visible;
+}
+
+/* Folded corner effect — applied via JSX class */
+.foldedCorner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--white) 45%, #d5d0c8 50%, #bbb5a8 55%, #c5bfb2 100%);
+  box-shadow: -2px -2px 5px rgba(0,0,0,0.08);
+}
+
+/* Paper wear — subtle aged edge */
+.wornEdge {
+  border-bottom: 2px solid rgba(0,0,0,0.03);
+  box-shadow: 3px 6px 18px rgba(0,0,0,0.15), inset 0 -3px 6px rgba(0,0,0,0.02);
 }
 
 /* Featured takes full width */
 .featuredPolaroid {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 60% 40%;
-  gap: 30px;
-  padding: 20px 20px 40px 20px;
+  grid-template-columns: 2.2fr 1fr;
+  align-items: start;
+  gap: 35px;
+  padding: 25px 25px 40px 25px;
+  box-shadow: 4px 8px 25px rgba(0,0,0,0.2), 1px 1px 0px rgba(0,0,0,0.08);
 }
-@media (max-width: 768px) {
+
+.featuredTitleRow {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.featuredTitleCenter {
+  font-family: var(--font-hero);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  margin: 0;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.featuredCategoryText {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--red-marker);
+  transform: rotate(-2deg);
+}
+
+.smallCategoryText {
+  font-family: var(--font-handwritten);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--red-marker);
+  transform: rotate(-1deg);
+}
+
+/* Photo Container — printed photograph feel */
+.featuredPhotoContainer {
+  position: relative;
+  align-self: start;
+  padding: 8px 8px 35px 8px;
+  background: var(--white);
+  border: 1px solid #ddd;
+  box-shadow: 3px 6px 16px rgba(0,0,0,0.1);
+  transform: rotate(-0.5deg);
+}
+
+.smallPhotoContainer {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 6px 6px 22px 6px;
+  background: var(--white);
+  border: 1px solid #ddd;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.08);
+}
+
+.featuredPhotoContainer .polaroidImage,
+.smallPhotoContainer .polaroidImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border: 1px solid #e8e8e8;
+  display: block;
+}
+
+.featuredSummary {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 15px;
+  border-left: 3px solid var(--yellow-highlighter);
+  padding-left: 12px;
+}
+
+.smallSummary {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 15px;
+  border-left: 3px solid var(--yellow-highlighter);
+  padding-left: 10px;
+  flex-grow: 1;
+}
+
+/* CTA */
+.featuredCTA {
+  display: flex;
+  margin-top: 20px;
+}
+
+.paperButton {
+  background: #fdfbf7;
+  border: 2px dashed #aaa;
+  padding: 10px 22px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--black);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.paperButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 5px 10px rgba(0,0,0,0.12);
+  background: var(--yellow-highlighter);
+  border-color: #888;
+}
+
+/* Supporting card CTA */
+.cardCTA {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+@media (max-width: 900px) {
   .featuredPolaroid {
     grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 20px;
   }
 }
 
 .curatedPolaroid:hover {
-  transform: scale(1.02) translateY(-10px) !important;
-  box-shadow: 5px 15px 30px rgba(0,0,0,0.15);
+  transform: translateY(-5px) rotate(-0.5deg) !important;
+  box-shadow: 4px 14px 30px rgba(0,0,0,0.18);
   z-index: 20;
 }
 
 .polaroidPhoto {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   background: var(--grey-dark);
   margin-bottom: 20px;
   border: 1px solid #e0e0e0;
@@ -462,8 +637,14 @@
 
 .featuredPolaroid .polaroidPhoto {
   margin-bottom: 0;
+  height: auto;
+}
+
+.polaroidImage {
+  width: 100%;
   height: 100%;
-  min-height: 350px;
+  object-fit: cover;
+  display: block;
 }
 
 .polaroidPhotoInner {
@@ -536,6 +717,14 @@
   color: #555;
 }
 
+.polaroidTech span.featuredTech {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  background: #ebebeb;
+  color: var(--black);
+  border: 1px solid #ddd;
+}
+
 .polaroidAnnotation {
   font-family: var(--font-handwritten);
   font-size: 1.2rem;
@@ -580,7 +769,7 @@
   padding: 120px 20px;
   background-color: var(--paper-notebook);
   position: relative;
-  box-shadow: 0 -10px 20px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 -10px 20px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.15);
   z-index: 5;
 }
 
@@ -750,28 +939,43 @@
   padding-top: 20px;
 }
 
+@media (max-width: 768px) {
+  .factGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .factItem {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-/* SECTION 4: THE ARSENAL (SKILLS) */
 .skillsSection {
-  padding: 120px 0;
-}
-
-.pegboard {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
+  padding: 100px 0;
   background-color: #2b4534; /* Rich greenboard color */
   background-image: 
     radial-gradient(rgba(255, 255, 255, 0.05) 15%, transparent 16%),
     radial-gradient(rgba(255, 255, 255, 0.05) 15%, transparent 16%);
   background-size: 60px 60px, 60px 60px;
   background-position: 0 0, 30px 30px;
-  padding: 95px 40px 95px 40px;
+  position: relative;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.7);
+  border-top: 25px solid #4a332a; /* Wooden frame top */
+  border-bottom: 25px solid #4a332a; /* Wooden frame bottom */
+}
+
+.pegboard {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background-color: #2b4534;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 15%, transparent 16%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 15%, transparent 16%);
+  background-size: 60px 60px, 60px 60px;
+  background-position: 0 0, 30px 30px;
+  padding: 80px 40px;
   border-left: none;
   border-right: none;
   border-radius: 0;
@@ -809,8 +1013,9 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-marker);
-  font-size: 3rem;
+  font-size: clamp(2rem, 8vw, 3rem);
   letter-spacing: 3px;
+  max-width: 90vw;
   /* Torn tape edges on left and right */
   clip-path: polygon(
     2% 0%, 98% 0%, 
@@ -841,6 +1046,7 @@
 .scrapPaperCard {
   position: relative;
   width: 290px;
+  max-width: 100%;
   min-height: 350px;
   padding: 40px 25px 30px 25px;
   box-shadow: 
@@ -1064,16 +1270,19 @@
 .minecraftSign {
   margin: 0 auto 30px auto;
   width: max-content;
+  max-width: 90vw;
+  box-sizing: border-box;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8' style='shape-rendering: crispEdges;'><rect width='16' height='8' fill='%235c4327'/><rect x='1' y='1' width='14' height='6' fill='%23c69c6d'/></svg>");
   background-size: 100% 100%;
   padding: 10px 30px;
   font-family: 'VT323', monospace;
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
   color: #2c1b0a;
   text-align: center;
   box-shadow: 0px 8px 0px rgba(0,0,0,0.4);
   image-rendering: pixelated;
   transform: rotate(-1deg);
+  white-space: normal;
 }
 
 @media (max-width: 768px) {
@@ -1084,7 +1293,7 @@
 
 /* SECTION 5: CONTACT / FLYER */
 .contactSection {
-  padding: 150px 20px;
+  padding: 120px 20px;
   background-color: var(--grey-dark);
   color: var(--white);
   text-align: center;
@@ -1123,6 +1332,36 @@
   height: 4px;
   background: rgba(255,255,255,0.6);
   border-radius: 50%;
+}
+
+.notebookContent {
+  flex-grow: 1;
+}
+
+.notebookList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notebookListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.notebookLabel {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--blue-ink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.notebookValue {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--black);
 }
 
 .flyerContent {

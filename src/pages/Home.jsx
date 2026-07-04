@@ -3,7 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import projectsData from '../data/projects.json';
 import skillsData from '../data/skills.json';
 import styles from './Home.module.css';
-import { ArrowDownRight, Wrench, Hammer, Drill, Ruler } from 'lucide-react';
+import { ArrowDownRight, Wrench, Hammer, Drill, Ruler, CheckCircle } from 'lucide-react';
 
 
 
@@ -129,57 +129,145 @@ export default function Home() {
 
       <section className={styles.projectsSection} id="work">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Freelance Projects</h2>
+          <h2 className={styles.sectionTitle}>The Project Board</h2>
           <div className="tape" style={{ top: -15, left: '50%', transform: 'translateX(-50%) rotate(-1deg)' }}></div>
         </div>
 
         <div className={styles.boardGrid}>
           {projectsData.map((project, idx) => {
             const isFeatured = idx === 0;
-            const rot = (idx % 3 === 0) ? -1 : (idx % 2 === 0 ? 1 : 2);
-            const tapeRot = idx % 2 === 0 ? 2 : -3;
-            const decorationType = idx % 4;
+            /* Unique subtle rotations per card */
+            const rotations = [0, -1.5, 2, -1, 1.5, 1, -2];
+            const rot = rotations[idx] || 0;
+            /* Tape angle variety */
+            const tapeAngles = [2, -3, 4, -2, 3, -4, 2];
+            const tapeRot = tapeAngles[idx] || 0;
+            /* Tape position variety */
+            const tapePositions = ['50%', '30%', '70%', '50%', '40%', '60%', '50%'];
+            const tapeLeft = tapePositions[idx] || '50%';
+            /* Decoration: 0=clip, 1=folded, 2=stamp, 3=worn, 4=clip, 5=folded, 6=worn */
+            const decoType = idx % 4;
+            /* Reference numbers */
+            const refNums = ['FW-001', 'ZS-002', 'NT-003', 'CG-004', 'EL-005', 'PT-006', 'GL-007'];
 
             return (
               <motion.div 
                 key={project.slug} 
-                className={`${styles.curatedPolaroid} ${isFeatured ? styles.featuredPolaroid : ''}`}
-                initial={{ opacity: 0, scale: 0.8, rotate: rot - 15, y: 100 }}
+                className={`${styles.curatedPolaroid} ${isFeatured ? styles.featuredPolaroid : ''} ${!isFeatured && decoType === 1 ? styles.foldedCorner : ''} ${!isFeatured && decoType === 3 ? styles.wornEdge : ''}`}
+                initial={{ opacity: 0, scale: 0.85, rotate: rot - 10, y: 80 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: rot, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: idx * 0.15, type: "spring", stiffness: 250, damping: 15 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: idx * 0.1, type: "spring", stiffness: 220, damping: 16 }}
                 onClick={() => window.location.href = `/work/${project.slug}`}
               >
-                <div className="tape" style={{ top: -15, left: '50%', transform: `translateX(-50%) rotate(${tapeRot}deg)` }}></div>
+                {/* Tape — varied position */}
+                <div className="tape" style={{ top: -15, left: tapeLeft, transform: `translateX(-50%) rotate(${tapeRot}deg)` }}></div>
                 
-                {decorationType === 0 && !isFeatured && <div className={styles.paperClip} style={{top: -20, right: 20}}></div>}
-                {decorationType === 2 && !isFeatured && <div className={styles.stamp} style={{bottom: 20, right: 20, transform: 'rotate(-15deg)'}}>APPROVED</div>}
-                {isFeatured && <div className={styles.stamp} style={{top: -20, right: -20, transform: 'rotate(10deg)', borderColor: 'var(--blue-ink)', color: 'var(--blue-ink)'}}>FEATURED</div>}
+                {/* Decorations — unique per card */}
+                {!isFeatured && decoType === 0 && <div className={styles.paperClip} style={{top: -20, right: 20, transform: 'rotate(10deg)'}}></div>}
+                {!isFeatured && decoType === 2 && <div className={styles.stamp} style={{bottom: 50, right: 15, transform: 'rotate(-12deg)'}}>APPROVED</div>}
+                {isFeatured && <div className={styles.stamp} style={{top: -15, right: 30, transform: 'rotate(6deg)', borderColor: 'var(--blue-ink)', color: 'var(--blue-ink)'}}>FEATURED</div>}
                 
-                <div className={styles.polaroidPhoto}>
-                   <div className={styles.polaroidPhotoInner}>
-                     {project.title.substring(0, 2).toUpperCase()}
-                   </div>
-                </div>
+                {/* Reference number — tiny pencil note */}
+                {!isFeatured && (
+                  <span className="handwritten" style={{position: 'absolute', bottom: 12, left: 15, fontSize: '0.9rem', color: '#aaa', opacity: 0.7}}>
+                    Ref: {refNums[idx]}
+                  </span>
+                )}
+                
+                {isFeatured ? (
+                  <>
+                    <div className={styles.featuredTitleRow}>
+                      <h3 className={styles.featuredTitleCenter}>{project.title}</h3>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                        <span className={styles.featuredCategoryText}>{project.category}</span>
+                        <span className="handwritten" style={{ fontSize: '1.2rem', color: '#999' }}>— {project.year}</span>
+                      </div>
+                    </div>
 
-                <div className={styles.polaroidContent}>
-                  <div className={styles.polaroidHeader}>
-                    <h3 className={styles.polaroidTitle}>{project.title}</h3>
-                    <span className={styles.polaroidCategory}>{project.category}</span>
-                  </div>
-                  
-                  <p className={styles.polaroidSummary}>{project.summary}</p>
-                  
-                  <div className={styles.polaroidTech}>
-                    {project.techStack.slice(0, 3).map(tech => <span key={tech}>{tech}</span>)}
-                  </div>
-                  
-                  <div className={styles.polaroidAnnotation}>
-                    <span className="marker" style={{color: 'var(--blue-ink)'}}>
-                      {isFeatured ? "Client Approved." : (project.challenges?.[0]?.title || "Delivered on time.")}
-                    </span>
-                  </div>
-                </div>
+                    <div className={styles.featuredPhotoContainer}>
+                      <div className="tape" style={{ top: -15, left: '45%', transform: `translateX(-50%) rotate(3deg)` }}></div>
+                      <img src={project.heroImage} alt={project.title} className={styles.polaroidImage} />
+                      <span className="handwritten" style={{display: 'block', textAlign: 'center', marginTop: '6px', fontSize: '1rem', color: '#999'}}>
+                        Homepage • Desktop
+                      </span>
+                    </div>
+
+                    <div className={styles.polaroidContent}>
+                      <p className={styles.featuredSummary}>
+                        {project.overview || project.summary}
+                      </p>
+
+                      <div className={styles.polaroidTech}>
+                        {project.techStack.map((tech) => (
+                          <span key={tech} className={styles.featuredTech}>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className={styles.featuredCTA} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                        <button className={styles.paperButton} onClick={(e) => { e.stopPropagation(); window.location.href = `/work/${project.slug}`; }}>
+                          → OPEN CASE FILE
+                        </button>
+                        {project.liveUrl && (
+                          <a 
+                            href={project.liveUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className={styles.paperButton}
+                            style={{ background: 'var(--yellow-highlighter)', textDecoration: 'none', display: 'inline-block' }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            ↗ VISIT LIVE SITE
+                          </a>
+                        )}
+                      </div>
+
+                      <div className={styles.paperClip} style={{top: '35%', right: -15, transform: 'rotate(90deg)'}}></div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={styles.polaroidHeader} style={{ justifyContent: 'space-between', borderBottom: '1px solid #eee', paddingBottom: '8px', marginBottom: '12px' }}>
+                      <h3 className={styles.polaroidTitle} style={{ margin: 0 }}>{project.title}</h3>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                        <span className={styles.smallCategoryText}>{project.category}</span>
+                        <span className="handwritten" style={{ fontSize: '1rem', color: '#999' }}>— {project.year}</span>
+                      </div>
+                    </div>
+
+                    <div className={styles.smallPhotoContainer}>
+                      <div className="tape" style={{ top: -12, left: '50%', transform: `translateX(-50%) rotate(${tapeRot}deg)` }}></div>
+                      {project.heroImage ? (
+                        <img src={project.heroImage} alt={project.title} className={styles.polaroidImage} />
+                      ) : (
+                        <div className={styles.polaroidPhotoInner}>
+                          {project.title.substring(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                      <span className="handwritten" style={{ display: 'block', textAlign: 'center', marginTop: '4px', fontSize: '0.85rem', color: '#999' }}>
+                        Preview • {project.year}
+                      </span>
+                    </div>
+
+                    <div className={styles.polaroidContent}>
+                      <p className={styles.smallSummary}>{project.summary}</p>
+                      <div className={styles.polaroidTech}>
+                        {project.techStack.slice(0, 4).map((tech) => (
+                          <span key={tech} className={styles.featuredTech}>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <div className={styles.cardCTA}>
+                        <button className={styles.paperButton} style={{ fontSize: '0.85rem', padding: '6px 14px' }} onClick={(e) => { e.stopPropagation(); window.location.href = `/work/${project.slug}`; }}>
+                          → VIEW PROJECT
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
               </motion.div>
             );
           })}
@@ -286,60 +374,46 @@ export default function Home() {
 
           <div className={styles.pegboardTitleLabel}>
             <span>TECH STACK</span>
-          </div>
-
-          <div className={styles.scrapsBoardContainer}>
-            {["Languages", "Frameworks", "Specialties", "Tools"].map((category, catIdx) => {
-              // Rotation angles, offsets, and overlaps for messy collage effect
-              const tilts = [-12, 5, -8, 14];
-              const offsetsX = [30, -25, -60, -40]; 
-              const offsetsY = [-15, 60, -30, 45];
-              const zIndexes = [20, 21, 22, 23];   // Ensure they stack correctly
-              
-              const tilt = tilts[catIdx];
-              const xOffset = offsetsX[catIdx];
-              const yOffset = offsetsY[catIdx];
-              const zBase = zIndexes[catIdx];
-              
-              // Attachment type: 0 = Paperclip, 1 = Staple, 2 = Push-pin, 3 = Masking Tape
-              const attachmentType = catIdx;
-              
-              // Hand-drawn bullets
-              const bullets = ["~", "-", "•", "x"];
-              const bullet = bullets[catIdx];
+          </div>          <div className={styles.scrapsBoardContainer} style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', justifyContent: 'center', alignItems: 'center', padding: '40px 0' }}>
+            {[
+              { name: "Languages", items: ["JavaScript (ES6+)", "TypeScript", "HTML5/CSS3", "PHP", "SQL"], width: '320px', x: -10, y: 15, rot: -3, css: 'scrapLanguages', pin: 'tape' },
+              { name: "Frameworks", items: ["React", "Next.js", "Vite", "WordPress"], width: '280px', x: 5, y: -10, rot: 4, css: 'scrapFrameworks', pin: 'staple' },
+              { name: "Animation", items: ["Framer Motion", "GSAP", "Lenis Scroll", "Swup.js"], width: '340px', x: -5, y: 5, rot: -2, css: 'scrapSpecialties', pin: 'pin' },
+              { name: "Design", items: ["Figma", "UI/UX Prototyping", "Wireframing", "Design Systems"], width: '300px', x: 15, y: 20, rot: 5, css: 'scrapTools', pin: 'clip' },
+              { name: "Tools", items: ["Git / GitHub", "Webpack", "PostCSS", "Vercel"], width: '260px', x: -20, y: -15, rot: -4, css: 'scrapLanguages', pin: 'tape' }
+            ].map((category, catIdx) => {
               
               return (
                 <motion.div
-                  key={category}
-                  className={`${styles.scrapPaperCard} ${styles[`scrap${category}`]}`}
+                  key={category.name}
+                  className={`${styles.scrapPaperCard} ${styles[category.css]}`}
                   style={{ 
-                    rotate: tilt, 
-                    x: xOffset, 
-                    y: yOffset,
-                    zIndex: zBase
+                    rotate: category.rot,
+                    position: 'relative',
+                    width: category.width,
+                    x: category.x,
+                    y: category.y,
+                    zIndex: 10 + catIdx
                   }}
                   whileHover={{ 
                     scale: 1.05, 
-                    rotate: tilt * 0.2, 
-                    y: yOffset - 15,
+                    rotate: 0,
                     zIndex: 30,
                   }}
-                  transition={{ type: "spring", stiffness: 260, damping: 16 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  {/* Render the appropriate fastener */}
-                  {attachmentType === 0 && <div className={styles.paperClip} style={{ top: -18, left: 30, transform: 'rotate(-5deg)' }} />}
-                  {attachmentType === 1 && <div className={styles.staple} />}
-                  {attachmentType === 2 && <div className={styles.pushPin} style={{ top: -14, left: '50%', transform: 'translateX(-50%)' }} />}
-                  {attachmentType === 3 && <div className={styles.stationeryCardTape} style={{ top: -12, right: 25, transform: 'rotate(25deg)' }} />}
-
-                  {category === "Frameworks" && <div className={styles.scrapFrameworksMargin} />}
-                  <h3 className={styles.scrapTitle}>{category}</h3>
+                  {category.pin === 'tape' && <div className="tape" style={{ top: -10, left: '50%', transform: `translateX(-50%) rotate(${category.rot * -2}deg)` }}></div>}
+                  {category.pin === 'staple' && <div className={styles.staple}></div>}
+                  {category.pin === 'pin' && <div className={styles.pushPin} style={{top: -5, left: '50%', transform: 'translateX(-50%)'}}></div>}
+                  {category.pin === 'clip' && <div className={styles.paperClip} style={{top: -20, left: 30, transform: 'rotate(-5deg)'}}></div>}
                   
-                  <ul className={styles.scrapHandwrittenList}>
-                    {groupedSkills[category].map((skill) => (
-                      <li key={skill.name} className={styles.scrapHandwrittenItem}>
-                        <span className={styles.scrapCheckbox}>{bullet}</span>
-                        <span className={styles.scrapSkillName}>{skill.name}</span>
+                  {category.css === 'scrapFrameworks' && <div className={styles.scrapFrameworksMargin}></div>}
+
+                  <h3 className={`${styles.scrapTitle} marker`} style={{ fontSize: '1.8rem', borderBottom: '2px solid rgba(0,0,0,0.1)', paddingBottom: '10px', marginBottom: '15px' }}>{category.name}</h3>
+                  <ul className={styles.scrapHandwrittenList} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    {category.items.map(item => (
+                      <li key={item} className={styles.scrapHandwrittenItem} style={{ fontFamily: 'var(--font-handwritten)', fontSize: '1.4rem', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span className={styles.scrapCheckbox}>~</span> <span className={styles.scrapSkillName}>{item}</span>
                       </li>
                     ))}
                   </ul>

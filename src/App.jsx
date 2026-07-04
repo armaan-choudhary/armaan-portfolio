@@ -6,10 +6,12 @@ import ProjectDetail from './pages/ProjectDetail.jsx'
 import AboutContact from './pages/AboutContact.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
+import CustomCursor from './components/ui/CustomCursor.jsx'
 
 export default function App() {
   return (
     <>
+      <CustomCursor />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
