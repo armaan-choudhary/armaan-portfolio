@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import projectsData from '../data/projects.json'
@@ -84,7 +84,7 @@ export default function ProjectDetail() {
       {/* ─── HERO ─── */}
       <section className={styles.heroSection}>
         <div className={styles.heroInner}>
-          <a href="/#work" className={styles.backBtn}>← Back to Projects</a>
+          <Link to="/#work" className={styles.backBtn}>← Back to Projects</Link>
 
           <motion.h1
             className={styles.projectTitle}

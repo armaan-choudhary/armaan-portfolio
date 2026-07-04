@@ -7,7 +7,7 @@ import Divider from '../components/ui/Divider.jsx'
 import projectsData from '../data/projects.json'
 import styles from './Work.module.css'
 
-const categories = ['All', 'Full-Stack Development', 'Front-End Development', 'AI & Full-Stack Development']
+const categories = ['All', 'Full-Stack Development', 'Front-End Development', 'AI & Full-Stack Development', 'Hackathon Project']
 
 export default function Work() {
   const [activeCategory, setActiveCategory] = useState('All')
@@ -74,6 +74,7 @@ export default function Work() {
                       to={`/work/${project.slug}`}
                       title={project.title}
                       category={project.category}
+                      image={project.heroImage}
                       rotate={rot}
                       tapeRotate={tapeRot}
                       index={index}

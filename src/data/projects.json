@@ -60,31 +60,134 @@
     "inspiration": "Inspired by editorial travel magazines and intelligent concierge systems, combining high-resolution photography with instant AI-driven itinerary generation."
   },
   {
-    "title": "Zola Sky System",
-    "slug": "zola-sky-system",
+    "title": "QueenTrends Theme",
+    "slug": "queentrends-theme",
     "category": "Full-Stack Development",
-    "year": "2025",
+    "year": "2026",
     "featured": true,
-    "summary": "A real-time weather visualization platform transforming atmospheric data into high-performance visual representations.",
-    "techStack": ["React", "Node.js", "MongoDB", "WebGL"],
-    "vision": "Zola Sky System is designed to present meteorological data through a dynamic, programmatic interface. The application ingests real-time API data and uses WebGL to generate responsive, data-driven visual conditions.",
+    "summary": "A minimalist, high-end editorial WordPress theme built for digital fashion journalism, featuring Vite-powered asset bundling, GSAP kinetic animations, and Swup.js AJAX page transitions.",
+    "techStack": [
+      "WordPress 6.9+",
+      "PHP 8.2+",
+      "Vite 5",
+      "JavaScript (ES6+)",
+      "SCSS / PostCSS",
+      "GSAP 3",
+      "Swup.js 4",
+      "Lenis Scroll",
+      "Autoprefixer"
+    ],
+    "heroImage": "/images/projects/queentrends/hero.png",
+    "screenshots": [
+      "/images/projects/queentrends/category.png",
+      "/images/projects/queentrends/post-page.png",
+      "/images/projects/queentrends/posts.png",
+      "/images/projects/queentrends/about-us.png",
+      "/images/projects/queentrends/footer-light.png"
+    ],
+    "liveUrl": "https://queentrends.com",
+    "subtitle": "High-End Digital Fashion Journalism & Editorial Theme Architecture",
+    "overview": "QueenTrends Modern is a bespoke editorial WordPress theme engineered for digital fashion journalism and luxury lifestyle curation. Replaces traditional monolithic theme architecture with a Vite-powered build pipeline, custom security hardening, and a glassmorphism design system. Designed to deliver an immersive, app-like reading experience with zero page reloads and kinetic micro-interactions.",
+    "challenge": "Transforming a classic WordPress PHP CMS into a ultra-fast single-page editorial app while maintaining SEO integrity, Customizer-driven ad placement architectures, accessible DOM focus handling, and enterprise-grade security.",
+    "solution": "Architected a hybrid theme using Vite HMR and Rollup hashing, component-based PHP partials, Swup.js container rehydration lifecycle hooks, GSAP entrance timelines, Lenis smooth scrolling, and native transient-based security filters.",
+    "client": "QueenTrends",
+    "role": "Freelance Lead Developer & Theme Architect",
+    "timeline": "4 Weeks",
+    "status": "Delivered",
+    "highlights": [
+      "Vite 5 & PostCSS build pipeline replacing legacy WordPress script enqueuing with instant HMR and filemtime hash version busting.",
+      "GSAP 3 kinetic loader timeline and 3D perspective hero carousel with touch gesture and ARIA keyboard support.",
+      "Swup.js AJAX page routing synchronized with Lenis inertial scrolling and requestIdleCallback UI rehydration.",
+      "Zero-plugin security hardening featuring transient rate limiting, CSP headers, REST API user lockdown, and XML-RPC neutralization."
+    ],
+    "results": [
+      "Production Launch & 80% Image Payload Reduction via Responsive srcset & Async Loading Pipeline",
+      "95+ Lighthouse Performance & Accessibility Scores with Zero jQuery Dependency"
+    ],
     "process": [
-      "Architected a continuous data flow pipeline from external weather APIs to a custom WebGL rendering engine.",
-      "Developed procedural shaders to translate humidity and pressure metrics into visual cloud formations.",
-      "Implemented an accurate color grading system based on atmospheric scattering models.",
-      "Optimized the rendering loop to guarantee 60fps performance across diverse mobile hardware."
+      "Step 1: Architecture & Setup — Vite build integration, SCSS glassmorphism design system tokens, and PHP component modularization in /components.",
+      "Step 2: Interactive UI & Animation — GSAP kinetic entrance loader, 3D perspective hero carousel with focus trapping, and Lenis smooth scrolling.",
+      "Step 3: AJAX Routing & Ad Engine — Swup.js transition lifecycle hooks, Customizer-driven 3-slot ad injection filters, and dynamic category color chip engine.",
+      "Step 4: Security & Optimization — Transient login rate-limiting, CSP security headers, jQuery dequeuing, and automated Unsplash content seeder."
     ],
     "challenges": [
       {
-        "title": "Mobile GPU Performance",
-        "solution": "Initial shaders exceeded mobile GPU constraints. Implemented an adaptive quality degradation system that profiles device capabilities and gracefully falls back to a particle-based renderer, ensuring a stable 60fps."
+        "title": "AJAX Page Routing & Dynamic DOM Rehydration",
+        "solution": "Integrating Swup.js for single-page transitions caused broken event listeners, stale active states, and scroll positioning glitches on navigation. Solved by architecting a re-initialization pipeline bound to `swup.hooks.on('page:view')`. On route changes, Lenis smooth scroll is reset immediately (`lenis.scrollTo(0, { immediate: true })`), active menu link states update dynamically, carousel instances re-bind, and category color chip mapping (`data-cat`) is scheduled asynchronously using `requestIdleCallback` to prevent main-thread layout thrashing."
       },
       {
-        "title": "Real-time Data Synchronization",
-        "solution": "Strict API rate limits conflicted with the requirement for live updates. Built a MongoDB-backed caching layer that intelligently polls external APIs based on active user sessions, serving stale-while-revalidate data to maintain apparent real-time responsiveness."
+        "title": "Zero-Dependency Responsive Media & Fallback Pipeline",
+        "solution": "To eliminate broken images and heavy media payloads without heavy plugins, created a custom PHP media rendering pipeline (`queentrends_responsive_image`). The helper dynamically constructs multi-density `srcset` arrays (480w, 800w, 1200w, 1600w) with context-aware `sizes`, enforces `loading='lazy'` and `fetchpriority='high'`, and provides a deterministic modulo fallback to curated Unsplash CDN assets when post thumbnails are unassigned."
+      },
+      {
+        "title": "WCAG-Compliant Focus & Accessibility Management in 3D Carousel",
+        "solution": "Interactive 3D sliders frequently fail accessibility audits by keeping off-screen slide links in the tab sequence and missing ARIA semantics. Solved by engineering an automated focus trap controller in JavaScript (`main.js`). Off-screen slides are assigned `aria-hidden='true'` while their interactive children (buttons, links) dynamically receive `tabindex='-1'`. Full keyboard arrow navigation (`ArrowLeft`/`ArrowRight`), ARIA tablist controls, and mouse hover auto-pause were integrated to guarantee WCAG 2.1 compliance."
       }
     ],
-    "inspiration": "Architected around data precision and high-performance graphics, optimizing for both aesthetic delivery and system efficiency."
+    "inspiration": "Combining editorial high-fashion elegance with cutting-edge front-end performance, glassmorphism UI tokens, kinetic micro-animations, and uncompromised WordPress security architecture."
+  },
+  {
+    "title": "Zola",
+    "slug": "zola",
+    "category": "Hackathon Project",
+    "year": "2025",
+    "featured": true,
+    "summary": "A real-time collaborative sky & interactive constellation platform built during a 48-hour hackathon, converting user wishes into evolving celestial procedural constellations and GPU-accelerated atmospheric visual phases.",
+    "techStack": [
+      "React 19",
+      "Vite",
+      "Supabase (PostgreSQL & Realtime WebSockets)",
+      "Framer Motion",
+      "CSS GPU Compositor & SVG Graph Engines",
+      "html-to-image",
+      "Vercel Speed Insights"
+    ],
+    "heroImage": "/images/projects/zola/hero.png",
+    "screenshots": [
+      "/images/projects/zola/demo.png",
+      "/images/projects/zola/shaders.png",
+      "/images/projects/zola/dashboard.png"
+    ],
+    "liveUrl": "https://github.com/armaan-choudhary/zola",
+    "subtitle": "Real-Time Collaborative Constellation Engine & Adaptive Visual Tier System",
+    "overview": "ZOLA is a collaborative digital cosmos created for a 48-hour New Year hackathon where users spawn personalized skies and receive interactive star messages from friends. Built with React 19, Supabase Realtime, and Framer Motion, the system processes user wishes into 4 visual evolution tiers—from a quiet slate void to a vibrant, multi-layered infinite galaxy with dynamic MST constellation graphs.",
+    "challenge": "Engineering an ultra-responsive, 60fps real-time interactive canvas capable of procedurally generating organic constellation graphs and multi-tier background animations on mobile GPUs without visual clutter, layout jitter, or rendering bottlenecks during high-concurrency WebSocket message streams.",
+    "solution": "Developed a custom Single-Hub Minimum Spanning Tree (MST) graph algorithm using Euclidean distance with deterministic string-hash jitter, backed by Supabase WebSocket real-time data flows, CSS GPU compositor acceleration with render-pausing logic, and an dynamic DOM-to-PNG story artifact export pipeline.",
+    "client": "New Year Hackathon Sprint",
+    "role": "Creator & Lead WebGL Developer",
+    "timeline": "48-Hour Hackathon",
+    "status": "Hackathon Project / Prototype",
+    "highlights": [
+      "48-Hour Sprint: Architected and deployed full-stack real-time interactive web application in 2 days",
+      "Procedural Graph Engine: Custom MST algorithm with deterministic hash jitter and single-hub degree constraints",
+      "Adaptive Tier Evolution: 4 visual phases dynamically rendered based on real-time star thresholds",
+      "Mobile GPU Optimization: Hardware-accelerated CSS compositor layers and paused rendering background loops"
+    ],
+    "results": [
+      "48-Hour Build & 60fps Procedural Animation Engine",
+      "Zero-Latency WebSocket Star Updates & Native Social Story Artifact Exports"
+    ],
+    "process": [
+      "Step 1: Concept & Data Ingestion — Architected real-time WebSocket pipelines with Supabase to stream incoming star payload data with 0-latency across connected clients.",
+      "Step 2: Procedural Graph Math & Constellation Rendering — Formulated a custom Single-Hub Kruskal's MST algorithm using Euclidean distance and deterministic string-hash jitter to eliminate graph loops and layout flickers.",
+      "Step 3: Atmospheric GPU Tier Pipeline — Created 4 dynamic sky evolution phases using Framer Motion, time-of-day CSS custom properties, shooting star intervals, and multi-layered radial gradients.",
+      "Step 4: Mobile Performance & Social Artifact Engine — Optimized mobile GPU memory usage via render-pausing during modal states and built an html-to-image DOM exporter for 500x750 Instagram story cards."
+    ],
+    "challenges": [
+      {
+        "title": "Graph Clutter & Structural Flickering in Procedural Constellations",
+        "solution": "Standard Delaunay triangulation or all-pairs connections caused tangled visual webs, while raw MST caused layout flickers on re-renders due to distance ties. Solved by engineering a custom Single-Hub Kruskal's MST algorithm that applies a deterministic string-hash jitter (derived from combined star IDs) to distance calculations and enforces degree limits (max degree 3 with a single hub rule), ensuring clean, organic, and deterministic constellation lines."
+      },
+      {
+        "title": "DOM-to-PNG Canvas Export Failure in Restrictive Mobile Webviews",
+        "solution": "Generating shareable 500x750 Instagram story cards via html-to-image failed in embedded mobile browsers (Instagram/TikTok in-app webviews) due to dynamic toolbar viewport height shifts and font render timing issues. Resolved by switching layouts to 100dvh CSS units, wrapping card generation in off-screen render containers with pre-render delay timeouts, and implementing localStorage session persistence to retain state across in-app browsers."
+      },
+      {
+        "title": "Mobile GPU Frame Drops During High-Frequency WebSocket Data Streams",
+        "solution": "High-frequency star creation events via Supabase WebSockets triggered continuous React component re-renders, causing heavy particle loops and ambient background animations to drop below 30fps on mobile screens. Engineered an isolated TierContext state architecture that decoupled StarBackground and Nebula components from main state updates, applied CSS transform composition with will-change properties, and automatically paused background animation loops when interaction modals were active."
+      }
+    ],
+    "inspiration": "Built during a fast-paced 48-hour hackathon to explore procedural graph algorithms, real-time WebSocket state synchronization, and GPU-optimized interactive Web UI design for collaborative digital experiences."
   },
   {
     "title": "Neon Typewriter",

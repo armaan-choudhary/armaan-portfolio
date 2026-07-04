@@ -1,20 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { useNavigate, Link } from 'react-router-dom';
 import projectsData from '../data/projects.json';
 import skillsData from '../data/skills.json';
 import styles from './Home.module.css';
 import { ArrowDownRight, Wrench, Hammer, Drill, Ruler, CheckCircle } from 'lucide-react';
 
-
-
-
-
-
-
-
-
-
 export default function Home() {
+  const navigate = useNavigate();
   const deskRef = useRef(null);
   const notebookRef = useRef(null);
   const pegboardRef = useRef(null);
@@ -148,7 +141,8 @@ export default function Home() {
             /* Decoration: 0=clip, 1=folded, 2=stamp, 3=worn, 4=clip, 5=folded, 6=worn */
             const decoType = idx % 4;
             /* Reference numbers */
-            const refNums = ['FW-001', 'ZS-002', 'NT-003', 'CG-004', 'EL-005', 'PT-006', 'GL-007'];
+            const refNums = ['FW-001', 'QT-002', 'ZO-003', 'NT-004', 'CG-005', 'EL-006', 'PT-007', 'GL-008'];
+            const refCode = refNums[idx] || (project.title.substring(0, 2).toUpperCase() + '-' + String(idx + 1).padStart(3, '0'));
 
             return (
               <motion.div 
@@ -158,7 +152,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1, rotate: rot, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: idx * 0.1, type: "spring", stiffness: 220, damping: 16 }}
-                onClick={() => window.location.href = `/work/${project.slug}`}
+                onClick={() => navigate(`/work/${project.slug}`)}
               >
                 {/* Tape — varied position */}
                 <div className="tape" style={{ top: -15, left: tapeLeft, transform: `translateX(-50%) rotate(${tapeRot}deg)` }}></div>
@@ -171,7 +165,7 @@ export default function Home() {
                 {/* Reference number — tiny pencil note */}
                 {!isFeatured && (
                   <span className="handwritten" style={{position: 'absolute', bottom: 12, left: 15, fontSize: '0.9rem', color: '#aaa', opacity: 0.7}}>
-                    Ref: {refNums[idx]}
+                    Ref: {refCode}
                   </span>
                 )}
                 
@@ -207,7 +201,7 @@ export default function Home() {
                       </div>
 
                       <div className={styles.featuredCTA} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-                        <button className={styles.paperButton} onClick={(e) => { e.stopPropagation(); window.location.href = `/work/${project.slug}`; }}>
+                        <button className={styles.paperButton} onClick={(e) => { e.stopPropagation(); navigate(`/work/${project.slug}`); }}>
                           → OPEN CASE FILE
                         </button>
                         {project.liveUrl && (
@@ -261,7 +255,7 @@ export default function Home() {
                         ))}
                       </div>
                       <div className={styles.cardCTA}>
-                        <button className={styles.paperButton} style={{ fontSize: '0.85rem', padding: '6px 14px' }} onClick={(e) => { e.stopPropagation(); window.location.href = `/work/${project.slug}`; }}>
+                        <button className={styles.paperButton} style={{ fontSize: '0.85rem', padding: '6px 14px' }} onClick={(e) => { e.stopPropagation(); navigate(`/work/${project.slug}`); }}>
                           → VIEW PROJECT
                         </button>
                       </div>
