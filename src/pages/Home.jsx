@@ -109,7 +109,7 @@ export default function Home() {
                 <span>HIRE ME</span> — Let's Talk
               </a>
               <a href="#work" className={styles.btnSecondary}>
-                View Services
+                View Projects
               </a>
             </motion.div>
           </motion.div>
