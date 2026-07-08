@@ -2,22 +2,50 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import projectsData from '../data/projects.json';
-import skillsData from '../data/skills.json';
 import styles from './Home.module.css';
 import { ArrowDownRight, Wrench, Hammer, Drill, Ruler, CheckCircle } from 'lucide-react';
+import { FaReact, FaWordpress, FaPhp, FaDatabase, FaNodeJs, FaFigma, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt, FaExchangeAlt } from 'react-icons/fa';
+import { 
+  SiJavascript, 
+  SiTypescript, 
+  SiFramer, 
+  SiVite, 
+  SiGreensock, 
+  SiWebpack, 
+  SiVercel 
+} from 'react-icons/si';
+
+const renderSkillIcon = (name) => {
+  const norm = name.toLowerCase();
+  const inkColor = "#222222"; // Uniform black newspaper print ink
+  if (norm.includes('react')) return <FaReact size={68} color={inkColor} />;
+  if (norm.includes('javascript')) return <SiJavascript size={68} color={inkColor} />;
+  if (norm.includes('typescript')) return <SiTypescript size={68} color={inkColor} />;
+  if (norm.includes('framer motion')) return <SiFramer size={68} color={inkColor} />;
+  if (norm.includes('html5/css3')) return (
+    <div style={{ display: 'flex', gap: 10, justifyContent: 'center', alignItems: 'center' }}>
+      <FaHtml5 size={46} color={inkColor} />
+      <FaCss3Alt size={46} color={inkColor} />
+    </div>
+  );
+  if (norm.includes('vite')) return <SiVite size={68} color={inkColor} />;
+  if (norm.includes('gsap')) return <SiGreensock size={68} color={inkColor} />;
+  if (norm.includes('swup')) return <FaExchangeAlt size={62} color={inkColor} />;
+  if (norm.includes('wordpress')) return <FaWordpress size={68} color={inkColor} />;
+  if (norm.includes('php')) return <FaPhp size={72} color={inkColor} />;
+  if (norm.includes('sql')) return <FaDatabase size={62} color={inkColor} />;
+  if (norm.includes('node')) return <FaNodeJs size={68} color={inkColor} />;
+  if (norm.includes('figma')) return <FaFigma size={64} color={inkColor} />;
+  if (norm.includes('git')) return <FaGitAlt size={68} color={inkColor} />;
+  if (norm.includes('webpack')) return <SiWebpack size={68} color={inkColor} />;
+  if (norm.includes('vercel')) return <SiVercel size={62} color={inkColor} />;
+  return <FaDatabase size={62} color={inkColor} />;
+};
 
 export default function Home() {
   const navigate = useNavigate();
   const deskRef = useRef(null);
   const notebookRef = useRef(null);
-  const pegboardRef = useRef(null);
-
-  const groupedSkills = {
-    Languages: skillsData.filter((s) => s.category === "Languages"),
-    Frameworks: skillsData.filter((s) => s.category === "Frameworks"),
-    Specialties: skillsData.filter((s) => s.category === "Specialties"),
-    Tools: skillsData.filter((s) => s.category === "Tools"),
-  };
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -331,9 +359,8 @@ export default function Home() {
                   </div>
 
                   <motion.div 
-                    className="sticky-note" 
-                    style={{ position: 'absolute', right: '-100px', bottom: '-80px', width: '220px', rotate: 7, backgroundColor: 'rgba(255, 235, 59, 0.8)' }}
-                    whileHover={{ scale: 1.05, rotate: 2, zIndex: 10, backgroundColor: 'rgba(255, 235, 59, 1)' }}
+                    className={`sticky-note ${styles.stickyNoteAbout}`}
+                    whileHover={{ scale: 1.05, rotate: 2, zIndex: 10 }}
                     drag
                     dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
                   >
@@ -348,76 +375,65 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.skillsSection} id="toolbox">
-        <div ref={pegboardRef} className={styles.pegboard}>
+      <section className={styles.skillsSection} id="skills">
+        <div className={styles.broadsheetContainer}>
+          {/* Skeuomorphic corner anchors */}
+          <div className={styles.broadsheetStapleL} />
+          <div className={styles.broadsheetStapleR} />
           
-          {/* Coffee stain floating on the wooden tabletop */}
-          <div className={styles.coffeeStain} style={{ bottom: 20, right: 30, opacity: 0.15, transform: 'scale(0.85)', pointerEvents: 'none', position: 'absolute' }} />
-          
-          {/* Metadata parameters on the desk */}
-          <div className={styles.pegboardStencilLeft} style={{ top: 55, left: 30 }}>
-            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
-              SYS: SCRAP_MOODBOARD // CL.04
-            </span>
-          </div>
-          <div className={styles.pegboardStencilRight} style={{ top: 55, right: 30 }}>
-            <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace', letterSpacing: '1px' }}>
-              REF: ARM_WORKSPACE_v1.0
-            </span>
-          </div>
+          <div className={styles.broadsheetPaper}>
+            {/* Front Page Broadsheet Header */}
+            <div className={styles.broadsheetHeader}>
+              <div className={styles.headerTopMeta}>
+                <span>VOL. CLXV // NO. 482</span>
+                <span className="handwritten">"All the Tech That's Fit to Code"</span>
+                <span>PRICE: ZERO CENTS</span>
+              </div>
+              <h2 className={styles.broadsheetTitle}>THE SKILL BILL BULLETIN</h2>
+              <div className={styles.headerBottomMeta}>
+                <span>METROPOLIS EDITION</span>
+                <span>JULY 8, 2026</span>
+                <span>CLASSIFIED TECH STACK</span>
+              </div>
+            </div>
 
-          <div className={styles.pegboardTitleLabel}>
-            <span>TECH STACK</span>
-          </div>          <div className={styles.scrapsBoardContainer} style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', justifyContent: 'center', alignItems: 'center', padding: '40px 0' }}>
-            {[
-              { name: "Languages", items: ["JavaScript (ES6+)", "TypeScript", "HTML5/CSS3", "PHP", "SQL"], width: '320px', x: -10, y: 15, rot: -3, css: 'scrapLanguages', pin: 'tape' },
-              { name: "Frameworks", items: ["React", "Next.js", "Vite", "WordPress"], width: '280px', x: 5, y: -10, rot: 4, css: 'scrapFrameworks', pin: 'staple' },
-              { name: "Animation", items: ["Framer Motion", "GSAP", "Lenis Scroll", "Swup.js"], width: '340px', x: -5, y: 5, rot: -2, css: 'scrapSpecialties', pin: 'pin' },
-              { name: "Design", items: ["Figma", "UI/UX Prototyping", "Wireframing", "Design Systems"], width: '300px', x: 15, y: 20, rot: 5, css: 'scrapTools', pin: 'clip' },
-              { name: "Tools", items: ["Git / GitHub", "Webpack", "PostCSS", "Vercel"], width: '260px', x: -20, y: -15, rot: -4, css: 'scrapLanguages', pin: 'tape' }
-            ].map((category, catIdx) => {
-              
-              return (
-                <motion.div
-                  key={category.name}
-                  className={`${styles.scrapPaperCard} ${styles[category.css]}`}
-                  style={{ 
-                    rotate: category.rot,
-                    position: 'relative',
-                    width: category.width,
-                    x: category.x,
-                    y: category.y,
-                    zIndex: 10 + catIdx
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    rotate: 0,
-                    zIndex: 30,
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {category.pin === 'tape' && <div className="tape" style={{ top: -10, left: '50%', transform: `translateX(-50%) rotate(${category.rot * -2}deg)` }}></div>}
-                  {category.pin === 'staple' && <div className={styles.staple}></div>}
-                  {category.pin === 'pin' && <div className={styles.pushPin} style={{top: -5, left: '50%', transform: 'translateX(-50%)'}}></div>}
-                  {category.pin === 'clip' && <div className={styles.paperClip} style={{top: -20, left: 30, transform: 'rotate(-5deg)'}}></div>}
-                  
-                  {category.css === 'scrapFrameworks' && <div className={styles.scrapFrameworksMargin}></div>}
-
-                  <h3 className={`${styles.scrapTitle} marker`} style={{ fontSize: '1.8rem', borderBottom: '2px solid rgba(0,0,0,0.1)', paddingBottom: '10px', marginBottom: '15px' }}>{category.name}</h3>
-                  <ul className={styles.scrapHandwrittenList} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {category.items.map(item => (
-                      <li key={item} className={styles.scrapHandwrittenItem} style={{ fontFamily: 'var(--font-handwritten)', fontSize: '1.4rem', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span className={styles.scrapCheckbox}>~</span> <span className={styles.scrapSkillName}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
+            {/* Articles Grid (Broadsheet columns) */}
+            <div className={styles.broadsheetGrid}>
+              {[
+                { name: "React", level: "EXPERT CORE LAUNCHED", desc: "React designated as primary UI stack for advanced modular building." },
+                { name: "JavaScript", level: "DAILY LOGIC CONFIRMED", desc: "Vanilla scripts verified running client-side at optimal speeds." },
+                { name: "TypeScript", level: "STATIC TYPING ADOPTED", desc: "Strict compiler checks prevent runtime errors in production code." },
+                { name: "Framer Motion", level: "FLUID INTERACTION ALIVE", desc: "Spring animations bring interface elements to life smoothly." },
+                { name: "HTML5/CSS3", level: "SEMANTIC LAYOUT APPROVED", desc: "Semantic markup and CSS grid systems create responsive structures." },
+                { name: "Vite", level: "COMPILATION SPEEDS SOAR", desc: "Fast dev server speeds up builds and HMR cycles." },
+                { name: "GSAP", level: "COMPLEX TIMELINES SYNCED", desc: "Vector graphics animate across multi-stage timelines smoothly." },
+                { name: "Swup.js", level: "PAGE TRANSITIONS INTEGRATED", desc: "Seamless transitions enhance user journey between paths." },
+                { name: "WordPress", level: "THEMING MASTERED", desc: "Custom themes and Gutenberg systems engineered to specs." },
+                { name: "PHP", level: "OOP ARCHITECTURE DEPLOYED", desc: "Clean object-oriented PHP code handles backend database operations." },
+                { name: "SQL", level: "QUERIES OPTIMIZED", desc: "Relational database tables hold portfolio data under strict queries." },
+                { name: "Node.js", level: "SERVER-SIDE SCRIPTS SECURED", desc: "Asynchronous scripts handle backend dependencies effectively." },
+                { name: "Figma", level: "HI-FI WIREFRAMING COMPLETE", desc: "Prototypes and layouts designed ahead of active code writing." },
+                { name: "Git & GitHub", level: "VERSION CONTROL COMPULSORY", desc: "Repository commits logged daily to track modular changes." },
+                { name: "Webpack", level: "BUNDLING PROCESS CONFIGURED", desc: "Bundling systems optimized for production-ready packages." },
+                { name: "Vercel", level: "DEPLOYMENT SPEEDS MAXIMIZED", desc: "Static applications hosted on edge networks with zero downtime." }
+              ].map((skill, idx) => {
+                return (
+                  <div key={skill.name} className={styles.broadsheetArticle}>
+                    <div className={styles.articleHeader}>
+                      <span className={styles.articleSectionNum}>SECTION {idx + 1}</span>
+                      <h4 className={styles.articleHeadline}>{skill.name}: {skill.level}</h4>
+                    </div>
+                    <div className={styles.articleBody}>
+                      <div className={styles.newspaperLogoBox}>
+                        {renderSkillIcon(skill.name)}
+                      </div>
+                      <p className={styles.articleText}>{skill.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-
-          <div className={styles.pegboardLedgeTop} />
-          <div className={styles.pegboardLedge} />
         </div>
       </section>
 
