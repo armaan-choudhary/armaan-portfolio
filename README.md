@@ -24,6 +24,11 @@ This project rejects generic templates in favor of a curated, studio-journal aes
 - **Touch & Drag Swipe Support**: Native drag gestures for mobile & desktop slide inspection.
 - **Archival Exhibit Captions**: Full-width exhibit labels (`[EXHIBIT 01]`) and keyboard shortcuts (`←`, `→`, `ESC`).
 
+### 📰 The Skill Bill Bulletin & About Visuals
+- **Newspaper Broadsheet Grid**: A dense, 24-card masonry-style layout for skills, mimicking a newspaper bulletin board.
+- **Dynamic Polaroid Headshot**: A custom monochrome filter applied over an ornate, subtle Indian block-print backdrop (`indian_bg_subtle.jpg`).
+- **Interactive Sticky Notes**: Taped, rotating visual cards for obsessions and philosophies.
+
 ### 📁 Case Study Dossiers
 - **Custom AI Travel Assistant & Theme Integration**: Dedicated technical case studies detailing Google Gemini 2.5 Flash LLM integration, custom HTML whitelist sanitizers, REST API architecture, and SPA page routing (`Swup.js` & `Lenis Scroll`).
 - **Consistent Physical Surfaces**: Structured flow across dark desk hero, notebook paper overview, lined paper implementation steps, and challenge scrap cards.
