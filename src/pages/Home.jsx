@@ -29,7 +29,16 @@ const renderSkillIcon = (name) => {
     </div>
   );
   if (norm.includes('vite')) return <SiVite size={68} color={inkColor} />;
-  if (norm.includes('gsap')) return <SiGreensock size={68} color={inkColor} />;
+  if (norm.includes('gsap')) {
+    return (
+      <svg viewBox="20 20 360 260" width={68} height={68} style={{ display: 'block' }}>
+        <path fill={inkColor} d="M118.16,216.86c1.31,0,2.45-.83,2.7-1.97l4.63-20.09v-.06h0c.02-1.17-.79-2.25-1.95-2.39-.1-.02-.21-.02-.31-.02h-44.49v.05c-1.15.14-2.08.92-2.31,1.95l-4.64,20.13c-.13.55.01,1.11.38,1.56.43.54,1.16.87,1.88.87h6.78c.39,0,.91.06,1.09.3.18.23.16.76-.02,1.43-1.32,4.84-4.45,10.14-8.35,13.2s-10.33,4.9-14.84,2.13c-5.09-3.12-5.95-10.65-6.16-16.01-.44-11.51,1.81-23.06,6.23-33.7,3.17-7.62,9.14-21.36,19.26-21.36,5.74,0,8.63,4.74,8.84,14.47-.01.92.82,1.77,1.76,1.77h26.4c1.28,0,2.34-1.03,2.36-2.31-.01-14.07-3.23-24.83-9.56-31.96-5.99-6.75-14.59-10.13-25.55-10.03-36.04,0-54.75,36.41-58.71,72.49-2.2,19.22,1.43,35.17,10.21,44.91,6.64,7.37,14.47,11.11,26.09,11.11,12.92,0,22.6-2.87,30.45-9.02,9.23-7.22,16.21-19.25,21.37-36.76.11-.4.49-.67.9-.67h5.59l-.03-.02Z"/>
+        <path fill={inkColor} d="M169.62,189.84c-9.67-9.38-13.07-14.84-12.96-20.85.09-5.39,3.33-8.47,8.36-8.47s7.48,3.45,7.48,10.55c0,1.57,1.33,2.87,2.93,2.87h24.32c1.28,0,2.34-1.03,2.36-2.29h0c.3-11.66-2.4-20.78-8.02-27.09-5.93-6.66-15.01-10.08-27-10.16-11.97,0-22.28,3.74-29.81,10.81-7.13,6.69-11.15,15.96-11.33,26.08-.31,17.47,9.56,28.57,20.56,39.33,8.52,8.76,10.08,13.1,10,18.04-.1,5.72-2.83,9-7.47,9-1.92,0-3.45-.59-4.56-1.77-1.72-1.81-2.48-5.08-2.2-9.45.1-.57-.06-1.17-.46-1.65-.46-.57-1.13-.9-1.82-.9h-25.15c-1.28,0-2.33,1.02-2.36,2.28-.59,12.13,2.23,21.53,8.4,27.93,6.07,6.31,15.2,9.5,27.16,9.5,23.4,0,38.79-14.62,39.19-37.25.24-13.99-4.86-24.57-17.6-36.52h-.02Z"/>
+        <path fill={inkColor} d="M275.35,136.75h-37.64c-1.26,0-1.82,1.09-2.18,1.81l-54.49,120.06v.02s0,.02-.02.03c-.61,1.48.54,3.06,2.14,3.06h26.31c1.42,0,2.36-.43,2.83-1.33l5.22-12.55c.64-1.67.76-1.83,2.59-1.83h25.14c1.75,0,1.78.04,1.76,1.74l-.56,11.67c-.02,1.26,1,2.29,2.28,2.29h26.58c.68,0,1.31-.28,1.73-.78.38-.44.54-1.01.45-1.59l.16-120.31c.02-1.26-1-2.29-2.28-2.29h-.02ZM248.05,217.37c-.18,1.78-.26,1.85-2.01,2l-15.11-.18h-.04,0c-.24,0-.43,0-.59-.03-.39-.04-.66-.41-.56-.79.05-.18.12-.41.23-.7l18.85-46.64c.16-.46.37-.91.58-1.35.31-.63.68-.67.79-.2.1.39-2.16,47.89-2.16,47.89h0Z"/>
+        <path fill={inkColor} d="M331.11,136.73h-20c-1.06,0-2.24.57-2.52,1.82,0,0-27.8,120.71-27.8,120.72-.12.56,0,1.11.38,1.57.44.54,1.16.87,1.88.87h24.97c1.34,0,2.26-.66,2.51-1.8,0,0,3.03-13.64,3.03-13.68.21-1.07-.16-1.89-1.11-2.39-.45-.23-.9-.47-1.34-.7l-4.33-2.25-4.31-2.25c-.56-.29-1.11-.58-1.66-.87-.28-.14-.45-.42-.44-.73,0-.46.39-.83.86-.83l13.68.06c4.1.02,8.19-.27,12.22-1.01,28.34-5.23,47.16-27.93,47.7-58.82.46-26.36-14.25-39.72-43.72-39.72h0ZM324.29,208.59h-.53c-1.2,0-1.41-.13-1.45-.18-.02-.03,7.89-34.77,7.9-34.82.2-1,.19-1.58-.43-1.92-.79-.44-12.34-6.53-12.34-6.53-.28-.15-.44-.43-.44-.74,0-.45.39-.83.85-.83h18.27c5.69.18,8.85,5.26,8.7,13.94-.26,15.04-7.41,30.54-20.53,31.07h0Z"/>
+      </svg>
+    );
+  }
   if (norm.includes('swup')) return <FaExchangeAlt size={62} color={inkColor} />;
   if (norm.includes('wordpress')) return <FaWordpress size={68} color={inkColor} />;
   if (norm.includes('php')) return <FaPhp size={72} color={inkColor} />;
@@ -48,6 +57,57 @@ export default function Home() {
   const notebookRef = useRef(null);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', _honeypot: '' });
+  const [formErrors, setFormErrors] = useState({});
+  const [formSubmitStatus, setFormSubmitStatus] = useState(null);
+
+  const flyerX = useMotionValue(0);
+  const flyerRotate = useTransform(flyerX, [-150, 150], [-12, 12]);
+
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (formErrors[e.target.name]) {
+      setFormErrors({ ...formErrors, [e.target.name]: null });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'What should I call you?';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Where can I reply?';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'That email looks a bit odd';
+    }
+    if (!formData.message.trim()) newErrors.message = 'Leave a word or two!';
+    return newErrors;
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (formData._honeypot) {
+      setFormSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '', _honeypot: '' });
+      return;
+    }
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setFormErrors(validationErrors);
+      return;
+    }
+
+    setFormSubmitStatus('submitting');
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setFormSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '', _honeypot: '' });
+    } catch (err) {
+      setFormSubmitStatus('error');
+    }
+  };
 
   const handleMouseMove = (e) => {
     const x = (e.clientX / window.innerWidth - 0.5) * 80;
@@ -126,7 +186,7 @@ export default function Home() {
                 visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 200 } }
               }}
             >
-              <a href="mailto:hello@example.com" className={styles.btnPrimary}>
+              <a href="mailto:armaan3826@gmail.com" className={styles.btnPrimary}>
                 <span>HIRE ME</span> — Let's Talk
               </a>
               <a href="#work" className={styles.btnSecondary}>
@@ -241,7 +301,7 @@ export default function Home() {
                             style={{ background: 'var(--yellow-highlighter)', textDecoration: 'none', display: 'inline-block' }}
                             onClick={(e) => e.stopPropagation()}
                           >
-                            ↗ VISIT LIVE SITE
+                            {project.liveUrl.includes('github.com') ? '↗ VIEW ON GITHUB' : '↗ VISIT LIVE SITE'}
                           </a>
                         )}
                       </div>
@@ -315,7 +375,9 @@ export default function Home() {
               >
                 <div className="tape" style={{ top: -15, left: -10, transform: 'rotate(-45deg)' }}></div>
                 <div className="tape" style={{ top: -15, right: -10, transform: 'rotate(45deg)' }}></div>
-                <div style={{ width: '100%', height: '400px', backgroundColor: '#e0e0e0', border: '2px solid #000' }}></div>
+                <div style={{ width: '100%', height: '400px', border: '2px solid #000', backgroundColor: '#e6ded3', backgroundImage: 'url(/images/indian_bg_subtle.jpg)', backgroundSize: '800px', backgroundPosition: 'center', overflow: 'hidden' }}>
+                  <img src="/images/headshot.png" alt="Armaan Choudhary Headshot" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'grayscale(100%) contrast(110%)' }} />
+                </div>
                 <span className="polaroid-caption" style={{bottom: 20}}>Headshot.jpg</span>
                 <div className={styles.dateStamp}>JUN 2026</div>
               </motion.div>
@@ -400,22 +462,30 @@ export default function Home() {
             {/* Articles Grid (Broadsheet columns) */}
             <div className={styles.broadsheetGrid}>
               {[
-                { name: "React", level: "EXPERT CORE LAUNCHED", desc: "React designated as primary UI stack for advanced modular building." },
-                { name: "JavaScript", level: "DAILY LOGIC CONFIRMED", desc: "Vanilla scripts verified running client-side at optimal speeds." },
-                { name: "TypeScript", level: "STATIC TYPING ADOPTED", desc: "Strict compiler checks prevent runtime errors in production code." },
+                { name: "React 19", level: "UI STACK LAUNCHED", desc: "React designated as primary frontend stack for modular UI components." },
+                { name: "Python", level: "DATA LOGIC CONFIRMED", desc: "Python handles deep learning and robust API backend processing." },
+                { name: "PyTorch", level: "NEURAL NETS DEPLOYED", desc: "Unstructured pruning and model architecture engineered locally." },
+                { name: "TensorRT", level: "INFERENCE MAXIMIZED", desc: "C++ hardware engines shatter edge appliance latency ceilings." },
+                { name: "FastAPI", level: "SERVER SPEEDS SOAR", desc: "Asynchronous endpoints built to handle heavy frontend requests." },
+                { name: "Supabase", level: "REALTIME DB SYNCED", desc: "PostgreSQL databases connected via high-speed WebSockets." },
+                { name: "Tailwind CSS", level: "STYLING SYSTEM ADOPTED", desc: "Utility classes streamline dynamic and responsive interface designs." },
                 { name: "Framer Motion", level: "FLUID INTERACTION ALIVE", desc: "Spring animations bring interface elements to life smoothly." },
-                { name: "HTML5/CSS3", level: "SEMANTIC LAYOUT APPROVED", desc: "Semantic markup and CSS grid systems create responsive structures." },
-                { name: "Vite", level: "COMPILATION SPEEDS SOAR", desc: "Fast dev server speeds up builds and HMR cycles." },
-                { name: "GSAP", level: "COMPLEX TIMELINES SYNCED", desc: "Vector graphics animate across multi-stage timelines smoothly." },
-                { name: "Swup.js", level: "PAGE TRANSITIONS INTEGRATED", desc: "Seamless transitions enhance user journey between paths." },
-                { name: "WordPress", level: "THEMING MASTERED", desc: "Custom themes and Gutenberg systems engineered to specs." },
-                { name: "PHP", level: "OOP ARCHITECTURE DEPLOYED", desc: "Clean object-oriented PHP code handles backend database operations." },
-                { name: "SQL", level: "QUERIES OPTIMIZED", desc: "Relational database tables hold portfolio data under strict queries." },
-                { name: "Node.js", level: "SERVER-SIDE SCRIPTS SECURED", desc: "Asynchronous scripts handle backend dependencies effectively." },
-                { name: "Figma", level: "HI-FI WIREFRAMING COMPLETE", desc: "Prototypes and layouts designed ahead of active code writing." },
-                { name: "Git & GitHub", level: "VERSION CONTROL COMPULSORY", desc: "Repository commits logged daily to track modular changes." },
-                { name: "Webpack", level: "BUNDLING PROCESS CONFIGURED", desc: "Bundling systems optimized for production-ready packages." },
-                { name: "Vercel", level: "DEPLOYMENT SPEEDS MAXIMIZED", desc: "Static applications hosted on edge networks with zero downtime." }
+                { name: "GSAP 3", level: "COMPLEX TIMELINES SYNCED", desc: "Vector graphics animate across multi-stage timelines seamlessly." },
+                { name: "FAISS", level: "VECTOR SEARCH LIVE", desc: "High-accuracy retrieval pipelines deployed for semantic querying." },
+                { name: "Google Gemini", level: "AI GENERATION ONLINE", desc: "LLMs integrated directly to process dense PDF and text data." },
+                { name: "Vite", level: "COMPILATION SPEEDS MAX", desc: "Fast dev server accelerates HMR cycles and production builds." },
+                { name: "PHP", level: "OOP ARCHITECTURE", desc: "Clean object-oriented scripts process secure server operations." },
+                { name: "SQL", level: "QUERIES OPTIMIZED", desc: "Relational database tables hold portfolio data under strict constraints." },
+                { name: "WordPress", level: "THEMING MASTERED", desc: "Custom dynamic systems engineered specifically for client needs." },
+                { name: "JavaScript", level: "VANILLA LOGIC INTACT", desc: "Core ES6+ scripts handle logic bypassing heavy frameworks." },
+                { name: "Sentence Transformers", level: "EMBEDDINGS GENERATED", desc: "Local models map text for high-dimensional semantic clustering." },
+                { name: "INT8 Quantization", level: "WEIGHTS COMPRESSED", desc: "Model weights squeezed mathematically for tight memory footprints." },
+                { name: "Llama.cpp", level: "LLM INFERENCE OPTIMIZED", desc: "Local language models compiled natively for raw edge speed." },
+                { name: "REST API", level: "ENDPOINTS ESTABLISHED", desc: "Stateless protocols engineered to bridge pipelines to clients." },
+                { name: "Edge AI Inference", level: "HARDWARE OPTIMIZED", desc: "Heavy ML models aggressively compressed to run at high FPS on constrained devices." },
+                { name: "Lenis Scroll", level: "SMOOTH SCROLLING", desc: "Native scrolling hijacked for buttery smooth interpolation." },
+                { name: "SCSS / PostCSS", level: "STYLESHEETS COMPILED", desc: "Advanced CSS logic and autoprefixing deployed for consistency." },
+                { name: "PyPDF", level: "DOCUMENTS PARSED", desc: "Complex financial data reliably extracted from dense technical PDFs." }
               ].map((skill, idx) => {
                 return (
                   <div key={skill.name} className={styles.broadsheetArticle}>
@@ -440,8 +510,12 @@ export default function Home() {
       <section className={styles.contactSection} id="contact">
         <motion.div 
           className={styles.flyerPaper}
-          initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 1 }}
+          style={{ x: flyerX, rotate: flyerRotate, transformOrigin: '50% 15px' }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.25}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
           <div className={styles.pushPin} style={{ top: 15, left: '50%', transform: 'translateX(-50%)' }}></div>
@@ -452,29 +526,102 @@ export default function Home() {
               Need a digital experience, an interactive web application, or a creative technical solution? Let's discuss your next project.
             </p>
             
-            <form className={styles.flyerForm} onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="Name..." className={styles.flyerInput} />
-              <input type="email" placeholder="Email..." className={styles.flyerInput} />
-              <textarea placeholder="Message..." rows="3" className={styles.flyerTextarea}></textarea>
-              <button type="submit" className={styles.flyerSubmit}>Send Message</button>
-            </form>
+            {formSubmitStatus === 'success' ? (
+              <motion.div 
+                className={styles.successState}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <div className={styles.successStamp}>TRANSMISSION SENT</div>
+                <h3 className="handwritten" style={{ fontSize: '2.4rem', color: 'var(--blue-ink)', marginBottom: '10px', textTransform: 'none' }}>
+                  Thanks for writing!
+                </h3>
+                <p style={{ fontFamily: 'var(--font-handwritten)', fontSize: '1.6rem', lineHeight: '1.4', color: 'var(--black)', margin: '0 0 20px 0' }}>
+                  Your message has been delivered to my mailbox. I will search my desk and get back to you within 24 hours.
+                </p>
+                <button 
+                  type="button" 
+                  className={styles.flyerSubmit} 
+                  style={{ marginTop: '10px' }}
+                  onClick={() => setFormSubmitStatus(null)}
+                >
+                  Send Another Message
+                </button>
+              </motion.div>
+            ) : (
+              <form className={styles.flyerForm} onSubmit={handleFormSubmit}>
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="_honeypot"
+                  value={formData._honeypot}
+                  onChange={handleFormChange}
+                  style={{ display: 'none' }}
+                  tabIndex="-1"
+                  autoComplete="off"
+                />
+                
+                <div className={styles.formField}>
+                  <input 
+                    type="text" 
+                    name="name"
+                    placeholder="Name..." 
+                    className={`${styles.flyerInput} ${formErrors.name ? styles.inputError : ''}`} 
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    disabled={formSubmitStatus === 'submitting'}
+                  />
+                  {formErrors.name && <span className={`${styles.errorText} handwritten`}>{formErrors.name}</span>}
+                </div>
+
+                <div className={styles.formField}>
+                  <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Email..." 
+                    className={`${styles.flyerInput} ${formErrors.email ? styles.inputError : ''}`} 
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    disabled={formSubmitStatus === 'submitting'}
+                  />
+                  {formErrors.email && <span className={`${styles.errorText} handwritten`}>{formErrors.email}</span>}
+                </div>
+
+                <div className={styles.formField} style={{ gridColumn: '1 / -1' }}>
+                  <textarea 
+                    name="message"
+                    placeholder="Message..." 
+                    rows="3" 
+                    className={`${styles.flyerTextarea} ${formErrors.message ? styles.inputError : ''}`}
+                    value={formData.message}
+                    onChange={handleFormChange}
+                    disabled={formSubmitStatus === 'submitting'}
+                  ></textarea>
+                  {formErrors.message && <span className={`${styles.errorText} handwritten`}>{formErrors.message}</span>}
+                </div>
+
+                <button type="submit" className={styles.flyerSubmit} disabled={formSubmitStatus === 'submitting'}>
+                  {formSubmitStatus === 'submitting' ? 'SENDING...' : 'Send Message'}
+                </button>
+
+                {formSubmitStatus === 'error' && (
+                  <span className={`${styles.errorText} handwritten`} style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
+                    * Delivery failed. Please try again or email me directly.
+                  </span>
+                )}
+              </form>
+            )}
           </div>
 
           <div className={styles.tearOffTabs}>
-            <a href="mailto:hello@example.com" className={styles.tearOffTab}>
+            <a href="mailto:armaan3826@gmail.com" className={styles.tearOffTab}>
               <span className={styles.tearOffText}>Email</span>
             </a>
-            <a href="https://github.com" className={styles.tearOffTab}>
+            <a href="https://github.com/armaan-choudhary" className={styles.tearOffTab}>
               <span className={styles.tearOffText}>GitHub</span>
             </a>
-            <a href="https://twitter.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>Twitter</span>
-            </a>
-            <a href="https://linkedin.com" className={styles.tearOffTab}>
+            <a href="https://linkedin.com/in/armaan-choudhary-816392315/" className={styles.tearOffTab}>
               <span className={styles.tearOffText}>LinkedIn</span>
-            </a>
-            <a href="mailto:hello@example.com" className={styles.tearOffTab}>
-              <span className={styles.tearOffText}>Email</span>
             </a>
           </div>
         </motion.div>

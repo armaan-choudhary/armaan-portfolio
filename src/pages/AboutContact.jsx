@@ -108,6 +108,14 @@ export default function AboutContact() {
                   <span className={`${styles.noteHeading} handwritten`}>Current Obsessions:</span>
                   <p className={styles.noteText}>Physics animations, generative art, and deleting legacy CSS.</p>
                 </div>
+
+                <div className={styles.headshotPolaroid}>
+                  <Tape rotate={1} className={styles.noteTape} />
+                  <div style={{ width: '100%', height: '216px', backgroundColor: '#e6ded3', backgroundImage: 'url(/images/indian_bg_subtle.jpg)', backgroundSize: '500px', backgroundPosition: 'center', overflow: 'hidden' }}>
+                    <img src="/images/headshot.png" alt="Armaan Choudhary" className={styles.headshotImg} style={{ height: '100%', border: 'none' }} />
+                  </div>
+                  <span className={styles.headshotCaption}>Hello World!</span>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -171,7 +179,7 @@ export default function AboutContact() {
               <div className={styles.contactDetails}>
                 <div className={styles.detailItem}>
                   <span className={`${styles.detailLabel} handwritten`}>Email:</span>
-                  <a href="mailto:hello@armaan.dev" className={styles.detailValue}>hello@armaan.dev</a>
+                  <a href="mailto:armaan3826@gmail.com" className={styles.detailValue}>armaan3826@gmail.com</a>
                 </div>
                 <div className={styles.detailItem}>
                   <span className={`${styles.detailLabel} handwritten`}>Location:</span>

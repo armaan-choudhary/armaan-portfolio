@@ -33,11 +33,10 @@ export default function Footer() {
 
         <div className={styles.socialsAndCopy}>
           <div className={styles.socials}>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>GH</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>IN</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>X</a>
+            <a href="https://github.com/armaan-choudhary" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>GH</a>
+            <a href="https://linkedin.com/in/armaan-choudhary-816392315/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>IN</a>
           </div>
-          <span className={styles.copy}>© {new Date().getFullYear()} — Built with grit.</span>
+          <span className={styles.copy}>© {new Date().getFullYear()} — Subject to spontaneous redesigns based on my mood swings.</span>
         </div>
       </div>
     </footer>

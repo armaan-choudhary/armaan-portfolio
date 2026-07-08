@@ -109,7 +109,7 @@ export default function ProjectDetail() {
                   className={styles.paperButton}
                   style={{ background: 'var(--yellow-highlighter)', textDecoration: 'none', padding: '4px 12px', fontSize: '0.85rem' }}
                 >
-                  ↗ VISIT LIVE SITE
+                  {project.liveUrl.includes('github.com') ? '↗ VIEW ON GITHUB' : '↗ VISIT LIVE SITE'}
                 </a>
               </>
             )}
@@ -197,6 +197,34 @@ export default function ProjectDetail() {
             ))}
           </ol>
         </div>
+
+        {/* ─── RESULTS ─── */}
+        {project.results && project.results.length > 0 && (
+          <div className={styles.processCard} style={{ marginTop: '60px' }}>
+            <div className="tape" style={{ top: -15, left: '30%', transform: 'translateX(-50%) rotate(-2deg)' }}></div>
+            <h2 className="marker" style={{ fontSize: '2.4rem', marginBottom: '25px', transform: 'rotate(1deg)' }}>Performance & Results</h2>
+            <ul style={{ paddingLeft: '20px' }}>
+              {project.results.map((result, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  style={{ marginBottom: '12px', fontSize: '1.1rem', lineHeight: '1.6' }}
+                >
+                  {result.includes(':') ? (
+                    <>
+                      <strong>{result.split(':')[0]}:</strong>{result.split(':').slice(1).join(':')}
+                    </>
+                  ) : (
+                    result
+                  )}
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* ─── CHALLENGES ─── */}

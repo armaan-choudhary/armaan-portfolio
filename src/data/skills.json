@@ -1,13 +1,27 @@
 [
-  { "name": "JavaScript", "category": "Languages" },
-  { "name": "TypeScript", "category": "Languages" },
-  { "name": "GLSL (Shaders)", "category": "Languages" },
-  { "name": "React", "category": "Frameworks" },
-  { "name": "Three.js", "category": "Frameworks" },
+  { "name": "JavaScript (ES6+)", "category": "Languages" },
+  { "name": "Python", "category": "Languages" },
+  { "name": "PHP 8.2+ (OOP)", "category": "Languages" },
+  { "name": "MySQL", "category": "Languages" },
+
+  { "name": "React 19", "category": "Frameworks" },
+  { "name": "FastAPI", "category": "Frameworks" },
+  { "name": "PyTorch", "category": "Frameworks" },
+  { "name": "Tailwind CSS", "category": "Frameworks" },
   { "name": "Framer Motion", "category": "Frameworks" },
-  { "name": "Creative Coding", "category": "Specialties" },
-  { "name": "Motion Design", "category": "Specialties" },
-  { "name": "UI/UX Architecture", "category": "Specialties" },
-  { "name": "WebGL", "category": "Tools" },
-  { "name": "Figma", "category": "Tools" }
+  { "name": "GSAP 3", "category": "Frameworks" },
+  { "name": "Streamlit", "category": "Frameworks" },
+  { "name": "Swup.js", "category": "Frameworks" },
+
+  { "name": "Vite", "category": "Tools" },
+  { "name": "Supabase", "category": "Tools" },
+  { "name": "TensorRT", "category": "Tools" },
+  { "name": "FAISS", "category": "Tools" },
+  { "name": "Google Gemini 2.5", "category": "Tools" },
+  { "name": "WordPress", "category": "Tools" },
+
+  { "name": "Edge AI Inference", "category": "Specialties" },
+  { "name": "RAG & Vector Search", "category": "Specialties" },
+  { "name": "Model Quantization", "category": "Specialties" },
+  { "name": "Animation & Motion", "category": "Specialties" }
 ]
