@@ -4,6 +4,7 @@ import styles from './Header.module.css'
 
 const navItems = [
   { to: '/#work', label: 'Projects' },
+  { to: '/#services', label: 'Services' },
   { to: '/#about', label: 'About' },
   { to: '/#skills', label: 'Skills' },
   { to: '/#contact', label: 'Contact' },

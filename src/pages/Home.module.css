@@ -382,18 +382,19 @@
 
 /* SECTION 2: PROJECTS SECTION */
 .projectsSection {
-  padding: 60px 20px 50px;
-  background-color: #cd9f68;
+  padding: 80px 20px 80px;
+  background-color: #2a221b; /* Dark kraft/cork base */
   background-image: 
-    radial-gradient(#ab7d46 15%, transparent 16%),
-    radial-gradient(#ab7d46 15%, transparent 16%);
-  background-size: 8px 8px, 8px 8px;
-  background-position: 0 0, 4px 4px;
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 60%), /* Overhead spotlight */
+    radial-gradient(rgba(0,0,0,0.6) 1px, transparent 1.5px), /* Pin holes/texture */
+    radial-gradient(rgba(0,0,0,0.4) 1px, transparent 1.5px);
+  background-size: 100% 100%, 30px 30px, 40px 40px;
+  background-position: center, 0 0, 15px 15px;
   position: relative;
   z-index: 2;
-  box-shadow: inset 0 0 80px rgba(0,0,0,0.65);
-  border-top: 25px solid #4a332a;
-  border-bottom: 25px solid #4a332a;
+  box-shadow: inset 0 0 150px 30px rgba(0,0,0,0.85); /* Deep edge vignette */
+  border-top: 25px solid #1c1511;
+  border-bottom: 25px solid #1c1511;
 }
 
 
@@ -450,7 +451,7 @@
 .curatedPolaroid {
   background: var(--white);
   padding: 15px 15px 40px 15px;
-  box-shadow: 3px 6px 18px rgba(0,0,0,0.15), 1px 1px 0px rgba(0,0,0,0.05);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4), 1px 1px 0px rgba(0,0,0,0.05);
   border: 1px solid rgba(0,0,0,0.05);
   position: relative;
   cursor: pointer;
@@ -477,7 +478,7 @@
 /* Paper wear — subtle aged edge */
 .wornEdge {
   border-bottom: 2px solid rgba(0,0,0,0.03);
-  box-shadow: 3px 6px 18px rgba(0,0,0,0.15), inset 0 -3px 6px rgba(0,0,0,0.02);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4), inset 0 -3px 6px rgba(0,0,0,0.02);
 }
 
 .featuredPolaroid {
@@ -487,7 +488,7 @@
   align-items: start;
   gap: 35px;
   padding: 25px 25px 40px 25px;
-  box-shadow: 4px 8px 25px rgba(0,0,0,0.2), 1px 1px 0px rgba(0,0,0,0.08);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.45), 1px 1px 0px rgba(0,0,0,0.08);
 }
 
 @media (max-width: 960px) {
@@ -783,7 +784,7 @@
 
 /* SECTION 3: ABOUT / JOURNAL */
 .aboutSection {
-  padding: 120px 20px;
+  padding: 120px 0;
   background-color: var(--paper-notebook);
   position: relative;
   box-shadow: 0 -10px 20px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.15);
@@ -817,7 +818,7 @@
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .aboutSection::after {
     left: 20px;
   }
@@ -910,7 +911,7 @@
   background: var(--paper-notebook);
   background-image: repeating-linear-gradient(transparent, transparent 31px, #a2d2ff 31px, #a2d2ff 32px);
   color: var(--black);
-  padding: 40px 40px 60px 70px;
+  padding: 40px 20px 60px 45px;
   position: relative;
   box-shadow: var(--shadow-paper);
   transform: rotate(-1deg);
@@ -940,7 +941,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .notebookPage {
     padding: 30px 20px 40px 45px;
   }
@@ -985,7 +986,7 @@
   padding-top: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .factGrid {
     grid-template-columns: 1fr;
   }
@@ -1562,4 +1563,133 @@
   color: var(--blue-ink);
   text-align: right;
   display: block;
+}
+
+/* DINER MENU (SERVICES SECTION) */
+.servicesSection {
+  padding: 120px 24px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--grey-dark);
+}
+
+.dinerMenu {
+  background-color: #fdfaf6; /* Classic cream */
+  width: 95%;
+  max-width: 1300px;
+  padding: 50px 60px;
+  box-shadow: var(--shadow-paper);
+  border: 4px double var(--black);
+  position: relative;
+  transform: rotate(-1deg);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+  .menuGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .menuGrid {
+    grid-template-columns: 1fr;
+  }
+  .dinerMenu {
+    padding: 30px 20px;
+  }
+}
+
+/* Optional Coffee Stain */
+.coffeeStainMenu {
+  position: absolute;
+  top: -20px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+  border: 8px solid rgba(139, 69, 19, 0.15); /* brown coffee color */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: rotate(20deg);
+}
+.coffeeStainMenu::after {
+  content: '';
+  position: absolute;
+  top: 10px; left: 15px;
+  width: 110px; height: 110px;
+  border: 3px solid rgba(139, 69, 19, 0.1);
+  border-radius: 40%;
+}
+
+.menuHeader {
+  text-align: center;
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.menuTitle {
+  font-family: var(--font-hero);
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: var(--red-marker);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.menuCategory {
+  margin-bottom: 30px;
+}
+.categoryTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 5px 10px;
+  display: inline-block;
+  margin-bottom: 15px;
+  transform: rotate(-2deg);
+}
+
+.menuImage {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: rotate(5deg);
+  filter: contrast(1.2);
+}
+
+.menuItemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.menuItemName {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.menuItemDesc {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+.menuDottedLine {
+  flex-grow: 1;
+  border-bottom: 2px dotted #aaa;
+  margin: 0 15px;
+}
+.menuPrice {
+  font-family: var(--font-marker);
+  color: var(--blue-ink);
+  font-size: 1.2rem;
 }

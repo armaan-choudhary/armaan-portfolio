@@ -241,9 +241,11 @@ export default function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: idx * 0.1, type: "spring", stiffness: 220, damping: 16 }}
                 onClick={() => navigate(`/work/${project.slug}`)}
+                style={{ marginTop: !isFeatured ? `${((idx - 1) % 3) * 60}px` : '0px' }}
               >
-                {/* Tape — varied position */}
-                <div className="tape" style={{ top: -15, left: tapeLeft, transform: `translateX(-50%) rotate(${tapeRot}deg)` }}></div>
+                {/* Masking tape strips — corner mounts */}
+                <div className="tape" style={{ top: -12, left: 10, transform: `rotate(${tapeRot - 35}deg)`, width: '80px' }}></div>
+                <div className="tape" style={{ top: -12, right: 10, transform: `rotate(${-tapeRot + 35}deg)`, width: '80px' }}></div>
                 
                 {/* Decorations — unique per card */}
                 {!isFeatured && decoType === 0 && <div className={styles.paperClip} style={{top: -20, right: 20, transform: 'rotate(10deg)'}}></div>}
@@ -356,80 +358,243 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.servicesSection} id="services">
+        <motion.div 
+          className={styles.dinerMenu}
+          initial={{ opacity: 0, y: 50, rotate: -4 }}
+          whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{ scale: 1.02, rotate: -1, zIndex: 10 }}
+        >
+          {/* Tapes to hold it down */}
+          <div className="tape" style={{ top: -10, left: '20%', transform: 'rotate(-5deg)' }}></div>
+          <div className="tape" style={{ top: -10, right: '20%', transform: 'rotate(5deg)' }}></div>
+          
+          <div className={styles.coffeeStainMenu}></div>
+
+          <div className={styles.menuHeader}>
+            <h2 className={styles.menuTitle}>THE SERVICES MENU</h2>
+            <p style={{ fontFamily: 'var(--font-handwritten)', fontSize: '1.6rem', color: 'var(--blue-ink)', margin: 0, transform: 'rotate(-2deg)' }}>Freshly coded, made to order.</p>
+          </div>
+
+          <div className={styles.menuGrid}>
+            {/* Section 1 */}
+            <div className={styles.menuCategory}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '15px', paddingRight: '10px' }}>
+                <h3 className={styles.categoryTitle} style={{ marginBottom: 0 }}>Appetizers</h3>
+                <img src="/images/diner_coffee.jpg" alt="Coffee" className={styles.menuImage} />
+              </div>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Wireframes & User Flows</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>MP</span>
+              </div>
+              <p className={styles.menuItemDesc}>Structural layouts and journey mapping to ensure intuitive navigation.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Figma Prototypes</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>High-fidelity, interactive mockups that look and feel like the real thing.</p>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Design Systems</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Reusable component libraries built for consistency and scalable branding.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Brand Identity</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Color palettes, typography, and logos crafted for modern digital spaces.</p>
+            </div>
+
+            {/* Section 2 */}
+            <div className={styles.menuCategory}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '15px', paddingRight: '10px' }}>
+                <h3 className={styles.categoryTitle} style={{ marginBottom: 0 }}>Main Courses</h3>
+                <img src="/images/diner_burger.jpg" alt="Burger" className={styles.menuImage} style={{ transform: 'rotate(-4deg)' }} />
+              </div>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>React & Vue Web Apps</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Fast, responsive, and dynamic Single Page Applications built for scale.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Full-Stack Architecture</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>End-to-end development utilizing Node.js, Python, and Supabase/PostgreSQL.</p>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>API & Integrations</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Seamlessly connecting third-party services, RESTful APIs, and WebSockets.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>E-Commerce Setup</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Custom storefronts and secure Stripe/PayPal payment gateway integrations.</p>
+            </div>
+
+            {/* Section 3 */}
+            <div className={styles.menuCategory}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '15px', paddingRight: '10px' }}>
+                <h3 className={styles.categoryTitle} style={{ marginBottom: 0 }}>Desserts</h3>
+                <img src="/images/diner_pie.jpg" alt="Pie" className={styles.menuImage} style={{ transform: 'rotate(8deg)' }} />
+              </div>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Advanced Animations</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Buttery-smooth spring physics and timeline animations using GSAP & Framer Motion.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Performance Tuning</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>SWEET</span>
+              </div>
+              <p className={styles.menuItemDesc}>Bundle optimization, lazy loading, and chasing 100/100 Lighthouse scores.</p>
+              
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Technical SEO</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Semantic HTML, metadata generation, and sitemap structuring for search engines.</p>
+
+              <div className={styles.menuItemRow}>
+                <span className={styles.menuItemName}>Accessibility (a11y)</span>
+                <div className={styles.menuDottedLine}></div>
+                <span className={styles.menuPrice}>$</span>
+              </div>
+              <p className={styles.menuItemDesc}>Ensuring your application is usable and welcoming to all screen readers and users.</p>
+            </div>
+          </div>
+          
+          <div style={{ textAlign: 'center', marginTop: '20px', padding: '20px', borderTop: '2px dashed var(--black)' }}>
+            <h4 className="marker" style={{ fontSize: '1.5rem', color: 'var(--red-marker)' }}>CHEF'S SPECIAL</h4>
+            <p style={{ fontFamily: 'var(--font-handwritten)', fontSize: '1.4rem', color: 'var(--blue-ink)' }}>Ask about custom AI & Machine Learning integrations for your backend!</p>
+          </div>
+
+        </motion.div>
+      </section>
+
       <section className={styles.aboutSection} id="about">
         <div className="container">
           <div className={styles.aboutGrid}>
+            {/* LEFT COLUMN: Profile Cluster */}
             <motion.div 
-              style={{position: 'relative'}}
-              initial={{ opacity: 0, x: -50, rotate: -10 }}
+              style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '50px' }}
+              initial={{ opacity: 0, x: -50, rotate: -5 }}
               whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
             >
-              <div className={styles.coffeeStain}></div>
-              <motion.div 
-                className={styles.aboutPhoto}
-                initial={{ rotate: -3 }}
-                whileHover={{ rotate: 2, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="tape" style={{ top: -15, left: -10, transform: 'rotate(-45deg)' }}></div>
-                <div className="tape" style={{ top: -15, right: -10, transform: 'rotate(45deg)' }}></div>
-                <div style={{ width: '100%', height: '400px', border: '2px solid #000', backgroundColor: '#e6ded3', backgroundImage: 'url(/images/indian_bg_subtle.jpg)', backgroundSize: '800px', backgroundPosition: 'center', overflow: 'hidden' }}>
-                  <img src="/images/headshot.png" alt="Armaan Choudhary Headshot" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'grayscale(100%) contrast(110%)' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', position: 'relative', alignItems: 'center' }}>
+                {/* Coffee Stain Doodle */}
+                <div className={styles.coffeeStain} style={{ top: '-20px', left: '-20px', zIndex: 0 }}></div>
+
+                {/* Top Row: Headshot */}
+                <motion.div 
+                  className={styles.aboutPhoto}
+                  style={{ zIndex: 1, transform: 'rotate(-2deg)', width: '90%', maxWidth: '400px' }}
+                  whileHover={{ rotate: -1, scale: 1.02, zIndex: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="tape" style={{ top: -15, left: -10, transform: 'rotate(-45deg)' }}></div>
+                  <div className="tape" style={{ top: -15, right: -10, transform: 'rotate(45deg)' }}></div>
+                  <div style={{ width: '100%', height: '350px', border: '2px solid #000', backgroundColor: '#e6ded3', backgroundImage: 'url(/images/indian_bg_subtle.jpg)', backgroundSize: '800px', backgroundPosition: 'center', overflow: 'hidden' }}>
+                    <img src="/images/headshot.png" alt="Armaan headshot" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'grayscale(100%) contrast(110%)' }} />
+                  </div>
+                  <span className="polaroid-caption" style={{bottom: 20}}>Armaan.jpg</span>
+                </motion.div>
+
+                {/* Bottom Row */}
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%', flexWrap: 'wrap' }}>
+                  {/* Bottom Row Left: Sticky Note */}
+                  <motion.div 
+                    className={`sticky-note ${styles.stickyNoteAbout}`}
+                    style={{ position: 'relative', top: '0', left: '0', right: 'auto', bottom: 'auto', width: '250px', height: 'max-content', transform: 'rotate(-4deg)', zIndex: 20, padding: '20px', fontSize: '1.5rem', marginRight: '-40px' }}
+                    whileHover={{ scale: 1.05, rotate: -2, zIndex: 30 }}
+                    drag
+                    dragConstraints={{ left: -20, right: 20, top: -20, bottom: 20 }}
+                  >
+                    <div className="tape" style={{ top: -10, left: '50%', transform: 'translateX(-50%)', width: '60px' }}></div>
+                    <strong className="marker" style={{fontSize: '1.4rem'}}>NOTE TO SELF:</strong><br/>
+                    "Works on my machine" is a valid deployment strategy. Just ship the machine.
+                  </motion.div>
+
+                  {/* Bottom Row Right: Vintage Camera Polaroid */}
+                  <motion.div 
+                    className={styles.aboutPhoto}
+                    style={{ position: 'relative', width: '220px', transform: 'rotate(5deg)', zIndex: 2, marginLeft: '-20px', marginTop: '20px' }}
+                    whileHover={{ rotate: 7, scale: 1.05, zIndex: 10 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="tape" style={{ top: -10, right: 10, transform: 'rotate(10deg)' }}></div>
+                    <div style={{ width: '100%', height: '200px', border: '2px solid #000', backgroundColor: '#e6ded3', overflow: 'hidden' }}>
+                      <img src="/images/cool-photo.jpeg" alt="Vintage Camera" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <span className="polaroid-caption" style={{bottom: 10, fontSize: '0.9rem'}}>S1060.jpg</span>
+                  </motion.div>
                 </div>
-                <span className="polaroid-caption" style={{bottom: 20}}>Headshot.jpg</span>
-                <div className={styles.dateStamp}>JUN 2026</div>
-              </motion.div>
+              </div>
+
+              {/* Status Block */}
+              <div className={styles.factGrid} style={{ marginTop: 'auto', zIndex: 5, backgroundColor: 'var(--paper-bg)', padding: '20px', border: '2px solid var(--black)', boxShadow: '4px 4px 0 var(--black)' }}>
+                <div className={styles.factItem}>
+                  <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.2rem'}}>CURRENT STATUS</div>
+                  <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.3rem'}}>CS STUDENT & FREELANCER</div>
+                </div>
+                <div className={styles.factItem}>
+                  <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.2rem'}}>CORE STRENGTH</div>
+                  <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.3rem'}}>CREATIVE ENGINEERING</div>
+                </div>
+              </div>
             </motion.div>
 
+            {/* RIGHT COLUMN: Text */}
             <motion.div 
               className={styles.aboutTextWrapper}
-              initial={{ opacity: 0, x: 50, rotate: 5 }}
+              initial={{ opacity: 0, x: 50, rotate: 3 }}
               whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
             >
-              <div className={styles.notebookPage} ref={notebookRef}>
+              <div className={styles.notebookPage} ref={notebookRef} style={{ position: 'relative' }}>
                 <div className={styles.notebookHeader}>
                   <h2 className="marker" style={{ fontSize: '3.5rem', transform: 'rotate(-2deg)' }}>ABOUT ME</h2>
-                  <span className={styles.dateStampSmall}>Last updated: JUN 2026</span>
+                  <span className={styles.dateStampSmall}>Last updated: JUL 2026</span>
                 </div>
 
                 <div className={styles.notebookContent}>
                   <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '20px'}}>
-                    I'm <strong>Armaan</strong>, a <span className="highlight">creative developer</span> crafting <span className="marker" style={{color: 'var(--blue-ink)'}}>visually engaging, technically refined digital experiences</span>. I turn ideas into fast, interactive websites where thoughtful design meets clean, scalable code.
+                    I'm <strong>Armaan</strong>, a <span className="highlight">creative developer</span> bridging the gap between <span className="marker" style={{color: 'var(--blue-ink)'}}>tactile design</span> and <span className="marker" style={{color: 'var(--red-marker)'}}>rigorous engineering</span>. I turn ideas into fast, interactive websites where thoughtful architecture meets immersive UI.
                   </p>
                   
                   <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '20px'}}>
-                    My approach focuses on <span className="marker" style={{color: 'var(--red-marker)'}}>intuitive UX</span>, <span className="marker" style={{color: 'var(--blue-ink)'}}>smooth interactions</span>, and <span className="highlight">performance</span>. Every project is an opportunity to build something meaningful that looks great and works seamlessly.
+                    Every project is an opportunity to build something meaningful that performs flawlessly. I treat web development with the same precision I apply to my computer science coursework—focusing on <span className="highlight">raw performance</span>, <span className="highlight">minimal dependencies</span>, and scalable logic.
                   </p>
 
-                  <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '30px'}}>
-                    Outside of development, I explore <span style={{color: 'var(--blue-ink)'}}>new design trends</span>, experiment with <span className="highlight">interactions</span>, and learn <span className="marker" style={{color: 'var(--red-marker)'}}>tools</span> to build better digital experiences.
+                  <p style={{fontFamily: 'var(--font-handwritten)', fontSize: '1.8rem', lineHeight: '1.4', marginBottom: '40px'}}>
+                    Based in the <span className="marker" style={{color: 'var(--blue-ink)'}}>Delhi NCR</span>, my curiosity extends far beyond the browser. When I'm offline, you'll find me optimizing <span className="highlight">minimal Linux environments</span>, writing bare-metal C++ algorithms, or hunting for <span className="marker" style={{color: 'var(--red-marker)'}}>vintage digital cameras</span> in local markets.
                   </p>
-
-                  <div className={styles.factGrid}>
-                    <div className={styles.factItem}>
-                      <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.4rem'}}>CURRENT STATUS</div>
-                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>ACCEPTING FREELANCE WORK</div>
-                    </div>
-                    <div className={styles.factItem}>
-                      <div className="marker" style={{color: 'var(--blue-ink)', fontSize: '1.4rem'}}>CORE STRENGTH</div>
-                      <div style={{fontFamily: 'var(--font-heading)', fontSize: '1.4rem'}}>CREATIVE ENGINEERING</div>
-                    </div>
-                  </div>
-
-                  <motion.div 
-                    className={`sticky-note ${styles.stickyNoteAbout}`}
-                    whileHover={{ scale: 1.05, rotate: 2, zIndex: 10 }}
-                    drag
-                    dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
-                  >
-                    <div className="tape" style={{ top: -10, left: '50%', transform: 'translateX(-50%)', width: '80px' }}></div>
-                    <strong className="marker" style={{fontSize: '1.2rem'}}>NOTE TO SELF:</strong><br/>
-                    "Works on my machine" is a valid deployment strategy. Just ship the machine.
-                  </motion.div>
                 </div>
               </div>
             </motion.div>
