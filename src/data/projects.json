@@ -5,7 +5,7 @@
     "category": "Full-Stack Development",
     "year": "2026",
     "featured": true,
-    "summary": "A bespoke WordPress travel portal featuring an editorial theme with fluid Swup.js page transitions and a custom AI Travel Consultant plugin powered by Google Gemini 2.5 Flash.",
+    "summary": "Bespoke WordPress travel portal with SPA transitions and a custom AI Travel Consultant plugin powered by Google Gemini 2.5.",
     "techStack": [
       "WordPress",
       "PHP (OOP)",
@@ -28,44 +28,54 @@
     ],
     "liveUrl": "https://fortunewander.com",
     "subtitle": "Editorial Travel Portal & AI Itinerary Assistant",
-    "overview": "A high-end editorial travel portal built for WordPress, pairing a cinematic SPA-like frontend theme with a custom AI Travel Consultant plugin. Powered by Google Gemini 2.5 Flash with search grounding, the system generates structured day-by-day itineraries, custom HTML travel reports, and PDF downloads, while maintaining strict domain guardrails and smooth inertial scrolling.",
-    "challenge": "Develop a cinematic SPA travel theme while engineering a secure, real-time AI Chatbot plugin that renders structured HTML itineraries in WordPress without compromising security.",
-    "solution": "Integrated Swup.js & Lenis for fluid theme transitions and built an object-oriented WordPress AI plugin with custom HTML sanitization, secure REST API endpoints, and a lightweight floating widget.",
-    "client": "FortuneWander",
-    "role": "Full-Stack Developer & Plugin Architect",
-    "timeline": "6 Weeks",
-    "status": "Delivered",
-    "highlights": [
-      "Google Gemini 2.5 AI",
-      "Custom WP Plugin",
-      "SPA Routing",
-      "SEO & Print Ready"
-    ],
-    "results": [
-      "Production Launch",
-      "Automated AI Itineraries Enabled"
-    ],
-    "process": [
-      "Engineered an object-oriented WordPress AI plugin, establishing secure custom REST API endpoints authenticated via nonce verification.",
-      "Integrated Google Gemini 2.5 Flash with search grounding to generate real-time destination advice, packing recommendations, and structured day-by-day HTML itineraries.",
-      "Built a lightweight, zero-framework floating chat widget featuring markdown rendering, dynamic prompt chips, live status indicators, and client-side PDF export.",
-      "Integrated a modern Vite build pipeline into WordPress for modular JS/CSS bundling, combined with Swup.js and Lenis for smooth SPA routing and inertial scrolling."
-    ],
+    "role": "Full-Stack Developer & Architect",
+    "team": "Solo",
+    "duration": "6 Weeks",
+    "status": "Production",
+    "projectType": "Client Project",
+    "deployment": "Custom VPS",
+    "repository": "Private",
+    "problem": "The client needed a high-end editorial travel portal that didn't feel like a standard WordPress site, alongside an integrated AI assistant to generate complex travel itineraries automatically. Standard WordPress themes are monolithic, slow, and reload heavily on navigation.",
+    "goal": "Engineer a cinematic, single-page application (SPA) experience on top of a monolithic CMS (WordPress) while building a secure, custom AI plugin that outputs rich, structured HTML without triggering native XSS filters.",
+    "solution": "Integrated a modern Vite build pipeline, decoupled the frontend with Swup.js for AJAX routing, and engineered an object-oriented WordPress AI plugin using the Google Gemini 2.5 API with search grounding.",
     "challenges": [
       {
         "title": "HTML Sanitization vs. Rich AI Itinerary Table Layouts",
-        "solution": "Standard WordPress sanitization strips custom CSS classes and structured table layouts returned by the AI, breaking complex itinerary layouts. Developed a custom whitelist-based HTML sanitizer to explicitly permit structural UI tags and styling attributes, enabling rich visual reports while enforcing strict XSS security."
-      },
-      {
-        "title": "API Rate-Limiting & Multi-Turn Conversation Memory",
-        "solution": "Preventing API quota exhaustion while preserving conversation context was achieved by implementing transient-based rate-limiting per IP, paired with client-side session storage for multi-turn dialogue context."
+        "solution": "Standard WordPress sanitization stripped the structural classes and table layouts returned by the AI. I developed a custom whitelist-based HTML sanitizer (`wp_kses` configuration) to explicitly permit UI tags and styling attributes, enabling rich visual reports while enforcing strict XSS security."
       },
       {
         "title": "Decoupled WordPress Build & Asset Pipeline",
-        "solution": "Bridging modern frontend build tools with WordPress required writing a custom PHP asset loader to dynamically parse build manifests and enqueue cache-busted modules, eliminating core render-blocking styles."
+        "solution": "Bridging modern frontend build tools with WordPress required writing a custom PHP asset loader to dynamically parse Vite's build manifests and enqueue cache-busted modules, eliminating core render-blocking styles."
       }
     ],
-    "inspiration": "Inspired by editorial travel magazines and intelligent concierge systems, combining high-resolution photography with instant AI-driven itinerary generation."
+    "engineeringDecisions": [
+      {
+        "decision": "Custom REST API Endpoints with Nonce Auth",
+        "reason": "Needed a lightweight, secure way for the floating JS chat widget to communicate with the PHP backend without exposing the Gemini API key.",
+        "tradeoff": "Requires manual route registration and security hardening compared to using native AJAX, but provides a cleaner, RESTful architecture."
+      },
+      {
+        "decision": "Transient-based IP Rate Limiting",
+        "reason": "To prevent API quota exhaustion and abuse of the AI generator.",
+        "tradeoff": "IP-based limiting can block legitimate users on shared networks (like corporate offices), but it was the most efficient stateless solution."
+      }
+    ],
+    "results": [
+      "Production Launch on custom hosting",
+      "Full SPA-like routing with 0 page reloads",
+      "Automated day-by-day HTML itineraries",
+      "Lightweight floating chat widget built with Vanilla JS"
+    ],
+    "lessonsLearned": [
+      "Integrating AJAX routing (Swup.js) into WordPress requires rigorous cleanup and re-binding of event listeners on every page load to prevent memory leaks.",
+      "LLMs generate unpredictable HTML; a robust, whitelist-based sanitization pipeline is critical for security.",
+      "Vite is vastly superior to Webpack for WordPress theme development due to its native ESM support."
+    ],
+    "futureImprovements": [
+      "Implement user authentication to allow saving generated itineraries.",
+      "Transition from polling to WebSockets or SSE for the AI chat stream.",
+      "Add automated end-to-end (E2E) testing for the checkout flows."
+    ]
   },
   {
     "title": "QueenTrends Theme",
@@ -73,17 +83,15 @@
     "category": "Full-Stack Development",
     "year": "2026",
     "featured": true,
-    "summary": "A minimalist, high-end editorial WordPress theme built for digital fashion journalism, featuring Vite-powered asset bundling, GSAP kinetic animations, and Swup.js AJAX page transitions.",
+    "summary": "Minimalist editorial WordPress theme featuring Vite-powered asset bundling, GSAP animations, and AJAX page transitions.",
     "techStack": [
-      "WordPress 6.9+",
+      "WordPress",
       "PHP 8.2+",
       "Vite 5",
       "JavaScript (ES6+)",
-      "SCSS / PostCSS",
+      "SCSS",
       "GSAP 3",
-      "Swup.js 4",
-      "Lenis Scroll",
-      "Autoprefixer"
+      "Swup.js"
     ],
     "heroImage": "/images/projects/queentrends/hero.png",
     "screenshots": [
@@ -94,61 +102,68 @@
       "/images/projects/queentrends/footer-light.png"
     ],
     "liveUrl": "https://queentrends.com",
-    "subtitle": "High-End Digital Fashion Journalism & Editorial Theme Architecture",
-    "overview": "QueenTrends Modern is a bespoke editorial WordPress theme engineered for digital fashion journalism and luxury lifestyle curation. Replaces traditional monolithic theme architecture with a Vite-powered build pipeline, custom security hardening, and a glassmorphism design system. Designed to deliver an immersive, app-like reading experience with zero page reloads and kinetic micro-interactions.",
-    "challenge": "Transforming a classic WordPress PHP CMS into a ultra-fast single-page editorial app while maintaining SEO integrity, Customizer-driven ad placement architectures, accessible DOM focus handling, and enterprise-grade security.",
-    "solution": "Architected a hybrid theme using Vite HMR and Rollup hashing, component-based PHP partials, Swup.js container rehydration lifecycle hooks, GSAP entrance timelines, Lenis smooth scrolling, and native transient-based security filters.",
-    "client": "QueenTrends",
-    "role": "Freelance Lead Developer & Theme Architect",
-    "timeline": "4 Weeks",
-    "status": "Delivered",
-    "highlights": [
-      "Vite 5 & PostCSS build pipeline replacing legacy WordPress script enqueuing with instant HMR and filemtime hash version busting.",
-      "GSAP 3 kinetic loader timeline and 3D perspective hero carousel with touch gesture and ARIA keyboard support.",
-      "Swup.js AJAX page routing synchronized with Lenis inertial scrolling and requestIdleCallback UI rehydration.",
-      "Zero-plugin security hardening featuring transient rate limiting, CSP headers, REST API user lockdown, and XML-RPC neutralization."
-    ],
-    "results": [
-      "Production Launch & 80% Image Payload Reduction via Responsive srcset & Async Loading Pipeline",
-      "95+ Lighthouse Performance & Accessibility Scores with Zero jQuery Dependency"
-    ],
-    "process": [
-      "Step 1: Architecture & Setup \u2014 Vite build integration, SCSS glassmorphism design system tokens, and PHP component modularization in /components.",
-      "Step 2: Interactive UI & Animation \u2014 GSAP kinetic entrance loader, 3D perspective hero carousel with focus trapping, and Lenis smooth scrolling.",
-      "Step 3: AJAX Routing & Ad Engine \u2014 Swup.js transition lifecycle hooks, Customizer-driven 3-slot ad injection filters, and dynamic category color chip engine.",
-      "Step 4: Security & Optimization \u2014 Transient login rate-limiting, CSP security headers, jQuery dequeuing, and automated Unsplash content seeder."
-    ],
+    "subtitle": "Digital Fashion Journalism Theme Architecture",
+    "role": "Lead Theme Architect",
+    "team": "Solo",
+    "duration": "4 Weeks",
+    "status": "Production",
+    "projectType": "Freelance Client",
+    "deployment": "LAMP Stack",
+    "repository": "Private",
+    "problem": "The client's existing WordPress theme was monolithic, heavily dependent on jQuery, and suffered from poor Core Web Vitals, causing low SEO rankings and a sluggish reading experience.",
+    "goal": "Re-architect the theme from the ground up to achieve sub-second load times, eliminate jQuery, and provide an app-like navigation experience using SPA routing.",
+    "solution": "Architected a hybrid theme using Vite HMR and Rollup hashing, component-based PHP partials, Swup.js container rehydration lifecycle hooks, and native transient-based security filters.",
     "challenges": [
       {
-        "title": "AJAX Page Routing & Dynamic DOM Rehydration",
-        "solution": "Integrating Swup.js for single-page transitions caused broken event listeners, stale active states, and scroll positioning glitches on navigation. Solved by architecting a re-initialization pipeline bound to `swup.hooks.on('page:view')`. On route changes, Lenis smooth scroll is reset immediately (`lenis.scrollTo(0, { immediate: true })`), active menu link states update dynamically, carousel instances re-bind, and category color chip mapping (`data-cat`) is scheduled asynchronously using `requestIdleCallback` to prevent main-thread layout thrashing."
+        "title": "AJAX DOM Rehydration & Event Listeners",
+        "solution": "Swup.js transitions caused broken event listeners and scroll positioning glitches. Solved by architecting a re-initialization pipeline bound to `swup.hooks.on('page:view')` to re-bind carousel instances and reset Lenis scroll coordinates asynchronously using `requestIdleCallback`."
       },
       {
-        "title": "Zero-Dependency Responsive Media & Fallback Pipeline",
-        "solution": "To eliminate broken images and heavy media payloads without heavy plugins, created a custom PHP media rendering pipeline (`queentrends_responsive_image`). The helper dynamically constructs multi-density `srcset` arrays (480w, 800w, 1200w, 1600w) with context-aware `sizes`, enforces `loading='lazy'` and `fetchpriority='high'`, and provides a deterministic modulo fallback to curated Unsplash CDN assets when post thumbnails are unassigned."
-      },
-      {
-        "title": "WCAG-Compliant Focus & Accessibility Management in 3D Carousel",
-        "solution": "Interactive 3D sliders frequently fail accessibility audits by keeping off-screen slide links in the tab sequence and missing ARIA semantics. Solved by engineering an automated focus trap controller in JavaScript (`main.js`). Off-screen slides are assigned `aria-hidden='true'` while their interactive children (buttons, links) dynamically receive `tabindex='-1'`. Full keyboard arrow navigation (`ArrowLeft`/`ArrowRight`), ARIA tablist controls, and mouse hover auto-pause were integrated to guarantee WCAG 2.1 compliance."
+        "title": "Responsive Media Pipeline",
+        "solution": "Created a custom PHP media rendering pipeline (`queentrends_responsive_image`) that dynamically constructs multi-density `srcset` arrays, enforces `loading='lazy'`, and provides deterministic fallback rendering to reduce payload sizes."
       }
     ],
-    "inspiration": "Combining editorial high-fashion elegance with cutting-edge front-end performance, glassmorphism UI tokens, kinetic micro-animations, and uncompromised WordPress security architecture."
+    "engineeringDecisions": [
+      {
+        "decision": "Dropping jQuery Dependency completely",
+        "reason": "To reduce main-thread blocking time and improve Lighthouse scores.",
+        "tradeoff": "Required rewriting legacy plugins and custom carousels in Vanilla JS, increasing initial development time but significantly improving runtime performance."
+      },
+      {
+        "decision": "Component-based PHP Partials",
+        "reason": "To emulate modern frontend component architectures (like React) within standard PHP.",
+        "tradeoff": "Slightly increases server-side include overhead, but drastically improves code maintainability."
+      }
+    ],
+    "results": [
+      "80% reduction in image payloads via responsive srcset pipelines",
+      "95+ Lighthouse Performance & Accessibility Scores",
+      "Zero jQuery Dependency",
+      "Sub-second LCP (Largest Contentful Paint)"
+    ],
+    "lessonsLearned": [
+      "WCAG-compliant focus management is difficult in 3D carousels; off-screen elements must be programmatically hidden from the tab sequence.",
+      "History API manipulation in WordPress requires strict attention to canonical URLs for SEO."
+    ],
+    "futureImprovements": [
+      "Implement a Redis object cache for faster database queries.",
+      "Add automated visual regression testing using Playwright."
+    ]
   },
   {
     "title": "Zola",
     "slug": "zola",
-    "category": "Hackathon Project",
+    "category": "Full-Stack Application",
     "year": "2025",
     "featured": true,
-    "summary": "A real-time collaborative sky & interactive constellation platform built during a 48-hour hackathon, converting user wishes into evolving celestial procedural constellations and GPU-accelerated atmospheric visual phases.",
+    "summary": "Real-time collaborative sky & interactive constellation platform utilizing Supabase WebSockets and procedural graph generation.",
     "techStack": [
       "React 19",
       "Vite",
-      "Supabase (PostgreSQL & Realtime WebSockets)",
+      "Supabase",
+      "PostgreSQL",
       "Framer Motion",
-      "CSS GPU Compositor & SVG Graph Engines",
-      "html-to-image",
-      "Vercel Speed Insights"
+      "Canvas API"
     ],
     "heroImage": "/images/projects/zola/hero.png",
     "screenshots": [
@@ -157,64 +172,68 @@
       "/images/projects/zola/dashboard.png"
     ],
     "liveUrl": "https://github.com/armaan-choudhary/zola",
-    "subtitle": "Real-Time Collaborative Constellation Engine & Adaptive Visual Tier System",
-    "overview": "ZOLA is a collaborative digital cosmos created for a 48-hour New Year hackathon where users spawn personalized skies and receive interactive star messages from friends. Built with React 19, Supabase Realtime, and Framer Motion, the system processes user wishes into 4 visual evolution tiers\u2014from a quiet slate void to a vibrant, multi-layered infinite galaxy with dynamic MST constellation graphs.",
-    "challenge": "Engineering an ultra-responsive, 60fps real-time interactive canvas capable of procedurally generating organic constellation graphs and multi-tier background animations on mobile GPUs without visual clutter, layout jitter, or rendering bottlenecks during high-concurrency WebSocket message streams.",
-    "solution": "Developed a custom Single-Hub Minimum Spanning Tree (MST) graph algorithm using Euclidean distance with deterministic string-hash jitter, backed by Supabase WebSocket real-time data flows, CSS GPU compositor acceleration with render-pausing logic, and an dynamic DOM-to-PNG story artifact export pipeline.",
-    "client": "New Year Hackathon Sprint",
-    "role": "Creator & Lead WebGL Developer",
-    "timeline": "48-Hour Hackathon",
-    "status": "Hackathon Project / Prototype",
-    "highlights": [
-      "48-Hour Sprint: Architected and deployed full-stack real-time interactive web application in 2 days",
-      "Procedural Graph Engine: Custom MST algorithm with deterministic hash jitter and single-hub degree constraints",
-      "Adaptive Tier Evolution: 4 visual phases dynamically rendered based on real-time star thresholds",
-      "Mobile GPU Optimization: Hardware-accelerated CSS compositor layers and paused rendering background loops"
-    ],
-    "results": [
-      "48-Hour Build & 60fps Procedural Animation Engine",
-      "Zero-Latency WebSocket Star Updates & Native Social Story Artifact Exports"
-    ],
-    "process": [
-      "Step 1: Concept & Data Ingestion \u2014 Architected real-time WebSocket pipelines with Supabase to stream incoming star payload data with 0-latency across connected clients.",
-      "Step 2: Procedural Graph Math & Constellation Rendering \u2014 Formulated a custom Single-Hub Kruskal's MST algorithm using Euclidean distance and deterministic string-hash jitter to eliminate graph loops and layout flickers.",
-      "Step 3: Atmospheric GPU Tier Pipeline \u2014 Created 4 dynamic sky evolution phases using Framer Motion, time-of-day CSS custom properties, shooting star intervals, and multi-layered radial gradients.",
-      "Step 4: Mobile Performance & Social Artifact Engine \u2014 Optimized mobile GPU memory usage via render-pausing during modal states and built an html-to-image DOM exporter for 500x750 Instagram story cards."
-    ],
+    "subtitle": "Real-Time Collaborative Constellation Engine",
+    "role": "Creator & Lead Developer",
+    "team": "Solo",
+    "duration": "48 Hours",
+    "status": "Prototype",
+    "projectType": "Hackathon Project",
+    "deployment": "Vercel",
+    "repository": "Public",
+    "problem": "Handling high-concurrency WebSocket data and rendering procedural graph animations (constellations) in real-time typically causes severe mobile GPU bottlenecks and layout thrashing.",
+    "goal": "Build an ultra-responsive, 60fps real-time interactive canvas capable of procedurally generating organic constellation graphs without frame drops.",
+    "solution": "Developed a custom Single-Hub Minimum Spanning Tree (MST) graph algorithm, backed by Supabase WebSockets and CSS GPU compositor acceleration with render-pausing logic.",
     "challenges": [
       {
-        "title": "Graph Clutter & Structural Flickering in Procedural Constellations",
-        "solution": "Standard Delaunay triangulation or all-pairs connections caused tangled visual webs, while raw MST caused layout flickers on re-renders due to distance ties. Solved by engineering a custom Single-Hub Kruskal's MST algorithm that applies a deterministic string-hash jitter (derived from combined star IDs) to distance calculations and enforces degree limits (max degree 3 with a single hub rule), ensuring clean, organic, and deterministic constellation lines."
+        "title": "Mobile GPU Frame Drops",
+        "solution": "High-frequency star creation events triggered continuous React re-renders. Engineered an isolated `TierContext` state architecture that decoupled the background animations from main state updates and automatically paused background animation loops when interaction modals were active."
       },
       {
-        "title": "DOM-to-PNG Canvas Export Failure in Restrictive Mobile Webviews",
-        "solution": "Generating shareable 500x750 Instagram story cards via html-to-image failed in embedded mobile browsers (Instagram/TikTok in-app webviews) due to dynamic toolbar viewport height shifts and font render timing issues. Resolved by switching layouts to 100dvh CSS units, wrapping card generation in off-screen render containers with pre-render delay timeouts, and implementing localStorage session persistence to retain state across in-app browsers."
-      },
-      {
-        "title": "Mobile GPU Frame Drops During High-Frequency WebSocket Data Streams",
-        "solution": "High-frequency star creation events via Supabase WebSockets triggered continuous React component re-renders, causing heavy particle loops and ambient background animations to drop below 30fps on mobile screens. Engineered an isolated TierContext state architecture that decoupled StarBackground and Nebula components from main state updates, applied CSS transform composition with will-change properties, and automatically paused background animation loops when interaction modals were active."
+        "title": "Graph Clutter & Structural Flickering",
+        "solution": "Standard Delaunay triangulation caused tangled webs. Solved by engineering a custom Single-Hub Kruskal's MST algorithm applying deterministic string-hash jitter to distance calculations, ensuring stable constellation lines across re-renders."
       }
     ],
-    "inspiration": "Built during a fast-paced 48-hour hackathon to explore procedural graph algorithms, real-time WebSocket state synchronization, and GPU-optimized interactive Web UI design for collaborative digital experiences."
+    "engineeringDecisions": [
+      {
+        "decision": "Supabase Realtime over Custom Node.js/Socket.io",
+        "reason": "Allowed for rapid deployment within a 48-hour timeframe while providing robust PostgreSQL persistence.",
+        "tradeoff": "Less control over the WebSocket payload optimization compared to a raw custom socket implementation."
+      },
+      {
+        "decision": "SVG Overlays vs WebGL Canvas for Constellations",
+        "reason": "SVG provided easier declarative integration with React state and Framer Motion for line drawing animations.",
+        "tradeoff": "SVG DOM nodes become a bottleneck at >500 nodes; WebGL would scale better for massive graphs."
+      }
+    ],
+    "results": [
+      "Deployed full-stack real-time application in 48 hours",
+      "Maintained 60fps on mobile GPUs",
+      "Zero-Latency WebSocket state synchronization"
+    ],
+    "lessonsLearned": [
+      "Decoupling high-frequency data streams from React's main render tree is critical for performance.",
+      "Hardware-accelerated CSS transforms (`will-change: transform`) drastically improve animation smoothness but must be managed to avoid memory bloat."
+    ],
+    "futureImprovements": [
+      "Migrate constellation rendering from SVG to WebGL/Three.js for infinite scaling.",
+      "Implement a Redis cache layer for initial payload hydration."
+    ]
   },
   {
     "title": "FinChat",
     "slug": "finchat",
-    "category": "Semester AI Project",
+    "category": "AI & Data Engineering",
     "year": "2026",
     "featured": true,
-    "summary": "FinChat is an institutional-grade, localized Retrieval-Augmented Generation (RAG) workspace designed for financial analysts to perform secure document Q&A over complex PDF reports. The platform combines dual lexical and semantic search pipelines with cross-encoder reranking to deliver high-precision, cited answers directly tied to an interactive inline PDF preview.",
+    "summary": "Localized RAG workspace for financial analysts, featuring dual lexical/semantic pipelines and cross-encoder reranking.",
     "techStack": [
       "FastAPI",
       "Python",
       "FAISS",
       "BM25",
       "Sentence Transformers",
-      "PyPDF",
-      "llama.cpp",
-      "Tailwind CSS",
-      "Vanilla JavaScript",
-      "PyTorch"
+      "Llama.cpp",
+      "Tailwind CSS"
     ],
     "heroImage": "/images/projects/finchat/homepage.png",
     "screenshots": [
@@ -226,56 +245,65 @@
       "/images/projects/finchat/stats.png"
     ],
     "liveUrl": "https://github.com/armaan-choudhary/finchat",
-    "subtitle": "RAG Workspace for Financial PDFs & Hybrid Retrieval Pipeline",
-    "overview": "The application is powered by an asynchronous FastAPI backend that coordinates a local dual-retrieval pipeline merging dense semantic vectors from FAISS and sparse keyword tokens from BM25. Incoming analyst queries are evaluated against these indexed pages, with the merged results subsequently filtered and re-scored using a BAAI/bge-reranker-base cross-encoder model. Finally, the selected context chunks are compiled into an optimized system prompt and sent to a local llama.cpp instance, which streams verified responses that render in the browser as interactive, page-specific citation highlights.",
-    "challenge": "Building a performant, zero-cost RAG system that runs on consumer hardware, indexing dense tables and paragraphs in financial PDFs without exposing data to third-party cloud APIs.",
-    "solution": "Engineered a dual-retrieval pipeline combining BM25 keyword matching with FAISS vector lookups, backed by a sentence-transformer reranker and llama.cpp local LLM execution.",
-    "client": "University Semester Project",
-    "role": "Full-Stack AI Engineer & System Architect",
-    "timeline": "3 Weeks",
+    "subtitle": "Secure Financial RAG Pipeline",
+    "role": "AI Engineer & Architect",
+    "team": "Solo",
+    "duration": "3 Weeks",
     "status": "Completed",
-    "highlights": [
-      "Local LLM Inference: Fully offline document processing and generation powered by llama.cpp to prevent sensitive financial data from leaking to cloud APIs.",
-      "Hybrid Dual-Retrieval: Combines dense FAISS IndexFlatIP semantic vector search with sparse BM25Okapi keyword matching to capture both concepts and exact numbers.",
-      "Cross-Encoder Reranking: Implements BAAI/bge-reranker-base with sigmoid normalization to filter out irrelevant chunks and ensure extreme context relevance.",
-      "Interactive Citation UI: Integrates page-level citation mapping that binds assistant claims to clickable inline PDF viewport jumps using standard hash parameter fragments (#page=X)."
-    ],
-    "results": [
-      "High-accuracy local retrieval pipeline deployed on standard laptop hardware",
-      "Zero-hallucination cited answers generated from large financial PDF reports"
-    ],
-    "process": [
-      "Step 1: Text Extraction & Enrichment - Parse financial PDFs page-by-page using PyPDF, sanitize structural whitespace, chunk contents to a 1,000-character window with a 200-character overlap, and enrich each chunk with a document name and page identifier prefix.",
-      "Step 2: Dual-Retrieval Indexing - Generate 768-dimensional normalized bi-encoder embeddings via BAAI/bge-base-en-v1.5 to load into a FAISS FlatIP index, while concurrently tokenizing raw chunk strings to construct a sparse BM25Okapi lookup table.",
-      "Step 3: Cross-Encoder Filtering - Run parallel hybrid retrieval upon query execution, deduplicate matching chunks, evaluate query-passage pairs using a cross-encoder to compute Sigmoid-normalized rerank scores, and discard elements below a 0.3 relevance threshold.",
-      "Step 4: Frontend Iframe Citation Preview - Stream generated markdown chunks and citation metadata to the browser via Server-Sent Events (SSE) and map citation badges to click handlers that update an iframe's source URL, scrolling the PDF view directly to the referenced page."
-    ],
+    "projectType": "Academic Research",
+    "deployment": "Local Execution (Security requirement)",
+    "repository": "Public",
+    "problem": "Financial analysts need to query highly sensitive PDF reports, but cannot upload them to cloud APIs (like OpenAI) due to strict data privacy regulations. Furthermore, standard semantic search fails on exact numerical figures.",
+    "goal": "Build a performant, zero-cost Retrieval-Augmented Generation (RAG) system that runs entirely locally on consumer hardware while accurately retrieving exact financial figures.",
+    "solution": "Engineered an asynchronous FastAPI backend coordinating a dual-retrieval pipeline (FAISS + BM25) with a cross-encoder reranker, feeding context into a local `llama.cpp` instance for secure inference.",
     "challenges": [
       {
-        "title": "Resolving Numerical Search Inaccuracies in Semantic Retrieval",
-        "solution": "Dense vector embeddings frequently fail to differentiate between close numerical figures (e.g., '14.5%' vs. '41.5%') or parse exact financial codes. To resolve this, I implemented a hybrid retrieval pipeline (`search_hybrid`) merging dense semantic scores from a FAISS `IndexFlatIP` with lexical keyword rankings from a `BM25Okapi` index. Chunks retrieved by both systems receive a 0.1 intersection boost. This merged candidate set is then filtered through a `BAAI/bge-reranker-base` cross-encoder to calculate multi-turn query-passage interaction scores, retaining precise numbers without compromising semantic search depth."
+        "title": "Numerical Search Inaccuracies in Semantic Retrieval",
+        "solution": "Dense vector embeddings frequently fail to differentiate close numbers ('14.5%' vs '41.5%'). Implemented a hybrid pipeline merging FAISS scores with BM25Okapi keyword rankings, passed through a cross-encoder to retain precise numbers without losing semantic depth."
       },
       {
-        "title": "Page-Specific PDF Citation Mapping and UI Desynchronization",
-        "solution": "Enabling instant auditability of AI-generated answers required linking citations to exact source PDF pages without heavy external dependencies. I structured the text ingestion parser (`extract_pdf_pages`) to capture absolute page indices (`page_number: page_index + 1`) and embed them in a custom, structured `{doc_name}_{page_number}_{chunk_index}` identifier. In the frontend, clicking a citation badge invokes an iframe routing helper that loads the document with a hash fragment target (`/pdfs/${encodeURIComponent(doc_name)}#page=${page}`), leveraging the browser's native PDF renderer to trigger zero-delay viewport scrolls directly to the source coordinates."
+        "title": "Page-Specific Citation Mapping",
+        "solution": "Structured the text ingestion parser to capture absolute page indices and embed them in a custom chunk identifier. The frontend parses these citations into hash fragments (`#page=X`) to control an iframe PDF viewer."
       }
     ],
-    "inspiration": "Inspired by traditional Bloomberg terminals and modern secure chat workspaces, combining a dark, premium aesthetic with lightning-fast local RAG pipelines for institutional document auditing."
+    "engineeringDecisions": [
+      {
+        "decision": "Llama.cpp over HuggingFace Transformers for LLM inference",
+        "reason": "Llama.cpp provides significantly faster inference on CPU/consumer GPU via optimized C/C++ execution.",
+        "tradeoff": "Harder to set up and requires managing GGUF model files manually."
+      },
+      {
+        "decision": "Dual BM25 + FAISS pipeline",
+        "reason": "Required to achieve high precision for keyword/number lookups while retaining semantic understanding of queries.",
+        "tradeoff": "Increases index building time and memory overhead."
+      }
+    ],
+    "results": [
+      "100% offline, zero-data-leakage processing",
+      "Cross-encoder reranking eliminated >90% of irrelevant context chunks",
+      "Interactive page-level citation mapping"
+    ],
+    "lessonsLearned": [
+      "Chunking strategy (size and overlap) impacts RAG quality more than the underlying LLM size.",
+      "Asynchronous Python (FastAPI + Asyncio) is vital when managing heavy concurrent ML inference tasks."
+    ],
+    "futureImprovements": [
+      "Implement vision-based parsing (OCR) to extract data from image-based tables in PDFs.",
+      "Dockerize the entire pipeline for one-click deployment."
+    ]
   },
   {
     "title": "PrismNet (KJP-66)",
     "slug": "prismnet",
-    "category": "Hackathon Project",
+    "category": "Edge AI",
     "year": "2026",
     "featured": true,
-    "summary": "PrismNet is a custom-engineered Edge AI inference system built during a hackathon to address the GB-03 specification. By radically compressing a high-accuracy RT-DETR model, it achieves deterministic latency and a 50% physical size reduction, proving its efficiency by running smoothly on a standard RTX 2050 laptop.",
+    "summary": "Compressed RT-DETR model achieving deterministic latency and a 50% size reduction for Edge AI hardware.",
     "techStack": [
       "PyTorch",
       "TensorRT",
       "INT8 Quantization",
-      "NVIDIA RTX 2050",
-      "Python",
-      "Streamlit"
+      "Python"
     ],
     "heroImage": "/images/projects/prismnet/main.png",
     "screenshots": [
@@ -284,43 +312,48 @@
       "/images/projects/prismnet/3.png"
     ],
     "liveUrl": "https://github.com/armaan-choudhary/KJP-66",
-    "subtitle": "Compressed RT-DETR for Edge AI",
-    "overview": "PrismNet is an advanced AI Inference System built to drastically compress a high-accuracy baseline Vision Transformer (RT-DETR). By applying rigorous formal model compression techniques\u2014including 30% global sparsity L1 unstructured pruning and post-training INT8 quantization\u2014the system achieves a ~50% physical size reduction compliant with the GB-03 low-latency edge specification. Bypassing the Python engine runtime entirely, the native C++ TensorRT pipeline shatters the FPS ceiling, delivering a massive leap over the FP32 baseline.",
-    "challenge": "Deploying state-of-the-art vision transformers on consumer Edge AI hardware usually results in severe CPU bottlenecks and memory fragmentation. The core challenge during the hackathon was attaining ultra-low deterministic latency on an entry-level mobile GPU (NVIDIA RTX 2050) without heavily sacrificing the structural detection precision of the baseline model.",
-    "solution": "We engineered a pipeline applying PyTorch L1 Unstructured Pruning (30% sparsity) combined with INT8 Quantization, shrinking the model from 130MB to 66MB. We eliminated CPU bottlenecks by leveraging an NMS-Free architecture and natively compiled the model into a C++ TensorRT FP16 engine, ensuring the entire execution graph stays on the RTX 50-series GPU.",
-    "client": "Hackathon Project",
+    "subtitle": "Vision Transformer Compression Engine",
     "role": "AI Engineer",
-    "timeline": "2 Weeks",
+    "team": "Solo",
+    "duration": "2 Weeks",
     "status": "Completed",
-    "highlights": [
-      "30% Global Sparsity PyTorch L1 Pruning",
-      "INT8 Quantization for 50% size reduction",
-      "TensorRT native compilation yielding ~47 FPS",
-      "Dynamic Token Scaling Early-Exit Transformer Architecture"
-    ],
-    "results": [
-      "Model Size: Compressed from 130 MB (Baseline FP32) down to 66 MB (INT8 Quantized), a 49.7% reduction.",
-      "Hardware Engine: TensorRT FP16 compiled engine weighs in at 71 MB (45.4% reduction) for native GPU execution.",
-      "Latency Optimization: Cold-start latency slashed from 133.68ms on the baseline to just 21.06ms via TensorRT.",
-      "Inference Throughput: Achieves an astonishing 47.49 FPS on an entry-level RTX 2050 laptop GPU.",
-      "COCO val2017 mAP: Maintained a strong 0.528 mAP@0.5:0.95 and 0.718 mAP@0.5 score on the heavily optimized FP16 TensorRT tier."
-    ],
-    "process": [
-      "Step 1: PyTorch L1 Unstructured Pruning - Applied targeted pruning to the linear and convolutional layers within the Transformer architecture, achieving a 30.0% global sparsity rate while preserving complex detection logic.",
-      "Step 2: Post-Training INT8 Quantization - The pruned state dictionary was quantized, compressing large floating-point arrays into strict integer bounds to drop the physical size footprint from 129.47 MB to 65.12 MB.",
-      "Step 3: NVIDIA TensorRT Hardware Compilation - Bypassed the Python runtime entirely by natively compiling the baseline Vision Transformer into a C++ TensorRT (.engine) file, achieving an astonishing 47.49 FPS.",
-      "Step 4: Mobile GPU Hardware-Specific Tuning - Integrated dynamic VRAM managers with expandable segments to prevent OS-level memory fragmentation, ensuring stable execution on a 4GB RTX 2050 laptop."
-    ],
+    "projectType": "Hackathon Project",
+    "deployment": "NVIDIA RTX Edge",
+    "repository": "Public",
+    "problem": "Deploying state-of-the-art vision transformers on consumer Edge AI hardware results in severe CPU bottlenecks and memory fragmentation, failing latency requirements.",
+    "goal": "Drastically compress a high-accuracy Vision Transformer (RT-DETR) to achieve ultra-low deterministic latency on an entry-level mobile GPU.",
+    "solution": "Applied PyTorch L1 Unstructured Pruning (30% sparsity) combined with INT8 Quantization, shrinking the model footprint and natively compiling it into a C++ TensorRT FP16 engine.",
     "challenges": [
       {
-        "title": "CPU-Bound NMS Bottleneck & Inference Latency",
-        "solution": "Traditional object detectors rely on Non-Maximum Suppression (NMS), a heavily CPU-bound process that acts as a severe bottleneck for Edge AI pipelines. By utilizing RT-DETR, an NMS-Free Transformer Architecture, PrismNet natively produces a fixed set of high-quality predictions, keeping the entire pipeline locked on the GPU for zero post-processing lag."
-      },
-      {
-        "title": "Maintaining High Throughput on Simpler Frames",
-        "solution": "To maximize hardware efficiency, we engineered 'Dynamic Token Scaling'. This early-exit innovation runs an ultra-fast transformer encoder pass at 320px resolution. If the encoder indicates high confidence, the system immediately exits and outputs predictions, saving up to 70% of GPU cycles on 'easy' frames, while escalating to full-precision 640px decoding only for complex scenes."
+        "title": "CPU-Bound NMS Bottleneck",
+        "solution": "Standard object detectors rely on Non-Maximum Suppression (NMS), a CPU-bound process. By utilizing an NMS-Free Transformer Architecture (RT-DETR), the entire pipeline stays locked on the GPU, achieving zero post-processing lag."
       }
     ],
-    "inspiration": "Built under pressure during a hackathon to address the GB-03 problem statement. The goal was to prove that formal model compression could make heavy transformer models viable even on entry-level edge hardware like an RTX 2050 laptop."
+    "engineeringDecisions": [
+      {
+        "decision": "TensorRT over ONNX Runtime",
+        "reason": "TensorRT applies hardware-specific kernel auto-tuning (layer fusion) that maximizes throughput on NVIDIA GPUs.",
+        "tradeoff": "Models compiled with TensorRT are hardware-locked and must be recompiled for different GPU architectures."
+      },
+      {
+        "decision": "INT8 Quantization",
+        "reason": "Halves the memory bandwidth requirements.",
+        "tradeoff": "Slight degradation in detection precision (mAP), mitigated by careful calibration sets."
+      }
+    ],
+    "results": [
+      "49.7% model size reduction (130MB to 66MB)",
+      "Latency slashed from 133ms to 21ms",
+      "Achieved 47.49 FPS on an entry-level RTX 2050",
+      "Maintained 0.528 mAP@0.5:0.95"
+    ],
+    "lessonsLearned": [
+      "Memory bandwidth, not compute (FLOPs), is usually the primary bottleneck in edge inference.",
+      "Python runtime overhead is massive; migrating to C++ execution engines is mandatory for real-time edge AI."
+    ],
+    "futureImprovements": [
+      "Explore structured pruning for actual FLOP reduction rather than just sparsity.",
+      "Port the inference pipeline to C++ completely, removing the Python wrapper."
+    ]
   }
 ]

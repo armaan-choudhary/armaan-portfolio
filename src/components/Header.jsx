@@ -3,11 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Header.module.css'
 
 const navItems = [
-  { to: '/#work', label: 'Projects' },
-  { to: '/#services', label: 'Services' },
-  { to: '/#about', label: 'About' },
-  { to: '/#skills', label: 'Skills' },
-  { to: '/#contact', label: 'Contact' },
+  { to: '/#work', label: 'PROJECTS' },
+  { to: '/resume.pdf', label: 'RESUME', external: true },
+  { to: 'https://github.com/armaan-choudhary', label: 'GITHUB', external: true },
+  { to: '/#contact', label: 'CONTACT' },
 ]
 
 export default function Header() {
@@ -26,6 +25,7 @@ export default function Header() {
               key={item.to}
               href={item.to}
               className={styles.navLink}
+              {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
             >
               {item.label}
             </a>
@@ -59,6 +59,7 @@ export default function Header() {
                 href={item.to}
                 className={styles.mobileLink}
                 onClick={() => setOpen(false)}
+                {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
               >
                 {item.label}
               </a>

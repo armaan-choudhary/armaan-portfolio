@@ -36,7 +36,7 @@ export default function Footer() {
             <a href="https://github.com/armaan-choudhary" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>GH</a>
             <a href="https://linkedin.com/in/armaan-choudhary-816392315/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>IN</a>
           </div>
-          <span className={styles.copy}>© {new Date().getFullYear()} — Subject to spontaneous redesigns based on my mood swings.</span>
+          <span className={styles.copy}>© {new Date().getFullYear()} — Architected with React and rigorous optimization.</span>
         </div>
       </div>
     </footer>
