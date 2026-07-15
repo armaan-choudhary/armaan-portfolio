@@ -104,7 +104,7 @@ export default function Home() {
 
             <div style={{ display: 'flex', gap: '20px', marginTop: '40px', alignItems: 'center' }}>
               <a href="#work" className={styles.primaryCta}>VIEW PROJECTS</a>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer" className={styles.secondaryCta}>DOWNLOAD RESUME</a>
+              <a href="/Resume.pdf" target="_blank" rel="noreferrer" className={styles.secondaryCta}>DOWNLOAD RESUME</a>
             </div>
             <div style={{ marginTop: '20px', display: 'flex', gap: '15px' }}>
               <a href="https://github.com/armaan-choudhary" target="_blank" rel="noreferrer" className={styles.tertiaryLink}>GITHUB</a>
@@ -314,7 +314,7 @@ export default function Home() {
 
               <h4 className={styles.notebookHeading} style={{ fontSize: '0.9rem', color: '#666', marginBottom: '15px', letterSpacing: '1px' }}>ATTACHMENTS</h4>
               <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap' }}>
-                <a href="/resume.pdf" target="_blank" rel="noreferrer" className={styles.utilityLink}>📎 Resume.pdf</a>
+                <a href="/Resume.pdf" target="_blank" rel="noreferrer" className={styles.utilityLink}>📎 Resume.pdf</a>
                 <a href="https://github.com/armaan-choudhary" target="_blank" rel="noreferrer" className={styles.utilityLink}>📎 GitHub</a>
                 <a href="#contact" className={styles.utilityLink}>📎 Contact</a>
               </div>

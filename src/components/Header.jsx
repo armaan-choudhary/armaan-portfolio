@@ -4,7 +4,7 @@ import styles from './Header.module.css'
 
 const navItems = [
   { to: '/#work', label: 'PROJECTS' },
-  { to: '/resume.pdf', label: 'RESUME', external: true },
+  { to: '/Resume.pdf', label: 'RESUME', external: true },
   { to: 'https://github.com/armaan-choudhary', label: 'GITHUB', external: true },
   { to: '/#contact', label: 'CONTACT' },
 ]
