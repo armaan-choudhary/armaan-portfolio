@@ -115,7 +115,7 @@ export default function Home() {
         {/* ─── OBJECT 2: PROJECT BOARD (What do they build? VISUAL CLIMAX) ─── */}
         <section className={styles.projectBoardSection} id="work">
           <div className={styles.boardIntro}>
-            <h2 className={`${styles.displayTitle} ${styles.displayTitleLight}`} style={{ fontSize: 'clamp(4rem, 8vw, 8rem)' }}>PROJECT BOARD</h2>
+            <h2 className={`${styles.displayTitle} ${styles.displayTitleLight}`} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>PROJECT BOARD</h2>
           </div>
           
           <div className={styles.boardGrid}>
@@ -131,7 +131,7 @@ export default function Home() {
               >
                 <img src={projectsData[0].heroImage} alt={projectsData[0].title} style={{ width: '100%', aspectRatio: '21/9', objectFit: 'cover', border: '1px solid #ddd', marginBottom: '40px' }} />
                 
-                <h3 className={styles.displayTitle} style={{ fontSize: '5rem', marginBottom: '15px' }}>{projectsData[0].title}</h3>
+                <h3 className={styles.displayTitle} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', marginBottom: '15px', wordWrap: 'break-word' }}>{projectsData[0].title}</h3>
                 <span className={styles.handwrittenAccent} style={{ fontSize: '1.8rem' }}>{projectsData[0].projectType}</span>
                 
                 <p className={styles.bodyText} style={{ marginTop: '30px', fontSize: '1.4rem', maxWidth: '900px' }}>{projectsData[0].summary}</p>
@@ -180,7 +180,7 @@ export default function Home() {
         {/* ─── NON-OBJECT: CAPABILITIES SPREAD (How do they think?) ─── */}
         <section className={styles.capabilitiesSpread} id="services">
           <div className={styles.capIntro}>
-            <h2 className={`${styles.displayTitle} ${styles.displayTitleLight}`} style={{ fontSize: '5rem', marginBottom: '40px' }}>CAPABILITIES</h2>
+            <h2 className={`${styles.displayTitle} ${styles.displayTitleLight}`} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', marginBottom: '40px' }}>CAPABILITIES</h2>
             <p className={styles.bodyTextLight}>
               I do not just write code; I architect systems. The goal is always to balance rapid feature delivery with long-term structural integrity. 
               Here is how I approach the core pillars of software engineering.
@@ -234,7 +234,7 @@ export default function Home() {
                 <span>ISSUE NO. 1</span>
                 <span>TECHNICAL INVENTORY</span>
               </div>
-              <h2 className={styles.displayTitle} style={{ fontSize: 'clamp(5rem, 10vw, 8rem)', margin: '40px 0' }}>THE STACK</h2>
+              <h2 className={styles.displayTitle} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', margin: '40px 0' }}>THE STACK</h2>
               <div className={styles.headerBottomMeta}>
                 <span>JULY 2026</span>
                 <span>VERIFIED TOOLS</span>
@@ -289,7 +289,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className={styles.displayTitle} style={{ fontSize: '4rem', marginTop: 0, marginBottom: '40px' }}>BACKGROUND</h3>
+              <h3 className={styles.displayTitle} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', marginTop: 0, marginBottom: '40px' }}>BACKGROUND</h3>
               
               <h4 className={styles.notebookHeading} style={{ fontSize: '0.9rem', color: '#666', marginBottom: '10px', letterSpacing: '1px' }}>BACKGROUND SUMMARY</h4>
               <p className={styles.bodyText} style={{ marginBottom: '35px', fontSize: '1.25rem', lineHeight: '1.6' }}>
@@ -332,7 +332,7 @@ export default function Home() {
             style={{ transform: 'rotate(-0.5deg)' }}
           >
             <div className={styles.intakeHeader}>
-              <h2 className={styles.displayTitle} style={{ fontSize: '4.5rem', marginBottom: '10px' }}>PROJECT INTAKE</h2>
+              <h2 className={styles.displayTitle} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', marginBottom: '10px' }}>PROJECT INTAKE</h2>
               <p className={styles.bodyText}>Available for full-time roles, freelance engagements and technical consulting. Typically responding within 24–48 hours.</p>
             </div>
             
