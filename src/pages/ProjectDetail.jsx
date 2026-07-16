@@ -303,7 +303,7 @@ export default function ProjectDetail() {
                 style={{ transform: 'rotate(-1deg)' }}
               >
                 <img src={project.screenshots[0]} alt={`${project.title} featured view`} />
-                <div className={styles.photoCaption}>Primary System Interface</div>
+                <div className={styles.photoCaption}>#1</div>
               </motion.div>
             </div>
 
@@ -311,12 +311,6 @@ export default function ProjectDetail() {
               <div className={styles.galleryGrid}>
                 {project.screenshots.slice(1).map((src, idx) => {
                   const index = idx + 1;
-                  const captions = [
-                    "Component Architecture",
-                    "Data Visualization",
-                    "User Dashboard",
-                    "State Management"
-                  ];
                   return (
                     <motion.div
                       key={index}
@@ -330,7 +324,7 @@ export default function ProjectDetail() {
                     >
                       <img src={src} alt={`${project.title} screenshot ${index + 1}`} />
                       <div className={styles.photoCaption}>
-                        {captions[idx % captions.length]}
+                        #{index + 1}
                       </div>
                     </motion.div>
                   );
