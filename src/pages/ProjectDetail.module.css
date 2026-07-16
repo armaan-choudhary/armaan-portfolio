@@ -358,6 +358,12 @@
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 40px;
 }
+@media (max-width: 768px) {
+  .decisionsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 
 .decisionNote {
   background: var(--yellow);
@@ -505,7 +511,7 @@
 
 .galleryGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
 }
 
