@@ -65,7 +65,7 @@
 
 .signature {
   font-family: var(--font-handwritten);
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 10vw, 4rem);
   color: var(--white);
   line-height: 1;
   margin-top: 10px;

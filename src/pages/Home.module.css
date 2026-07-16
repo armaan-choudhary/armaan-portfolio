@@ -14,7 +14,7 @@
 /* ─── GLOBAL TYPOGRAPHY ─── */
 .displayTitle {
   font-family: var(--font-hero);
-  font-size: clamp(5rem, 12vw, 10rem);
+  font-size: clamp(3rem, 12vw, 10rem);
   line-height: 0.85;
   text-transform: uppercase;
   color: var(--black);
@@ -26,7 +26,7 @@
 
 .sectionHeading {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 6vw, 2.5rem);
   color: var(--black);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -107,6 +107,22 @@
   font-family: 'Courier New', Courier, monospace;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .coverSheetSection {
+    padding: 100px 15px 0px;
+  }
+  .coverSheet {
+    padding: 30px 20px;
+    border-left: 10px solid var(--black);
+  }
+  .coverHeader {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
 }
 
 /* ─── OBJECT 2: THE PROJECT BOARD (What do they build?) ─── */
@@ -201,7 +217,19 @@
     margin-left: 0;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .projectBoardSection {
+    padding: 40px 15px 60px;
+  }
+  .boardGrid {
+    gap: 20px;
+  }
+  .featuredPolaroid {
+    padding: 15px 15px 50px 15px;
+  }
+  .smallPolaroid {
+    padding: 15px 15px 40px 15px;
+  }
   .projectCard2, .projectCard3, .projectCard4, .projectCard5 {
     grid-column: 1 / -1;
   }
@@ -219,6 +247,9 @@
 }
 @media (max-width: 1000px) {
   .capabilitiesSpread { grid-template-columns: 1fr; gap: 60px; }
+}
+@media (max-width: 768px) {
+  .capabilitiesSpread { padding: 60px 15px; gap: 40px; }
 }
 
 .capIntro p {
@@ -262,7 +293,8 @@
   flex-direction: column;
 }
 @media (max-width: 768px) {
-  .broadsheetPaper { padding: 60px 30px; }
+  .skillsSection { padding: 60px 15px; }
+  .broadsheetPaper { padding: 40px 20px; }
 }
 
 .broadsheetHeader {
@@ -281,6 +313,14 @@
   padding: 12px 0;
   text-transform: uppercase;
   font-weight: bold;
+}
+@media (max-width: 768px) {
+  .headerTopMeta {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .broadsheetGrid {
@@ -321,6 +361,10 @@
 @media (max-width: 900px) {
   .dossierFolder { grid-template-columns: 1fr; padding: 24px 40px 60px; gap: 60px; }
 }
+@media (max-width: 768px) {
+  .aboutSection { padding: 60px 15px; }
+  .dossierFolder { padding: 40px 20px; gap: 40px; }
+}
 
 .folderTab {
   position: absolute;
@@ -332,6 +376,14 @@
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: 1.2rem;
+}
+@media (max-width: 768px) {
+  .folderTab {
+    top: -38px;
+    left: 15px;
+    padding: 10px 30px;
+    font-size: 1rem;
+  }
 }
 
 .dossierPhoto {
@@ -364,7 +416,8 @@
   position: relative;
 }
 @media (max-width: 768px) {
-  .intakeSheet { padding: 50px 30px; }
+  .contactSection { padding: 60px 15px 100px; }
+  .intakeSheet { padding: 40px 20px; border-top: 8px solid var(--black); }
 }
 
 .intakeHeader {
