@@ -11,12 +11,19 @@ import emailjs from '@emailjs/browser';
  * @returns {Promise<import('@emailjs/browser').EmailJSResponseStatus>}
  */
 export async function sendEnquiryEmail({ name, email, message }) {
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_vi3b9ql';
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_brpnqis';
-  const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID || 'template_i234nwn';
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '5LZnJwBlnH4bUgy8L';
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  if (!serviceId || !templateId || !publicKey) {
+  if (
+    !serviceId ||
+    !templateId ||
+    !publicKey ||
+    serviceId === 'your_service_id' ||
+    templateId === 'your_template_id' ||
+    publicKey === 'your_public_key'
+  ) {
     throw new Error(
       'Email service configuration missing. Please configure VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your .env file.'
     );
@@ -34,7 +41,11 @@ export async function sendEnquiryEmail({ name, email, message }) {
   const primaryPromise = emailjs.send(serviceId, templateId, templateParams, publicKey);
 
   // Optional auto-reply to the inquirer if configured
-  if (autoReplyTemplateId && autoReplyTemplateId.trim() !== '') {
+  if (
+    autoReplyTemplateId &&
+    autoReplyTemplateId !== 'your_autoreply_template_id' &&
+    autoReplyTemplateId.trim() !== ''
+  ) {
     emailjs
       .send(serviceId, autoReplyTemplateId, templateParams, publicKey)
       .catch((err) => {
