@@ -2,6 +2,7 @@ import emailjs from '@emailjs/browser';
 
 /**
  * Sends an intake / contact enquiry email using EmailJS.
+ * Optionally sends an auto-reply receipt if VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID is configured.
  * 
  * @param {Object} params
  * @param {string} params.name - Sender's name or organization
@@ -12,6 +13,7 @@ import emailjs from '@emailjs/browser';
 export async function sendEnquiryEmail({ name, email, message }) {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   if (
@@ -35,5 +37,21 @@ export async function sendEnquiryEmail({ name, email, message }) {
     to_name: 'Armaan Choudhary',
   };
 
-  return emailjs.send(serviceId, templateId, templateParams, publicKey);
+  // Primary notification to Armaan
+  const primaryPromise = emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+  // Optional auto-reply to the inquirer if configured
+  if (
+    autoReplyTemplateId &&
+    autoReplyTemplateId !== 'your_autoreply_template_id' &&
+    autoReplyTemplateId.trim() !== ''
+  ) {
+    emailjs
+      .send(serviceId, autoReplyTemplateId, templateParams, publicKey)
+      .catch((err) => {
+        console.warn('Auto-reply email dispatch failed (primary email still sent):', err);
+      });
+  }
+
+  return primaryPromise;
 }
