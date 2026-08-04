@@ -480,6 +480,26 @@
   background: var(--blue-ink);
 }
 
+.errorText {
+  color: var(--red-marker, #cc0000);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.errorBanner {
+  background: #fff5f5;
+  border-left: 4px solid var(--red-marker, #cc0000);
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+
 /* ─── UTILITIES ─── */
 .tapeSingle {
   position: absolute;

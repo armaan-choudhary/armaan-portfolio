@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import projectsData from '../data/projects.json';
 import styles from './Home.module.css';
+import { sendEnquiryEmail } from '../services/emailService';
+
 
 import { FaReact, FaWordpress, FaPhp, FaDatabase, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { SiJavascript, SiTypescript, SiFramer, SiVite } from 'react-icons/si';
@@ -33,7 +35,8 @@ export default function Home() {
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '', _honeypot: '' });
   const [formErrors, setFormErrors] = useState({});
-  const [formSubmitStatus, setFormSubmitStatus] = useState(null);
+  const [formSubmitStatus, setFormSubmitStatus] = useState(null); // 'submitting' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,7 +51,7 @@ export default function Home() {
     if (!formData.email.trim()) {
       newErrors.email = 'Required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email';
+      newErrors.email = 'Invalid email address';
     }
     if (!formData.message.trim()) newErrors.message = 'Required';
     return newErrors;
@@ -65,12 +68,15 @@ export default function Home() {
     }
 
     setFormSubmitStatus('submitting');
+    setErrorMessage('');
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await sendEnquiryEmail(formData);
       setFormSubmitStatus('success');
       setFormData({ name: '', email: '', message: '', _honeypot: '' });
     } catch (err) {
+      console.error('Failed to send enquiry email:', err);
       setFormSubmitStatus('error');
+      setErrorMessage(err.message || 'Failed to send message. Please try again later.');
     }
   };
 
@@ -340,14 +346,22 @@ export default function Home() {
               <div style={{ padding: '40px 0' }}>
                 <h3 className={styles.handwrittenAccent} style={{ color: 'var(--red-marker)', fontSize: '2.5rem', marginBottom: '20px' }}>TRANSMISSION RECEIVED</h3>
                 <p className={styles.bodyText}>Your message has been filed. I will review it shortly.</p>
-                <button className={styles.btnSubmit} onClick={() => setFormSubmitStatus(null)}>NEW INQUIRY</button>
+                <button className={styles.btnSubmit} onClick={() => { setFormSubmitStatus(null); setErrorMessage(''); }}>NEW INQUIRY</button>
               </div>
             ) : (
               <form className={styles.contactForm} onSubmit={handleFormSubmit}>
                 <input type="text" name="_honeypot" style={{ display: 'none' }} />
                 
+                {formSubmitStatus === 'error' && errorMessage && (
+                  <div className={styles.errorBanner}>
+                    ⚠️ <strong>Transmission Error:</strong> {errorMessage}
+                  </div>
+                )}
+
                 <div className={styles.intakeField}>
-                  <label className={styles.intakeLabel}>Name / Organization</label>
+                  <label className={styles.intakeLabel}>
+                    Name / Organization {formErrors.name && <span className={styles.errorText}> — {formErrors.name}</span>}
+                  </label>
                   <input 
                     type="text" name="name" 
                     className={styles.intakeInput} 
@@ -356,7 +370,9 @@ export default function Home() {
                 </div>
                 
                 <div className={styles.intakeField}>
-                  <label className={styles.intakeLabel}>Return Email Address</label>
+                  <label className={styles.intakeLabel}>
+                    Return Email Address {formErrors.email && <span className={styles.errorText}> — {formErrors.email}</span>}
+                  </label>
                   <input 
                     type="email" name="email" 
                     className={styles.intakeInput} 
@@ -365,7 +381,9 @@ export default function Home() {
                 </div>
                 
                 <div className={styles.intakeField}>
-                  <label className={styles.intakeLabel}>Project Details / Message</label>
+                  <label className={styles.intakeLabel}>
+                    Project Details / Message {formErrors.message && <span className={styles.errorText}> — {formErrors.message}</span>}
+                  </label>
                   <input 
                     type="text" name="message" 
                     className={styles.intakeInput} 
@@ -373,7 +391,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <button type="submit" className={styles.btnSubmit}>
+                <button type="submit" className={styles.btnSubmit} disabled={formSubmitStatus === 'submitting'}>
                   {formSubmitStatus === 'submitting' ? 'SENDING MESSAGE...' : 'SEND MESSAGE'}
                 </button>
               </form>
