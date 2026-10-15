@@ -13,12 +13,13 @@
   { "name": "REST API", "category": "Backend" },
 
   { "name": "MySQL", "category": "Databases" },
-  { "name": "PostgreSQL", "category": "Databases" },
+  { "name": "PostgreSQL & pgvector", "category": "Databases" },
   { "name": "FAISS", "category": "Databases" },
 
   { "name": "Supabase", "category": "Cloud" },
   { "name": "Vercel", "category": "Cloud" },
 
+  { "name": "LangGraph (Multi-Agent)", "category": "AI" },
   { "name": "PyTorch", "category": "AI" },
   { "name": "Sentence Transformers", "category": "AI" },
   { "name": "Google Gemini 2.5", "category": "AI" },

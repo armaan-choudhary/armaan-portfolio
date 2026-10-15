@@ -8,7 +8,7 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
 
-  const projectIndex = projectsData.findIndex((p) => p.slug === slug)
+  const projectIndex = projectsData.findIndex((p) => p.slug === slug || (p.aliases && p.aliases.includes(slug)))
   const project = projectsData[projectIndex]
 
   useEffect(() => {

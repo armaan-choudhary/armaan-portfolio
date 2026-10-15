@@ -151,72 +151,94 @@
     ]
   },
   {
-    "title": "Zola",
-    "slug": "zola",
-    "category": "Full-Stack Application",
-    "year": "2025",
+    "title": "CampusOne",
+    "slug": "campusone",
+    "aliases": ["msinnovatehack", "msinnovatehacks", "zola"],
+    "category": "AI & Full-Stack Development",
+    "year": "2026",
     "featured": true,
-    "summary": "Real-time collaborative sky & interactive constellation platform utilizing Supabase WebSockets and procedural graph generation.",
+    "summary": "Enterprise multi-agent university front door orchestrating intent routing, isolated PGVector domain stores, and automated ticket escalation across 54 automated tests.",
     "techStack": [
+      "Next.js 16",
       "React 19",
-      "Vite",
-      "Supabase",
+      "FastAPI",
+      "Python",
+      "LangGraph",
       "PostgreSQL",
-      "Framer Motion",
-      "Canvas API"
+      "pgvector",
+      "Groq API",
+      "Docker",
+      "Tailwind CSS v4",
+      "Pytest"
     ],
-    "heroImage": "/images/projects/zola/hero.png",
+    "heroImage": "/images/projects/campusone/landing-page.png",
     "screenshots": [
-      "/images/projects/zola/demo.png",
-      "/images/projects/zola/shaders.png",
-      "/images/projects/zola/dashboard.png"
+      "/images/projects/campusone/landing-page.png",
+      "/images/projects/campusone/workspace-cited-answer.png",
+      "/images/projects/campusone/admin-analytics.png",
+      "/images/projects/campusone/admin-triage-console.png",
+      "/images/projects/campusone/architecture.png",
+      "/images/projects/campusone/login-page.png"
     ],
-    "liveUrl": "https://github.com/armaan-choudhary/zola",
-    "subtitle": "Real-Time Collaborative Constellation Engine",
-    "role": "Creator & Lead Developer",
-    "team": "Solo",
-    "duration": "48 Hours",
-    "status": "Prototype",
-    "projectType": "Hackathon Project",
-    "deployment": "Vercel",
+    "liveUrl": "https://github.com/armaan-choudhary/msInnovateHack",
+    "subtitle": "Multi-Agent University Front Door & Domain RAG Orchestrator",
+    "role": "Project Lead — Frontend & Security",
+    "team": "Team of 3",
+    "duration": "Hackathon Sprint",
+    "status": "Production-Ready Prototype",
+    "projectType": "Enterprise AI Orchestration",
+    "deployment": "Docker Compose & PostgreSQL",
     "repository": "Public",
-    "problem": "Handling high-concurrency WebSocket data and rendering procedural graph animations (constellations) in real-time typically causes severe mobile GPU bottlenecks and layout thrashing.",
-    "goal": "Build an ultra-responsive, 60fps real-time interactive canvas capable of procedurally generating organic constellation graphs without frame drops.",
-    "solution": "Developed a custom Single-Hub Minimum Spanning Tree (MST) graph algorithm, backed by Supabase WebSockets and CSS GPU compositor acceleration with render-pausing logic.",
+    "architecture": "LangGraph StateGraph orchestration pipeline routing natural student queries through margin-guarded intent classifiers to isolated domain knowledge stores (PostgreSQL + pgvector). State is durably preserved via PostgresSaver checkpointers across sessions, and unresolvable issues automatically escalate into structured staff handoff tickets.",
+    "problem": "University operations are deeply fragmented across bureaucratic silos (IT helpdesks, student accounts, facilities, registrar, and administrative offices). Students face confusing portals and bouncing email threads, while standard chatbots produce ungrounded hallucinations, lack citation provenance, and cannot cleanly escalate unresolved issues.",
+    "goal": "Architect a single conversational front door that autonomously classifies multi-department inquiries, queries domain-isolated vector knowledge bases with Maximal Marginal Relevance (MMR), strictly cites verified university policy sources with page-level PDF provenance, and manages ticket handoffs with 0-guesswork confidence bands.",
+    "solution": "Led a team of 3 to build an asynchronous FastAPI service orchestrating a multi-agent LangGraph workflow paired with a dual-role Next.js 16 / React 19 web application. Spearheaded the frontend architecture, system integration, and application security—implementing strict RBAC access barriers, docked citation drawers, and real-time ticket triage.",
     "challenges": [
       {
-        "title": "Mobile GPU Frame Drops",
-        "solution": "High-frequency star creation events triggered continuous React re-renders. Engineered an isolated `TierContext` state architecture that decoupled the background animations from main state updates and automatically paused background animation loops when interaction modals were active."
+        "title": "Dual-Role Frontend Architecture & Real-Time Ticket Synchronization",
+        "solution": "Engineered the Next.js 16 (App Router) / React 19 frontend implementing clean role segregation. Designed the obsidian dark student workspace with docked official citation inspection drawers (2x2 metadata grid with page-level PDF provenance) and real-time personal ticket tracking, alongside an administrative triage console (`/admin`) synchronizing live status transitions across departments."
       },
       {
-        "title": "Graph Clutter & Structural Flickering",
-        "solution": "Standard Delaunay triangulation caused tangled webs. Solved by engineering a custom Single-Hub Kruskal's MST algorithm applying deterministic string-hash jitter to distance calculations, ensuring stable constellation lines across re-renders."
+        "title": "Strict RBAC Enforcement & Horizontal Access Protection",
+        "solution": "Designed the application security architecture to prevent privilege escalation and unauthorized data access. Implemented constant-time PBKDF2-HMAC-SHA256 password hashing (100k iterations) with HMAC JWT rotation, hardcoded student-only self-registration (`campus_users`), enforced HTTP 403 role barriers for admin triage, and tied thread state strictly to `current_user.id` to eliminate horizontal access vulnerabilities."
+      },
+      {
+        "title": "Intent Disambiguation & Cross-Department Multi-Intent Routing",
+        "solution": "Students frequently submit compound questions spanning multiple departments (e.g. fee payments and portal login failures). Co-designed a JSON Schema structured router (`DepartmentRoute`) evaluating confidence margins (>= 0.75 for direct execution, < 0.75 for clarification loops) and isolated PostgreSQL vector stores (`it_knowledge`, `hr_knowledge`, `finance_knowledge`, `facilities_knowledge`) retrieved using Maximal Marginal Relevance (MMR: k=4, fetch_k=16, lambda=0.7)."
       }
     ],
     "engineeringDecisions": [
       {
-        "decision": "Supabase Realtime over Custom Node.js/Socket.io",
-        "reason": "Allowed for rapid deployment within a 48-hour timeframe while providing robust PostgreSQL persistence.",
-        "tradeoff": "Less control over the WebSocket payload optimization compared to a raw custom socket implementation."
+        "decision": "Next.js 16 Dual-Role App Architecture over Single Shared Workspace",
+        "reason": "Strictly isolates student conversational context from administrative triage views, preventing client-side permission leaks and simplifying role-specific UI optimizations.",
+        "tradeoff": "Requires dedicated routing guards and dual context providers (AuthContext and TicketContext)."
       },
       {
-        "decision": "SVG Overlays vs WebGL Canvas for Constellations",
-        "reason": "SVG provided easier declarative integration with React state and Framer Motion for line drawing animations.",
-        "tradeoff": "SVG DOM nodes become a bottleneck at >500 nodes; WebGL would scale better for massive graphs."
+        "decision": "Server-Derived Thread IDs & Strict Role Barriers",
+        "reason": "Deriving thread_id strictly from the authenticated user token prevents students from enumerating or hijacking other student conversation threads.",
+        "tradeoff": "Prevents anonymous multi-turn guest sessions without pre-seeding or registering a guest account."
+      },
+      {
+        "decision": "Isolated Department PGVector Tables over a Single Multi-Tenant Index",
+        "reason": "Guarantees strict security and privacy boundaries, zero vector cross-contamination between HR/Finance and general campus rules, and faster domain-specific indexing.",
+        "tradeoff": "Requires managing multiple vector collection tables and connection parameters."
       }
     ],
     "results": [
-      "Deployed full-stack real-time application in 48 hours",
-      "Maintained 60fps on mobile GPUs",
-      "Zero-Latency WebSocket state synchronization"
+      "54 automated unit & integration tests passing (pytest)",
+      "Sub-second intent routing & zero-hallucination citation enforcement",
+      "Dual-role Next.js 16 frontend with 100% RBAC security boundary",
+      "Durable multi-session conversation memory persisted in PostgreSQL"
     ],
     "lessonsLearned": [
-      "Decoupling high-frequency data streams from React's main render tree is critical for performance.",
-      "Hardware-accelerated CSS transforms (`will-change: transform`) drastically improve animation smoothness but must be managed to avoid memory bloat."
+      "Confidence thresholds must be treated as product behavior: ambiguous intent should trigger clear, human-oriented choices rather than opaque model guessing.",
+      "Decoupling knowledge collections by domain prevents vector contamination far more effectively than top-k prompt filtering.",
+      "Automating ticket handoffs directly from conversation graphs bridges the gap between AI assistants and enterprise human support operations."
     ],
     "futureImprovements": [
-      "Migrate constellation rendering from SVG to WebGL/Three.js for infinite scaling.",
-      "Implement a Redis cache layer for initial payload hydration."
+      "Integrate enterprise OIDC / Single Sign-On (SSO) with university Active Directory.",
+      "Implement WebSocket/SSE streaming for real-time token rendering across mobile networks.",
+      "Add automated semantic evals with LangSmith to track answer quality drift across policy revisions."
     ]
   },
   {

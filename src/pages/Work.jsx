@@ -7,7 +7,7 @@ import Divider from '../components/ui/Divider.jsx'
 import projectsData from '../data/projects.json'
 import styles from './Work.module.css'
 
-const categories = ['All', 'Full-Stack Development', 'Front-End Development', 'AI & Full-Stack Development', 'Hackathon Project']
+const categories = ['All', ...new Set(projectsData.map((p) => p.category))]
 
 export default function Work() {
   const [activeCategory, setActiveCategory] = useState('All')

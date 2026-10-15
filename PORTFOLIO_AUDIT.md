@@ -33,7 +33,7 @@
 
 ## 2. Every Project Case Study
 
-**Analyzed Projects:** FortuneWander, QueenTrends Theme, Zola, FinChat, PrismNet.
+**Analyzed Projects:** FortuneWander, QueenTrends Theme, CampusOne, FinChat, PrismNet.
 
 **Missing Recruiter-Focused Information (Across all projects):**
 *   **Team Size:** Crucial omission. Were these solo projects? If not, what was your exact contribution?
