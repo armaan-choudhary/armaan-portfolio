@@ -4,17 +4,57 @@
 
 /* Title Section */
 .titleSection {
-  padding: 80px 0 60px;
+  padding: 160px 0 60px;
+}
+
+.backBtn {
+  display: inline-block;
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  color: var(--yellow);
+  text-decoration: none;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  transition: transform 0.2s;
+  transform: rotate(-1deg);
+}
+
+.backBtn:hover {
+  transform: rotate(0deg) scale(1.05);
+  color: var(--white);
 }
 
 .titleHeader {
-  max-width: 750px;
+  max-width: 850px;
   margin-bottom: 48px;
+}
+
+.titleWrap {
+  margin-bottom: 20px;
+}
+
+.displayTitle {
+  font-family: var(--font-hero);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.annotation {
+  display: block;
+  font-family: var(--font-handwritten);
+  font-size: 1.6rem;
+  color: var(--yellow);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
 }
 
 .introText {
   font-size: 1.25rem;
-  color: var(--white);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin-top: 16px;
 }
@@ -97,11 +137,17 @@
   margin-top: 16px;
 }
 
+@media (max-width: 768px) {
+  .titleSection {
+    padding: 135px 0 40px;
+  }
+}
+
 @media (max-width: 560px) {
   .titleSection {
-    padding: 48px 0;
+    padding: 125px 0 30px;
   }
   .gridSection {
-    padding: 56px 0 80px;
+    padding: 48px 0 80px;
   }
 }

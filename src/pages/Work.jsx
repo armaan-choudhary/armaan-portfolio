@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Polaroid from '../components/ui/Polaroid.jsx'
 import SectionTitle from '../components/ui/SectionTitle.jsx'
@@ -21,9 +22,11 @@ export default function Work() {
       <section className={styles.titleSection}>
         <div className="container">
           <div className={styles.titleHeader}>
-            <SectionTitle rotate={-1} annotation="Projects built for scale and performance">
-              Selected Work
-            </SectionTitle>
+            <Link to="/#work" className={styles.backBtn}>← Return to Desk</Link>
+            <div className={styles.titleWrap}>
+              <h1 className={styles.displayTitle}>SELECTED WORK</h1>
+              <span className={styles.annotation}>Projects built for scale and performance</span>
+            </div>
             <p className={styles.introText}>
               A curated collection of production-ready applications, system architectures, and AI integrations. These projects demonstrate a commitment to robust engineering and scalable design.
             </p>
