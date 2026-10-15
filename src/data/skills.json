@@ -1,31 +1,36 @@
 [
+  { "name": "TypeScript", "category": "Languages" },
   { "name": "JavaScript (ES6+)", "category": "Languages" },
   { "name": "Python", "category": "Languages" },
   { "name": "PHP 8.2+ (OOP)", "category": "Languages" },
   
   { "name": "React 19", "category": "Frontend" },
+  { "name": "Next.js 16 (App Router)", "category": "Frontend" },
   { "name": "Tailwind CSS", "category": "Frontend" },
   { "name": "Framer Motion", "category": "Frontend" },
   { "name": "GSAP 3", "category": "Frontend" },
 
   { "name": "FastAPI", "category": "Backend" },
-  { "name": "WordPress", "category": "Backend" },
-  { "name": "REST API", "category": "Backend" },
+  { "name": "Node.js", "category": "Backend" },
+  { "name": "WordPress (Custom Theme/Plugin)", "category": "Backend" },
+  { "name": "RESTful API Architecture", "category": "Backend" },
 
-  { "name": "MySQL", "category": "Databases" },
   { "name": "PostgreSQL & pgvector", "category": "Databases" },
-  { "name": "FAISS", "category": "Databases" },
+  { "name": "MySQL", "category": "Databases" },
+  { "name": "FAISS (Vector Index)", "category": "Databases" },
 
-  { "name": "Supabase", "category": "Cloud" },
-  { "name": "Vercel", "category": "Cloud" },
+  { "name": "Docker & Compose", "category": "Cloud & DevOps" },
+  { "name": "Vercel", "category": "Cloud & DevOps" },
+  { "name": "Supabase", "category": "Cloud & DevOps" },
 
-  { "name": "LangGraph (Multi-Agent)", "category": "AI" },
-  { "name": "PyTorch", "category": "AI" },
-  { "name": "Sentence Transformers", "category": "AI" },
-  { "name": "Google Gemini 2.5", "category": "AI" },
-  { "name": "TensorRT", "category": "AI" },
-  { "name": "Llama.cpp", "category": "AI" },
+  { "name": "LangGraph (Multi-Agent)", "category": "AI & Systems" },
+  { "name": "PyTorch", "category": "AI & Systems" },
+  { "name": "Google Gemini 2.5", "category": "AI & Systems" },
+  { "name": "TensorRT (FP16/INT8)", "category": "AI & Systems" },
+  { "name": "Sentence Transformers & Rerankers", "category": "AI & Systems" },
+  { "name": "Llama.cpp Local Inference", "category": "AI & Systems" },
 
-  { "name": "Vite", "category": "Developer Tools" },
-  { "name": "Git", "category": "Developer Tools" }
+  { "name": "Pytest (Automated Testing)", "category": "Developer Tools" },
+  { "name": "Git & CI/CD", "category": "Developer Tools" },
+  { "name": "Vite Bundler", "category": "Developer Tools" }
 ]

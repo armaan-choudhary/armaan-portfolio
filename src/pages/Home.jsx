@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, Link } from 'react-router-dom';
 import projectsData from '../data/projects.json';
+import skillsData from '../data/skills.json';
 import styles from './Home.module.css';
 import { sendEnquiryEmail } from '../services/emailService';
 
-
-import { FaReact, FaWordpress, FaPhp, FaDatabase, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt } from 'react-icons/fa';
-import { SiJavascript, SiTypescript, SiFramer, SiVite } from 'react-icons/si';
+import { FaReact, FaWordpress, FaPhp, FaDatabase, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt, FaDocker } from 'react-icons/fa';
+import { SiJavascript, SiTypescript, SiFramer, SiVite, SiPytest, SiNextdotjs, SiPython, SiPostgresql, SiTailwindcss } from 'react-icons/si';
 
 const renderSkillIcon = (name) => {
   const norm = name.toLowerCase();
   const inkColor = "#222222"; 
   if (norm.includes('react')) return <FaReact size={35} color={inkColor} />;
+  if (norm.includes('next')) return <SiNextdotjs size={35} color={inkColor} />;
   if (norm.includes('javascript')) return <SiJavascript size={35} color={inkColor} />;
   if (norm.includes('typescript')) return <SiTypescript size={35} color={inkColor} />;
+  if (norm.includes('python')) return <SiPython size={35} color={inkColor} />;
   if (norm.includes('framer motion')) return <SiFramer size={35} color={inkColor} />;
+  if (norm.includes('tailwind')) return <SiTailwindcss size={35} color={inkColor} />;
   if (norm.includes('html5/css3')) return (
     <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-start', alignItems: 'center' }}>
       <FaHtml5 size={28} color={inkColor} />
@@ -27,12 +30,16 @@ const renderSkillIcon = (name) => {
   if (norm.includes('php')) return <FaPhp size={35} color={inkColor} />;
   if (norm.includes('node')) return <FaNodeJs size={35} color={inkColor} />;
   if (norm.includes('git')) return <FaGitAlt size={35} color={inkColor} />;
+  if (norm.includes('docker')) return <FaDocker size={35} color={inkColor} />;
+  if (norm.includes('pytest')) return <SiPytest size={35} color={inkColor} />;
+  if (norm.includes('postgres')) return <SiPostgresql size={35} color={inkColor} />;
   return <FaDatabase size={35} color={inkColor} />;
 };
 
 export default function Home() {
   const navigate = useNavigate();
 
+  const [showAllSkills, setShowAllSkills] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '', _honeypot: '' });
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitStatus, setFormSubmitStatus] = useState(null); // 'submitting' | 'success' | 'error'
@@ -144,8 +151,12 @@ export default function Home() {
                 
                 <div className={styles.projectActions}>
                   <button onClick={(e) => { e.stopPropagation(); navigate(`/work/${projectsData[0].slug}`); }} className={styles.paperLabel}>View Case Study</button>
-                  <a href={projectsData[0].liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className={styles.paperLabel}>Live Site</a>
-                  <a href={projectsData[0].liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className={styles.paperLabel}>GitHub</a>
+                  {projectsData[0].liveUrl && !projectsData[0].liveUrl.includes('github.com') && (
+                    <a href={projectsData[0].liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className={styles.paperLabel}>Live Site</a>
+                  )}
+                  {(projectsData[0].githubUrl || (projectsData[0].liveUrl && projectsData[0].liveUrl.includes('github.com'))) && (
+                    <a href={projectsData[0].githubUrl || projectsData[0].liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className={styles.paperLabel}>GitHub</a>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -179,7 +190,7 @@ export default function Home() {
 
           <div className={styles.editorialTransition}>
             <p className={styles.bodyTextLight} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Interested in how these systems were engineered?</p>
-            <a href="#work" className={styles.editorialLink} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' })}}>View all case studies →</a>
+            <Link to="/work" className={styles.editorialLink}>View all case studies →</Link>
           </div>
         </section>
 
@@ -269,8 +280,43 @@ export default function Home() {
               ))}
             </div>
 
+            {/* Expandable full technical stack categorized taxonomy */}
+            <AnimatePresence>
+              {showAllSkills && (
+                <motion.div
+                  className={styles.fullSkillsArchive}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {Array.from(new Set(skillsData.map((s) => s.category))).map((cat) => (
+                    <div key={cat} className={styles.skillCategoryGroup}>
+                      <h5 className={styles.skillCategoryTitle}>{cat}</h5>
+                      <div className={styles.skillBadgeRow}>
+                        {skillsData
+                          .filter((s) => s.category === cat)
+                          .map((s) => (
+                            <span key={s.name} className={styles.skillTagBadge}>
+                              {s.name}
+                            </span>
+                          ))}
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <div style={{ textAlign: 'right', marginTop: '60px', borderTop: '2px solid var(--black)', paddingTop: '20px' }}>
-              <a href="#skills" className={styles.primaryCta} style={{ background: 'transparent', color: 'var(--black)' }}>Full Technical Stack →</a>
+              <button
+                type="button"
+                onClick={() => setShowAllSkills(!showAllSkills)}
+                className={styles.primaryCta}
+                style={{ background: 'transparent', color: 'var(--black)', cursor: 'pointer' }}
+              >
+                {showAllSkills ? 'Hide Full Inventory ↑' : 'Complete Technical Taxonomy (29 Tools) ↓'}
+              </button>
             </div>
           </motion.div>
         </section>

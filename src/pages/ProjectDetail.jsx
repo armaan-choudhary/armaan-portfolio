@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import projectsData from '../data/projects.json'
 import styles from './ProjectDetail.module.css'
@@ -176,17 +176,30 @@ export default function ProjectDetail() {
             <p className={styles.blueprintDesc}>{project.architecture}</p>
 
             <div className={styles.blueprintDiagram}>
-              <span className={`${styles.handwrittenAccent} ${styles.diagramNote}`}>* Request Flow</span>
+              <span className={`${styles.handwrittenAccent} ${styles.diagramNote}`}>* Pipeline Flow</span>
               <div className={styles.flowRow}>
-                <div className={styles.flowBox}>Client</div>
-                <div className={styles.flowArrow}>→</div>
-                <div className={styles.flowBox}>{project.techStack[0] || 'Frontend'}</div>
-                <div className={styles.flowArrow}>→</div>
-                <div className={styles.flowBox}>API</div>
-                {project.techStack.length > 2 && (
+                {project.architectureFlow && project.architectureFlow.length > 0 ? (
+                  project.architectureFlow.map((step, idx) => (
+                    <Fragment key={step}>
+                      <div className={styles.flowBox}>{step}</div>
+                      {idx < project.architectureFlow.length - 1 && (
+                        <div className={styles.flowArrow}>→</div>
+                      )}
+                    </Fragment>
+                  ))
+                ) : (
                   <>
+                    <div className={styles.flowBox}>Client</div>
                     <div className={styles.flowArrow}>→</div>
-                    <div className={styles.flowBox}>{project.techStack[project.techStack.length - 1]}</div>
+                    <div className={styles.flowBox}>{project.techStack[0] || 'Frontend'}</div>
+                    <div className={styles.flowArrow}>→</div>
+                    <div className={styles.flowBox}>API</div>
+                    {project.techStack.length > 2 && (
+                      <>
+                        <div className={styles.flowArrow}>→</div>
+                        <div className={styles.flowBox}>{project.techStack[project.techStack.length - 1]}</div>
+                      </>
+                    )}
                   </>
                 )}
               </div>
@@ -336,17 +349,20 @@ export default function ProjectDetail() {
 
         {/* ─── NEXT PROJECT ─── */}
         <div className={styles.nextFolderSection}>
-          <motion.a
-            href={`/work/${nextProject.slug}`}
-            className={styles.nextFolderCard}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
           >
-            <span className={styles.handwrittenAccent}>Next Case File →</span>
-            <h2 className={styles.projectTitle} style={{ color: 'var(--black)', fontSize: '2.5rem', marginBottom: 0 }}>
-              {nextProject.title}
-            </h2>
-          </motion.a>
+            <Link
+              to={`/work/${nextProject.slug}`}
+              className={styles.nextFolderCard}
+            >
+              <span className={styles.handwrittenAccent}>Next Case File →</span>
+              <h2 className={styles.projectTitle} style={{ color: 'var(--black)', fontSize: '2.5rem', marginBottom: 0 }}>
+                {nextProject.title}
+              </h2>
+            </Link>
+          </motion.div>
         </div>
 
       </div>

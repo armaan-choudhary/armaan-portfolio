@@ -340,6 +340,48 @@
   padding-top: 20px;
 }
 
+.fullSkillsArchive {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px dashed rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.skillCategoryGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.skillCategoryTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: var(--black);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 4px;
+}
+
+.skillBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillTagBadge {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  color: var(--black);
+}
+
 /* ─── OBJECT 4: PERSONNEL DOSSIER (Can I trust them?) ─── */
 .aboutSection {
   padding: 120px 20px;
